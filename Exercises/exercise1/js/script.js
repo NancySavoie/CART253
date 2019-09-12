@@ -3,12 +3,12 @@
 //
 // Starter code for exercise 1.
 
-    //New added shape, a rectangle.
+    //New added shape, a rectangle with current position.
     let rectY = 310;
     let rectX = 0;
     let rectSize = 50;
 
-    //New added shape, an ovale.
+    //New added shape, an ovale with current position.
     let ovaleY = 0;
     let ovaleX = 310;
     let ovaleSize = 50;
@@ -27,7 +27,6 @@ let circleSize = 100;
 let squareX;
 let squareY;
 let squareSize = 100;
-
 
 
 // preload()
@@ -60,7 +59,6 @@ function setup() {
 }
 
 function draw() {
-  // No BG
 
      // The shape that follows the mouse, looks like bubbles!
       cursorX = mouseX;
