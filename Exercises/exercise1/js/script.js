@@ -2,8 +2,21 @@
 // Nancy Savoie
 //
 // Starter code for exercise 1.
-// Draws a moving square and circle that intersect
-// in the middle of the canvas.
+
+    //New added shape, a rectangle.
+    let rectY = 310;
+    let rectX = 0;
+    let rectSize = 50;
+
+    //New added shape, an ovale.
+    let ovaleY = 0;
+    let ovaleX = 310;
+    let ovaleSize = 50;
+
+    // The mouse shape.
+    let cursorX;
+    let cursorY;
+    let cursorSize = 25;
 
 // The current position and size of the circle
 let circleX;
@@ -15,24 +28,12 @@ let squareX;
 let squareY;
 let squareSize = 100;
 
-//New added shape that moves from left to right
-let rectY = 310;
-let rectX = 0;
-let rectSize = 50;
 
-//New added shape that moves from left to right
-let ovaleY = 0;
-let ovaleX = 310;
-let ovaleSize = 50;
 
 // preload()
-//
-// Nothing here
 
 function preload() {
-
 }
-
 
 // setup()
 //
@@ -52,32 +53,30 @@ function setup() {
   squareX = width + squareSize/2;
   squareY = height + squareSize/2;
 
-
-
   // We'll draw rectangles from the center
 
   // We won't have a stroke in this
   noStroke();
 }
 
-
-// draw()
-//
-// Change the circle and square's positions so they move
-// Draw the circle and square on screen
-
 function draw() {
-  // We don't fill the background so we get a drawing effect
+  // No BG
 
-  //A rectangular shape
-  fill(0,255,10,10); //A different color to contrast the red and the blue
-  rectX = rectX + 1; //It moves from left to right
-  rect (rectX,rectY,rectSize,rectSize);
+     // The shape that follows the mouse, looks like bubbles!
+      cursorX = mouseX;
+      cursorY = mouseY;
+      fill(255,150,0,10); //A nice orange color.
+      ellipse (cursorX,cursorY,cursorSize,cursorSize);
 
-  //A circular shape
-  fill(255,255,10,10); //Another primary color to clash.
-  ovaleY = ovaleY + 1; //It moves from left to right
-  ellipse (ovaleX,ovaleY,ovaleSize,ovaleSize);
+      //A rectangular shape
+      fill(0,255,10,10); //A different color to contrast the red and the blue
+      rectX = rectX + 1; //It moves from left to right.
+      rect (rectX,rectY,rectSize,rectSize);
+
+      //A circular shape
+      fill(255,255,10,10); //Another primary color to clash.
+      ovaleY = ovaleY + 1; //It moves from the top to the bottom.
+      ellipse (ovaleX,ovaleY,ovaleSize,ovaleSize);
 
   // Move circle up and to the right
   circleX += 1;
@@ -94,7 +93,5 @@ function draw() {
   fill(0,0,255,10);
   // Display the square
   rect(squareX,squareY,squareSize,squareSize);
-
-
 
 }
