@@ -18,7 +18,12 @@ let squareSize = 100;
 //New added shape that moves from left to right
 let rectY = 310;
 let rectX = 0;
-let rectSize = 200;
+let rectSize = 50;
+
+//New added shape that moves from left to right
+let ovaleY = 0;
+let ovaleX = 310;
+let ovaleSize = 50;
 
 // preload()
 //
@@ -64,9 +69,15 @@ function setup() {
 function draw() {
   // We don't fill the background so we get a drawing effect
 
+  //A rectangular shape
+  fill(0,255,10,10); //A different color to contrast the red and the blue
+  rectX = rectX + 1; //It moves from left to right
   rect (rectX,rectY,rectSize,rectSize);
-  fill(200,200,200)
-  rectX = rectX + 1;
+
+  //A circular shape
+  fill(255,255,10,10); //Another primary color to clash.
+  ovaleY = ovaleY + 1; //It moves from left to right
+  ellipse (ovaleX,ovaleY,ovaleSize,ovaleSize);
 
   // Move circle up and to the right
   circleX += 1;
