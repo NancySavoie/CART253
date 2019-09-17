@@ -1,9 +1,7 @@
 /******************************************************
 
-Game - The Artful Dodger
-Pippin Barr
-
-A simple dodging game with keyboard controls
+Exercise 2 - The Artful Dodger Plus
+Nancy Savoie
 
 ******************************************************/
 
@@ -48,13 +46,18 @@ function setup() {
   noStroke();
 }
 
-// draw()
-//
 // Handle moving the avatar and enemy and checking for dodges and
 // game over situations.
+
 function draw() {
-  // A pink background
-  background(255,220,220);
+  // The Score
+    textAlign(LEFT,TOP);
+    textSize(70);
+    fill(0);
+    text(dodges,width,0);
+
+  // Light blue BG
+  background(200,255,250);
 
   // Default the avatar's velocity to 0 in case no key is pressed this frame
   avatarVX = 0;
@@ -104,7 +107,6 @@ function draw() {
     // Reset the dodge counter
     dodges = 0;
   }
-
   // Check if the avatar has gone off the screen (cheating!)
   if (avatarX < 0 || avatarX > width || avatarY < 0 || avatarY > height) {
     // If they went off the screen they lose in the same way as above.
@@ -130,14 +132,14 @@ function draw() {
   // Display the number of successful dodges in the console
   console.log(dodges);
 
-  // The player is black
-  fill(0);
+  // The player is magenta
+  fill(255,0,125);
   // Draw the player as a circle
   ellipse(avatarX,avatarY,avatarSize,avatarSize);
 
-  // The enemy is red
-  fill(255,0,0);
-  // Draw the enemy as a circle
-  ellipse(enemyX,enemyY,enemySize,enemySize);
+  // The enemy is dark green
+  fill(0,100,100);
+  // Draw the enemy as a square
+  rect(enemyX,enemyY,enemySize,enemySize);
 
 }
