@@ -50,15 +50,15 @@ Nancy Savoie
     // game over situations.
 
 function draw() {
+//Light blue background
+    background(200,255,250);
+
 //The Score
     textFont("Impact");
-    textAlign(LEFT,TOP);
+    textAlign(RIGHT,TOP);
     textSize(70);
-    fill(0);
+    fill(50,200,200);
     text(dodges,width,0);
-
-//Light blue background
-  background(200,255,250);
 
       // Default the avatar's velocity to 0 in case no key is pressed this frame
       avatarVX = 0;
