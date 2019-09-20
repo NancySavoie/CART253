@@ -44,12 +44,14 @@ Nancy Savoie
 
 // No stroke so it looks cleaner
   noStroke();
-    }
+  }
 
 // Handle moving the avatar and enemy and checking for dodges and
 // game over situations.
 
 function draw() {
+
+//Added by Nancy ----------------------------------------------------------
 
       //Light blue background to start
         background(200,255,250);
@@ -77,6 +79,8 @@ function draw() {
         textSize(70);
         fill(50,200,200);
         text(dodges,width,0);
+
+//------------------------------------------------------------------------
 
 // Default the avatar's velocity to 0 in case no key is pressed this frame
   avatarVX = 0;
@@ -123,9 +127,13 @@ enemyX = enemyX + enemyVX;
   enemyX = 0;
   enemyY = random(0,height);
 
+//Added by Nancy  --------------------------------------------------------
+
       //Enemy speed and size resets after the player loses.
         enemySize = 35;
         enemySpeed = 5;
+
+//------------------------------------------------------------------------
 
 // Reset the avatar's position
   avatarX = width/2;
@@ -146,9 +154,13 @@ enemyX = enemyX + enemyVX;
 // Check if the enemy has moved all the way across the screen
   if (enemyX > width) {
 
+//Added by Nancy  ---------------------------------------------------------
+
       //enemy increases in size and speed each time theres a successfully dodge
         enemySize = enemySize + 1;
         enemySpeed = enemySpeed + 0.25;
+
+//------------------------------------------------------------------------
 
 // This means the player dodged so update its dodge statistic
   dodges = dodges + 1;
@@ -162,13 +174,49 @@ enemyX = enemyX + enemyVX;
 // Display the number of successful dodges in the console
   console.log(dodges);
 
-      //The player is magenta
-        fill(255,0,125);
-      //Draw the player as a circle
-        ellipse(avatarX,avatarY,avatarSize,avatarSize);
+//Added by Nancy  -----------------------------------------------------------
 
-      //The enemy is dark green
+      //The player is magenta to start
+        fill(255,0,125);
+      //The avatar's color changes with ever 10th level, like the background.
+        if (dodges > 10) {
+          fill (50,100,150)
+          }
+        if (dodges > 20) {
+          fill (100,235,200)
+          }
+        if (dodges > 30) {
+          fill (200,50,130)
+          }
+        if (dodges > 40) {
+          fill (150,200,100)
+          }
+        if (dodges > 50) {
+          fill (175,50,150)
+          }
+      //Draw the player as a circle
+        rect(avatarX,avatarY,avatarSize,avatarSize);
+
+      //The enemy is dark green to start.
         fill(0,100,100);
+      //The enemy's color changes with ever 10th level, like the BG & avatar.
+        if (dodges > 10) {
+          fill (175,50,150)
+          }
+        if (dodges > 20) {
+          fill (150,200,100)
+          }
+        if (dodges > 30) {
+          fill (200,50,130)
+          }
+        if (dodges > 40) {
+          fill (100,235,200)
+          }
+        if (dodges > 50) {
+          fill (50,100,150)
+          }
       // Draw the enemy as a square
         rect(enemyX,enemyY,enemySize,enemySize);
         }
+
+//------------------------------------------------------------------------
