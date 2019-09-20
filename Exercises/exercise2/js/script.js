@@ -50,6 +50,7 @@ Nancy Savoie
     // game over situations.
 
 function draw() {
+
 //Light blue background
     background(200,255,250);
 
@@ -90,8 +91,11 @@ function draw() {
 
       // The enemy always moves at enemySpeed
       enemyVX = enemySpeed;
+
       // Update the enemy's position based on its velocity
       enemyX = enemyX + enemyVX;
+
+
 
       // Check if the enemy and avatar overlap - if they do the player loses
       // We do this by checking if the distance between the centre of the enemy
@@ -102,15 +106,16 @@ function draw() {
         // Reset the enemy's position
         enemyX = 0;
         enemyY = random(0,height);
+
+//Enemy speed and size resets after the player loses.
+  enemySize = 35;
+  enemySpeed = 5;
+
         // Reset the avatar's position
         avatarX = width/2;
         avatarY = height/2;
         // Reset the dodge counter
         dodges = 0;
-
-//Enemy get bigger and faster is the avatar doesn't dodge.
-  enemySize = enemySize + 5;
-  enemySpeed = enemySpeed + 0.25;
   }
       // Check if the avatar has gone off the screen (cheating!)
       if (avatarX < 0 || avatarX > width || avatarY < 0 || avatarY > height) {
@@ -118,6 +123,7 @@ function draw() {
         console.log("YOU LOSE!");
         enemyX = 0;
         enemyY = random(0,height);
+
         avatarX = width/2;
         avatarY = height/2;
         dodges = 0;
@@ -125,6 +131,9 @@ function draw() {
 
       // Check if the enemy has moved all the way across the screen
       if (enemyX > width) {
+//enemy increases in size and speed each time theres a successfully dodge
+    enemySize = enemySize + 1;
+    enemySpeed = enemySpeed + 0.25;
         // This means the player dodged so update its dodge statistic
         dodges = dodges + 1;
         // Tell them how many dodges they have made
@@ -146,5 +155,4 @@ function draw() {
   fill(0,100,100);
 // Draw the enemy as a square
   rect(enemyX,enemyY,enemySize,enemySize);
-
     }
