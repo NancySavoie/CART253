@@ -42,8 +42,9 @@ Nancy Savoie
   enemyX = 0;
   enemyY = random(0,height);
 
-// No stroke so it looks cleaner
-  noStroke();
+// Bold strokes to clearly outline the shapes, especially during color change
+  stroke(255,255,255);
+  strokeWeight(3);
   }
 
 // Handle moving the avatar and enemy and checking for dodges and
@@ -156,7 +157,7 @@ enemyX = enemyX + enemyVX;
 
 //Added by Nancy  ---------------------------------------------------------
 
-      //enemy increases in size and speed each time theres a successfully dodge
+      //enemy increases in size & speed each time there's a successful dodge
         enemySize = enemySize + 1;
         enemySpeed = enemySpeed + 0.25;
 
@@ -178,7 +179,7 @@ enemyX = enemyX + enemyVX;
 
       //The player is magenta to start
         fill(255,0,125);
-      //The avatar's color changes with ever 10th level, like the background.
+      //The avatar's color changes every 10th level, like the background.
         if (dodges > 10) {
           fill (50,100,150)
           }
@@ -194,12 +195,12 @@ enemyX = enemyX + enemyVX;
         if (dodges > 50) {
           fill (175,50,150)
           }
-      //Draw the player as a circle
+      //Draw the player as a suqare
         rect(avatarX,avatarY,avatarSize,avatarSize);
 
-      //The enemy is dark green to start.
+      //The enemy is dark green to start
         fill(0,100,100);
-      //The enemy's color changes with ever 10th level, like the BG & avatar.
+      //The enemy's color changes with ever 10th level, like the BG & avatar
         if (dodges > 10) {
           fill (175,50,150)
           }
@@ -215,7 +216,7 @@ enemyX = enemyX + enemyVX;
         if (dodges > 50) {
           fill (50,100,150)
           }
-      // Draw the enemy as a square
+      // Draw the enemy also as a square
         rect(enemyX,enemyY,enemySize,enemySize);
         }
 
