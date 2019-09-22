@@ -27,6 +27,22 @@ Nancy Savoie
 // How many dodges the player has made
   let dodges = 0;
 
+//Added by Nancy ----------------------------------------------------------
+
+      //The avatar image
+      let avatarImage;
+
+      //The enemy image
+      let enemyImage;
+
+      //Preload function for the avatar and enemy images (Mario and Paratroopa)
+      function preload() {
+        avatarImage = loadImage("assets/images/avatarImage.png");
+        enemyImage = loadImage("assets/images/enemyImage.png");
+        }
+
+//------------------------------------------------------------------------
+
 // setup()
 //
 // Make the canvas, position the avatar and anemy
@@ -55,30 +71,30 @@ function draw() {
 //Added by Nancy ----------------------------------------------------------
 
       //Light blue background to start
-        background(200,255,250);
+        background(23, 165, 252);
 
-     //The background changes color at every 10th level (up tp level 50).
+     //The background changes color at every 10th level (up to level 50).
       if (dodges > 10) {
-        background (177,93,245)
+        background (251, 255, 0)
         }
       if (dodges > 20) {
-        background (52,235,216)
+        background (81, 219, 93)
         }
       if (dodges > 30) {
-        background (163,31,128)
+        background (44, 51, 171)
         }
-      if (dodges > 20) {
-        background (1160,250,190)
+      if (dodges > 40) {
+        background (250, 125, 7)
         }
-      if (dodges > 30) {
-        background (173,29,94)
+      if (dodges > 50) {
+        background (250, 7, 7)
         }
 
       //The score displays successful dodges
         textFont("Impact");
         textAlign(RIGHT,TOP);
         textSize(70);
-        fill(50,200,200);
+        fill(252, 231, 3);
         text(dodges,width,0);
 
 //------------------------------------------------------------------------
@@ -117,7 +133,6 @@ enemyVX = enemySpeed;
 // Update the enemy's position based on its velocity
 enemyX = enemyX + enemyVX;
 
-
 // Check if the enemy and avatar overlap - if they do the player loses
 // We do this by checking if the distance between the centre of the enemy
 // and the centre of the avatar is less that their combined radii
@@ -130,9 +145,9 @@ enemyX = enemyX + enemyVX;
 
 //Added by Nancy  --------------------------------------------------------
 
-      //Enemy speed and size resets after the player loses.
-        enemySize = 35;
-        enemySpeed = 5;
+        //Enemy speed and size resets after the player loses.
+          enemySize = 35;
+          enemySpeed = 5;
 
 //------------------------------------------------------------------------
 
@@ -157,9 +172,9 @@ enemyX = enemyX + enemyVX;
 
 //Added by Nancy  ---------------------------------------------------------
 
-      //enemy increases in size & speed each time there's a successful dodge
-        enemySize = enemySize + 1;
-        enemySpeed = enemySpeed + 0.25;
+        //The enemy increases in size & speed each time there's a successful dodge
+          enemySize = enemySize + 1;
+          enemySpeed = enemySpeed + 0.25;
 
 //------------------------------------------------------------------------
 
@@ -177,47 +192,13 @@ enemyX = enemyX + enemyVX;
 
 //Added by Nancy  -----------------------------------------------------------
 
-      //The player is magenta to start
-        fill(255,0,125);
-      //The avatar's color changes every 10th level, like the background.
-        if (dodges > 10) {
-          fill (50,100,150)
-          }
-        if (dodges > 20) {
-          fill (100,235,200)
-          }
-        if (dodges > 30) {
-          fill (200,50,130)
-          }
-        if (dodges > 40) {
-          fill (150,200,100)
-          }
-        if (dodges > 50) {
-          fill (175,50,150)
-          }
-      //Draw the player as a suqare
-        rect(avatarX,avatarY,avatarSize,avatarSize);
+        //Draw the avatar image (Mario)
+        image(avatarImage, avatarX, avatarY, avatarSize, avatarSize);
 
-      //The enemy is dark green to start
-        fill(0,100,100);
-      //The enemy's color changes with ever 10th level, like the BG & avatar
-        if (dodges > 10) {
-          fill (175,50,150)
-          }
-        if (dodges > 20) {
-          fill (150,200,100)
-          }
-        if (dodges > 30) {
-          fill (200,50,130)
-          }
-        if (dodges > 40) {
-          fill (100,235,200)
-          }
-        if (dodges > 50) {
-          fill (50,100,150)
-          }
-      // Draw the enemy also as a square
-        rect(enemyX,enemyY,enemySize,enemySize);
+        //Draw the enemy image (Paratroopa)
+        image(enemyImage, enemyX, enemyY, enemySize, enemySize);
         }
 
 //------------------------------------------------------------------------
+// Mario and Paratroopa © Nintendo
+// Images from freepngimg.com
