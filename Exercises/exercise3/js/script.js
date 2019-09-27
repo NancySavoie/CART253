@@ -56,7 +56,7 @@ function preload() {
 // of decoys in random positions, then the target
 function setup() {
   createCanvas(windowWidth,windowHeight);
-  background("#ffff00");
+  background("#FFD268");
   imageMode(CENTER);
 
 
@@ -103,18 +103,16 @@ function setup() {
       image(decoyImage10,x,y);
     }
   }
-//---------------------------------------------------------------------------
-
-          let sausageDog = "Find the little sausage doggo!";
-          textFont("Helvetica");
+          // Caption in top right corner for instruction
+          let sausageDog = "Find the little sausage doggy!";
+          textFont("Futura");
           textSize(25);
           textAlign(RIGHT,TOP);
           strokeWeight(5);
-          fill(100,200,200);
+          fill("#BFCED0");
           stroke(255);
-          text(sausageDog, width, 0);
+          text(sausageDog, width, 10);
 
-//----------------------------------------------------------------------------
 
   // Once we've displayed all decoys, we choose a random location for the target
   targetX = random(0,width);
@@ -123,14 +121,12 @@ function setup() {
   // And draw it (because it's the last thing drawn, it will always be on top)
   image(targetImage,targetX,targetY);
 
-//----------------------------------------------------------------------------
 
-          fill(100,100,100);
-          rect(1850,30,125,125);
-          imageMode(CORNER);
-          image(targetImage,1850,30);
+          //A gray square with with the image of the missing doggy in the center
+          fill("#BFCED0");
+          rect(width-100,50,100,100);
+          image(targetImage,width-45,100,100,100);
 
-//---------------------------------------------------------------------------
 }
 
 // draw()
@@ -142,15 +138,15 @@ function draw() {
 rect(RIGHT,TOP)
 
   if (gameOver) {
-    // Prepare our typography
-    textFont("Helvetica");
-    textSize(128);
-    textAlign(CENTER,CENTER);
-    noStroke();
-    fill(random(255));
+          // Prepare our typography
+          textFont("Futura");
+          textSize(100);
+          textAlign(CENTER,CENTER);
+          noStroke();
+          fill(random(255));
 
-    // Tell them they won!
-    text("YOU FOUND THE DOGGY!",width/2,height/2);
+          // Tell them they won!
+          text("YOU FOUND THE DOGGY!",width/2,height/2);
 
     // Draw a circle around the sausage dog to show where it is (even though
     // they already know because they found it!)
