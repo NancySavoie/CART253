@@ -32,6 +32,10 @@ let numDecoys = 100;
 // Keep track of whether they've won
 let gameOver = false;
 
+//The background image
+  let backgroundImage;
+
+
 // preload()
 //
 // Loads the target and decoy images before the program starts
@@ -48,6 +52,9 @@ function preload() {
   decoyImage8 = loadImage("assets/images/animals-08.png");
   decoyImage9 = loadImage("assets/images/animals-09.png");
   decoyImage10 = loadImage("assets/images/animals-10.png");
+
+  //Preload function for the background image once game is over
+    backgroundImage = loadImage("assets/images/sausagedoggy.jpg")
 }
 
 // setup()
@@ -58,8 +65,7 @@ function setup() {
   createCanvas(windowWidth,windowHeight);
   background("#FFD268");
   imageMode(CENTER);
-
-
+  backgroundImage=loadImage("assets/images/sausagedoggy.jpg");
 
   // Use a for loop to draw as many decoys as we need
   for (let i = 0; i < numDecoys; i++) {
@@ -126,7 +132,6 @@ function setup() {
           fill("#BFCED0");
           rect(width-100,50,100,100);
           image(targetImage,width-45,100,100,100);
-
 }
 
 // draw()
@@ -135,17 +140,16 @@ function setup() {
 // otherwise nothing (all the gameplay stuff is in mousePressed())
 function draw() {
 
-rect(RIGHT,TOP)
-
   if (gameOver) {
-          // Prepare our typography
+          // Prepare our typography + new background image
           textFont("Futura");
           textSize(100);
           textAlign(CENTER,CENTER);
           noStroke();
           fill(random(255));
-
-          // Tell them they won!
+          image(backgroundImage,700,500)
+image(targetImage,targetX,targetY);
+          // Winning text
           text("YOU FOUND THE DOGGY!",width/2,height/2);
 
     // Draw a circle around the sausage dog to show where it is (even though
@@ -154,6 +158,7 @@ rect(RIGHT,TOP)
     stroke(random(255));
     strokeWeight(10);
     ellipse(targetX,targetY,targetImage.width,targetImage.height);
+
   }
 }
 
