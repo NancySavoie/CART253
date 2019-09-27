@@ -6,12 +6,15 @@ Exercise 3 - Nancy Savoie
 
 Animal images from:
 https://creativenerds.co.uk/freebies/80-free-wildlife-icons-the-best-ever-animal-icon-set/
+https://www.thesprucepets.com/thmb/uCeQRz8Vj8sXHaBGU6rFy4ws9Zs=/2010x1450/filters:no_upscale():max_bytes(150000):strip_icc()/Dachshundpuppy-GettyImages-1083781624-8ff91e2790e84035bd99abfdec48d41a.jpg
 ******************************************************************************/
 
 // Position and image of the sausage dog we're searching for
 let targetX;
 let targetY;
 let targetImage;
+let targetspeed=10;
+let targetVX=10;
 
 // The ten decoy images
 let decoyImage1;
@@ -54,7 +57,7 @@ function preload() {
   decoyImage10 = loadImage("assets/images/animals-10.png");
 
   //Preload function for the background image once game is over
-    backgroundImage = loadImage("assets/images/sausagedoggy.jpg")
+  backgroundImage = loadImage("assets/images/sausagedoggy.jpg")
 }
 
 // setup()
@@ -109,15 +112,15 @@ function setup() {
       image(decoyImage10,x,y);
     }
   }
-          // Caption in top right corner for instruction
-          let sausageDog = "Find the little sausage doggy!";
-          textFont("Futura");
-          textSize(25);
-          textAlign(RIGHT,TOP);
-          strokeWeight(5);
-          fill("#BFCED0");
-          stroke(255);
-          text(sausageDog, width, 10);
+    // Caption in top right corner for instruction
+    let sausageDog = "Find the little sausage doggy!";
+    textFont("Futura");
+    textSize(25);
+    textAlign(RIGHT,TOP);
+    strokeWeight(5);
+    fill("#BFCED0");
+    stroke(255);
+    text(sausageDog, width, 10);
 
 
   // Once we've displayed all decoys, we choose a random location for the target
@@ -127,11 +130,10 @@ function setup() {
   // And draw it (because it's the last thing drawn, it will always be on top)
   image(targetImage,targetX,targetY);
 
-
-          //A gray square with with the image of the missing doggy in the center
-          fill("#BFCED0");
-          rect(width-100,50,100,100);
-          image(targetImage,width-45,100,100,100);
+  //A gray square with with the image of the missing doggy in the center
+  fill("#BFCED0");
+  rect(width-100,50,100,100);
+  image(targetImage,width-45,100,100,100);
 }
 
 // draw()
@@ -141,24 +143,27 @@ function setup() {
 function draw() {
 
   if (gameOver) {
-          // Prepare our typography + new background image
-          textFont("Futura");
-          textSize(100);
-          textAlign(CENTER,CENTER);
-          noStroke();
-          fill(random(255));
-          image(backgroundImage,700,500)
-image(targetImage,targetX,targetY);
-          // Winning text
-          text("YOU FOUND THE DOGGY!",width/2,height/2);
+  // Typography, new background image + target action
+  textFont("Futura");
+  textSize(100);
+  textAlign(CENTER,CENTER);
+  stroke("#669966");
+  fill("#BAF98A");
+  image(backgroundImage,700,500)
+  image(targetImage,targetX,targetY);
+  //The target moves out of the screen to the right
+  targetVX=targetspeed;
+  targetX=targetX+targetVX;
 
-    // Draw a circle around the sausage dog to show where it is (even though
-    // they already know because they found it!)
-    noFill();
-    stroke(random(255));
-    strokeWeight(10);
-    ellipse(targetX,targetY,targetImage.width,targetImage.height);
+  // Winning text
+  text("YOU FOUND THE DOGGY!",width/2,height/2);
 
+  // Draw a circle around the sausage dog to show where it is (even though
+  // they already know because they found it!)
+  noFill();
+  stroke("#BAF98A");
+  strokeWeight(10);
+  ellipse(targetX,targetY,targetImage.width,targetImage.height);
   }
 }
 
