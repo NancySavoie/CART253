@@ -13,8 +13,10 @@ https://www.thesprucepets.com/thmb/uCeQRz8Vj8sXHaBGU6rFy4ws9Zs=/2010x1450/filter
 let targetX;
 let targetY;
 let targetImage;
-let targetspeed=10;
-let targetVX=10;
+
+//Defines moving speed of target after game over
+let targetspeed=5;
+let targetVX=5;
 
 // The ten decoy images
 let decoyImage1;
@@ -30,7 +32,7 @@ let decoyImage10;
 
 // The number of decoys to show on the screen, randomly
 // chosen from the decoy images
-let numDecoys = 100;
+let numDecoys = 300;
 
 // Keep track of whether they've won
 let gameOver = false;
@@ -38,11 +40,11 @@ let gameOver = false;
 //The background image
   let backgroundImage;
 
-
 // preload()
 //
 // Loads the target and decoy images before the program starts
 function preload() {
+
   targetImage = loadImage("assets/images/animals-target.png");
 
   decoyImage1 = loadImage("assets/images/animals-01.png");
@@ -75,6 +77,10 @@ function setup() {
     // Choose a random location on the canvas for this decoy
     let x = random(0,width);
     let y = random(0,height);
+
+    //Generates random sizes for the decoy doggies
+    let sizeX = random (10,200);
+
     // Generate a random number we can use for probability
     let r = random();
     // Use the random number to display one of the ten decoy
@@ -82,34 +88,34 @@ function setup() {
     // We'll talk more about this nice quality of random soon enough.
     // But basically each "if" and "else if" has a 10% chance of being true
     if (r < 0.1) {
-      image(decoyImage1,x,y);
+      image(decoyImage1,x,y,sizeX,sizeX);
     }
     else if (r < 0.2) {
-      image(decoyImage2,x,y);
+      image(decoyImage2,x,y,sizeX,sizeX);
     }
     else if (r < 0.3) {
-      image(decoyImage3,x,y);
+      image(decoyImage3,x,y,sizeX,sizeX);
     }
     else if (r < 0.4) {
-      image(decoyImage4,x,y);
+      image(decoyImage4,x,y,sizeX,sizeX);
     }
     else if (r < 0.5) {
-      image(decoyImage5,x,y);
+      image(decoyImage5,x,y,sizeX,sizeX);
     }
     else if (r < 0.6) {
-      image(decoyImage6,x,y);
+      image(decoyImage6,x,y,sizeX,sizeX);
     }
     else if (r < 0.7) {
-      image(decoyImage7,x,y);
+      image(decoyImage7,x,y,sizeX,sizeX);
     }
     else if (r < 0.8) {
-      image(decoyImage8,x,y);
+      image(decoyImage8,x,y,sizeX,sizeX);
     }
     else if (r < 0.9) {
-      image(decoyImage9,x,y);
+      image(decoyImage9,x,y,sizeX,sizeX);
     }
     else if (r < 1.0) {
-      image(decoyImage10,x,y);
+      image(decoyImage10,x,y,sizeX,sizeX);
     }
   }
     // Caption in top right corner for instruction
@@ -130,7 +136,8 @@ function setup() {
   // And draw it (because it's the last thing drawn, it will always be on top)
   image(targetImage,targetX,targetY);
 
-  //A gray square with with the image of the missing doggy in the center
+
+  //Create a gray square with the image of the missing doggy in the center
   fill("#BFCED0");
   rect(width-100,50,100,100);
   image(targetImage,width-45,100,100,100);
@@ -151,6 +158,7 @@ function draw() {
   fill("#BAF98A");
   image(backgroundImage,700,500)
   image(targetImage,targetX,targetY);
+
   //The target moves out of the screen to the right
   targetVX=targetspeed;
   targetX=targetX+targetVX;
