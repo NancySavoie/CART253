@@ -136,7 +136,6 @@ function setup() {
   // And draw it (because it's the last thing drawn, it will always be on top)
   image(targetImage,targetX,targetY);
 
-
   //Create a colorful square with the image of the missing doggy in the center
   fill("#FF8364");
   rect(width-200,50,120,100);
