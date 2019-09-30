@@ -137,7 +137,7 @@ function setup() {
   image(targetImage,targetX,targetY);
 
 
-  //Create a gray square with the image of the missing doggy in the center
+  //Create a colorful square with the image of the missing doggy in the center
   fill("#FF8364");
   rect(width-200,50,120,100);
   image(targetImage,width-140,100,100,100);
