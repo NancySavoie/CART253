@@ -32,7 +32,7 @@ let decoyImage10;
 
 // The number of decoys to show on the screen, randomly
 // chosen from the decoy images
-let numDecoys = 300;
+let numDecoys = 500;
 
 // Keep track of whether they've won
 let gameOver = false;
@@ -124,7 +124,7 @@ function setup() {
     textSize(25);
     textAlign(RIGHT,TOP);
     strokeWeight(5);
-    fill("#BFCED0");
+    fill("#FF8364");
     stroke(255);
     text(sausageDog, width, 10);
 
@@ -138,9 +138,9 @@ function setup() {
 
 
   //Create a gray square with the image of the missing doggy in the center
-  fill("#BFCED0");
-  rect(width-100,50,100,100);
-  image(targetImage,width-45,100,100,100);
+  fill("#FF8364");
+  rect(width-200,50,120,100);
+  image(targetImage,width-140,100,100,100);
 }
 
 // draw()
