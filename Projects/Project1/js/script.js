@@ -24,7 +24,7 @@ let playerY;
 let playerRadius = 25;
 let playerVX = 0;
 let playerVY = 0;
-let playerMaxSpeed = 2;
+let playerSpeed = 3;
 // Player health
 let playerHealth;
 let playerMaxHealth = 255;
@@ -38,6 +38,7 @@ let preyRadius = 25;
 let preyVX;
 let preyVY;
 let preyMaxSpeed = 4;
+//Time values for the Perlin noise
 let tx = 0;
 let ty = 10;
 // Prey health
@@ -115,28 +116,45 @@ function draw() {
 //
 // Checks arrow keys and adjusts player velocity accordingly
 function handleInput() {
+
   // Check for horizontal movement
   if (keyIsDown(LEFT_ARROW)) {
-    playerVX = -playerMaxSpeed;
+    playerVX = -playerSpeed;
   }
   else if (keyIsDown(RIGHT_ARROW)) {
-    playerVX = playerMaxSpeed;
+    playerVX = playerSpeed;
   }
   else {
     playerVX = 0;
   }
 
+  //Sprinting option for the LEFT and RIGHT arrows.
+  if (keyIsDown(SHIFT) && keyIsDown(LEFT_ARROW)){
+      playerVX = -10;
+    }
+  else if (keyIsDown(SHIFT) && keyIsDown(RIGHT_ARROW)){
+      playerVX = 10;
+    }
+
   // Check for vertical movement
   if (keyIsDown(UP_ARROW)) {
-    playerVY = -playerMaxSpeed;
+    playerVY = -playerSpeed;
   }
   else if (keyIsDown(DOWN_ARROW)) {
-    playerVY = playerMaxSpeed;
+    playerVY = playerSpeed;
   }
   else {
     playerVY = 0;
   }
-}
+
+  //Sprinting option for the UP and DOWN arrows.
+  if (keyIsDown(SHIFT) && keyIsDown(UP_ARROW)){
+      playerVY = -10;
+    }
+  else if (keyIsDown(SHIFT) && keyIsDown(DOWN_ARROW)){
+      playerVY = 10;
+    }
+  }
 
 // movePlayer()
 //
