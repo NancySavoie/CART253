@@ -192,6 +192,10 @@ function movePlayer() {
 function updateHealth() {
   // Reduce player health
   playerHealth = playerHealth - 0.5;
+  // Depletes the player's health faster if the SHIFT Key is down
+  if (keyIsDown(SHIFT)){
+  playerHealth = playerHealth - 2;
+  }
   // Constrain the result to a sensible range
   playerHealth = constrain(playerHealth, 0, playerMaxHealth);
   // Check if the player is dead (0 health)
