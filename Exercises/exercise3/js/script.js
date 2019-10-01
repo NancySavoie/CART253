@@ -155,7 +155,7 @@ function draw() {
   textAlign(CENTER,CENTER);
   stroke("#669966");
   fill("#BAF98A");
-  image(backgroundImage,700,500)
+  image(backgroundImage,1000,500)
   image(targetImage,targetX,targetY);
 
   //The target moves out of the screen to the right
