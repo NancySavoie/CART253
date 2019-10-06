@@ -337,7 +337,7 @@ function showGameOver() {
   // Set up the text to display
   let gameOverText = "GAME OVER\n"; // \n means "new line"
   gameOverText = gameOverText + "You ate " + preyEaten + " brain(s)\n";
-  gameOverText = gameOverText + "before you died."
+  gameOverText = gameOverText + "before you rotted."
   // Display it in the centre of the screen
   text(gameOverText, width / 2, height / 2);
 }
