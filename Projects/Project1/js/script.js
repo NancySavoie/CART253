@@ -52,13 +52,27 @@ let eatHealth = 10;
 // Number of prey eaten during the game (the "score")
 let preyEaten = 0;
 
+// Player and prey images
+let playerImage;
+let preyImage;
+let backgroundImage
+
+// Sound effects and music
+let audioBrain;
+let audioZombie;
+let audioBackgroundMusic;
+
+// Preload images
+function preload() {
+  playerImage = loadImage("assets/images/zombie.png")
+  preyImage = loadImage("assets/images/brain.png")
+  backgroundImage = loadImage("assets/images/bg.png")
+  }
 // setup()
 //
 // Sets up the basic elements of the game
 function setup() {
-  createCanvas(500, 500);
-
-  noStroke();
+  createCanvas(700, 500);
 
   // We're using simple functions to separate code out
   setupPrey();
@@ -93,7 +107,7 @@ function setupPlayer() {
 // displays the two agents.
 // When the game is over, shows the game over screen.
 function draw() {
-  background(100, 100, 200);
+  image(backgroundImage, 0, 0);
 
   if (!gameOver) {
     handleInput();
@@ -284,6 +298,8 @@ function drawPrey() {
 function drawPlayer() {
   fill(playerFill, playerHealth);
   ellipse(playerX, playerY, playerRadius * 2);
+
+
 }
 
 // showGameOver()
@@ -291,12 +307,14 @@ function drawPlayer() {
 // Display text about the game being over!
 function showGameOver() {
   // Set up the font
-  textSize(32);
+  textFont("Impact")
+  textSize(50);
   textAlign(CENTER, CENTER);
   fill(0);
+
   // Set up the text to display
   let gameOverText = "GAME OVER\n"; // \n means "new line"
-  gameOverText = gameOverText + "You ate " + preyEaten + " prey\n";
+  gameOverText = gameOverText + "You ate " + preyEaten + " brain(s)\n";
   gameOverText = gameOverText + "before you died."
   // Display it in the centre of the screen
   text(gameOverText, width / 2, height / 2);
