@@ -21,7 +21,7 @@ let gameOver = false;
 // Player position, size, velocity
 let playerX;
 let playerY;
-let playerRadius = 25;
+let playerRadius = 50;
 let playerVX = 0;
 let playerVY = 0;
 let playerSpeed = 3;
@@ -34,7 +34,7 @@ let playerFill = 50;
 // Prey position, size, velocity
 let preyX;
 let preyY;
-let preyRadius = 25;
+let preyRadius = 50;
 let preyVX;
 let preyVY;
 let preyMaxSpeed = 4;
@@ -286,20 +286,18 @@ function movePrey() {
 
 // drawPrey()
 //
-// Draw the prey as an ellipse with alpha based on health
+// Prey image with alpha based on health
 function drawPrey() {
   fill(preyFill, preyHealth);
-  ellipse(preyX, preyY, preyRadius * 2);
+  image(preyImage, preyX, preyY, 70, 50);
 }
 
 // drawPlayer()
 //
-// Draw the player as an ellipse with alpha value based on health
+// Player image with alpha value based on health
 function drawPlayer() {
   fill(playerFill, playerHealth);
-  ellipse(playerX, playerY, playerRadius * 2);
-
-
+  image(playerImage, playerX, playerY, 100, 110);
 }
 
 // showGameOver()
@@ -310,7 +308,7 @@ function showGameOver() {
   textFont("Impact")
   textSize(50);
   textAlign(CENTER, CENTER);
-  fill(0);
+  fill(255);
 
   // Set up the text to display
   let gameOverText = "GAME OVER\n"; // \n means "new line"
