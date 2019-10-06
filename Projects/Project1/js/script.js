@@ -13,6 +13,8 @@ eating to stay alive.
 Includes: Physics-based movement, keyboard controls, health/stamina,
 random movement, screen wrap.
 
+Background Image from https://steamcommunity.com/market/listings/753/428550-Sacred%20Ordalia%20Grove
+Prey and Player Images by Nancy Savoie, made on https://make8bitart.com/
 ******************************************************/
 
 // Track whether the game is over
@@ -55,7 +57,11 @@ let preyEaten = 0;
 // Player and prey images
 let playerImage;
 let preyImage;
-let backgroundImage
+let backgroundImage1;
+let backgroundImage2;
+let backgroundImage3;
+let backgroundImage4;
+let backgroundImage5;
 
 // Sound effects and music
 let audioBrain;
@@ -66,7 +72,11 @@ let audioBackgroundMusic;
 function preload() {
   playerImage = loadImage("assets/images/zombie.png")
   preyImage = loadImage("assets/images/brain.png")
-  backgroundImage = loadImage("assets/images/bg.png")
+  backgroundImage1 = loadImage("assets/images/bg1.png")
+  backgroundImage2 = loadImage("assets/images/bg2.png")
+  backgroundImage3 = loadImage("assets/images/bg3.png")
+  backgroundImage4 = loadImage("assets/images/bg4.png")
+  backgroundImage5 = loadImage("assets/images/bg5.png")
   }
 // setup()
 //
@@ -107,7 +117,21 @@ function setupPlayer() {
 // displays the two agents.
 // When the game is over, shows the game over screen.
 function draw() {
-  image(backgroundImage, 0, 0);
+  image(backgroundImage1, 0, 0);
+
+//The background changes at every 10 brains eaten.
+  if (preyEaten > 10) {
+    image(backgroundImage2, 0, 0);
+    }
+  if (preyEaten > 20) {
+    image(backgroundImage3, 0, 0);
+    }
+  if (preyEaten > 30) {
+    image(backgroundImage4, 0, 0);
+    }
+  if (preyEaten > 40) {
+    image(backgroundImage3, 0, 0);
+    }
 
   if (!gameOver) {
     handleInput();
