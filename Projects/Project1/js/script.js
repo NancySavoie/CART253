@@ -29,7 +29,7 @@ let playerVY = 0;
 let playerSpeed = 3;
 // Player health
 let playerHealth;
-let playerMaxHealth = 255;
+let playerMaxHealth = 500;
 // Player fill color
 let playerFill = 50;
 
@@ -103,7 +103,6 @@ function setupSound() {
   soundBackgroundMusic = loadSound('assets/sounds/soundBackgroundMusic.mp3');
 }
 
-
 // setupPrey()
 //
 // Initialises prey's position, velocity, and health
@@ -114,7 +113,6 @@ function setupPrey() {
   preyVY = preyMaxSpeed;
   preyHealth = preyMaxHealth;
 }
-
 // setupPlayer()
 //
 // Initialises player position and health
@@ -135,6 +133,7 @@ function setupPlayer() {
 function draw() {
   image(backgroundImage1, 0, 0);
 
+
 //The background changes at every 10 brains eaten.
   if (preyEaten > 10) {
     image(backgroundImage2, 0, 0);
@@ -148,6 +147,13 @@ function draw() {
   if (preyEaten > 40) {
     image(backgroundImage3, 0, 0);
     }
+
+//Displays the player's health
+    textFont("Impact");
+    textAlign(RIGHT,TOP);
+    textSize(50);
+    fill(255);
+    text(playerHealth,width,0);
 
   if (!gameOver) {
     handleInput();
@@ -245,7 +251,7 @@ function movePlayer() {
 // Check if the player is dead
 function updateHealth() {
   // Reduce player health
-  playerHealth = playerHealth - 0.5;
+  playerHealth = playerHealth - 1;
   // Depletes the player's health faster if the SHIFT Key is down
   if (keyIsDown(SHIFT)){
   playerHealth = playerHealth - 2;
