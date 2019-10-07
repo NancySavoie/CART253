@@ -14,7 +14,7 @@ Includes: Physics-based movement, keyboard controls, health/stamina,
 random movement, screen wrap.
 
 Background Image from https://steamcommunity.com/market/listings/753/428550-Sacred%20Ordalia%20Grove
-Prey and Player Images by Nancy Savoie, made on https://make8bitart.com/
+Prey and Player Images by Nancy Savoie, created on https://make8bitart.com/
 ******************************************************/
 
 // Track whether the game is over
@@ -39,7 +39,7 @@ let preyY;
 let preyRadius = 50;
 let preyVX;
 let preyVY;
-let preyMaxSpeed = 4;
+let preyMaxSpeed = 5;
 //Time values for the Perlin noise
 let tx = 0;
 let ty = 10;
@@ -64,12 +64,13 @@ let backgroundImage4;
 let backgroundImage5;
 
 // Sound effects and music
-let audioBrain;
-let audioZombie;
-let audioBackgroundMusic;
+let soundBrain;
+let soundZombie;
+let soundBackgroundMusic;
+let started = false;
 
-// Preload images
 function preload() {
+// Preload images
   playerImage = loadImage("assets/images/zombie.png")
   preyImage = loadImage("assets/images/brain.png")
   backgroundImage1 = loadImage("assets/images/bg1.png")
@@ -77,7 +78,12 @@ function preload() {
   backgroundImage3 = loadImage("assets/images/bg3.png")
   backgroundImage4 = loadImage("assets/images/bg4.png")
   backgroundImage5 = loadImage("assets/images/bg5.png")
+// Preload sounds and music
+  soundBrain = loadSound('assets/sounds/soundBrain.wav');
+  soundZombie = loadSound('assets/sounds/soundZombie.wav');
+  soundBackgroundMusic = loadSound('assets/sounds/soundBackgroundMusic.mp3');
   }
+
 // setup()
 //
 // Sets up the basic elements of the game
@@ -87,7 +93,16 @@ function setup() {
   // We're using simple functions to separate code out
   setupPrey();
   setupPlayer();
+  setupSound();
 }
+
+// Setup the sound files
+function setupSound() {
+  soundBrain = loadSound('assets/sounds/soundBrain.wav');
+  soundZombie = loadSound('assets/sounds/soundZombie.wav');
+  soundBackgroundMusic = loadSound('assets/sounds/soundBackgroundMusic.mp3');
+}
+
 
 // setupPrey()
 //
@@ -107,6 +122,7 @@ function setupPlayer() {
   playerX = 4 * width / 5;
   playerY = height / 2;
   playerHealth = playerMaxHealth;
+  preyEaten = 0;
 }
 
 // draw()
@@ -240,6 +256,8 @@ function updateHealth() {
   if (playerHealth === 0) {
     // If so, the game is over
     gameOver = true;
+    // Play zombie sound effect
+    soundZombie.play();
   }
 }
 
@@ -269,6 +287,10 @@ function checkEating() {
       preyHealth = preyMaxHealth;
       // Track how many prey were eaten
       preyEaten = preyEaten + 1;
+      // Prey gets faster everytime it gets eaten by the player
+      preyMaxSpeed = preyMaxSpeed + 1;
+      // Play brain eaten sound effect
+      soundBrain.play();
     }
   }
 }
@@ -285,8 +307,8 @@ function movePrey() {
     // to the appropriate range of velocities for the prey
     preyVX = map(noise(tx), 0, 1, -preyMaxSpeed, preyMaxSpeed);
     preyVY = map(noise(ty), 0, 1, -preyMaxSpeed, preyMaxSpeed);
-    tx += 0.03;
-    ty += 0.03;
+    tx += 0.05;
+    ty += 0.05;
 
   // Update prey position based on velocity
   preyX = preyX + preyVX;
@@ -313,7 +335,7 @@ function movePrey() {
 // Prey image with alpha based on health
 function drawPrey() {
   fill(preyFill, preyHealth);
-  image(preyImage, preyX, preyY, 70, 50);
+  image(preyImage, preyX, preyY, 80, 60);
 }
 
 // drawPlayer()
