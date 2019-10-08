@@ -32,7 +32,7 @@ let playerVY = 0;
 let playerSpeed = 3;
 // Player health
 let playerHealth;
-let playerMaxHealth = 666;
+let playerMaxHealth = 700;
 // Player fill color
 let playerFill = 50;
 
@@ -99,9 +99,8 @@ function setup() {
 
 // Setup the sound files
 function setupSound() {
-     soundBackgroundMusic.loop();
-     soundBrain.play();
-     soundZombie.play();
+    soundBackgroundMusic.stop();
+    soundBackgroundMusic.loop();
     }
 
 // setupPrey()
@@ -125,6 +124,10 @@ function setupPlayer() {
   preyEaten = 0;
 }
 
+function resetGame() {
+  gameOver = true;
+}
+
 // draw()
 //
 // While the game is active, checks input
@@ -134,6 +137,18 @@ function setupPlayer() {
 // When the game is over, shows the game over screen.
 function draw() {
   image(backgroundImage1, 0, 0);
+
+// The start image that must be clicked to start the game.
+  if (state === "START") {
+    image(backgroundImage5, 0, 0);
+    fill(255);
+    textAlign(LEFT,CENTER);
+    textSize(50);
+    textFont("Impact");
+    text("Start Game", 240, 280);
+    }
+
+    else if (state === "PLAY"){
 
 //The background changes at every 10 brains eaten.
   if (preyEaten > 10) {
@@ -148,9 +163,6 @@ function draw() {
   if (preyEaten > 40) {
     image(backgroundImage3, 0, 0);
     }
-    if (state === "START") {
-      text("Start Game", 285, 250);
-    }
 
 //Displays the player's health
     textFont("Impact");
@@ -159,12 +171,19 @@ function draw() {
     fill(255);
     text("Zombie Health: " + playerHealth,0,0);
 
-  //Displays the player's health
+//Displays the ammount of brains eaten
     textFont("Impact");
     textAlign(LEFT,TOP);
     textSize(30);
     fill(255);
     text("Brains Eaten: " + preyEaten,0,35);
+
+//Displays the instructions of the game at the bottom of the canvas
+    textFont("Impact");
+    textAlign(CENTER,BOTTOM);
+    textSize(25);
+    fill(255);
+    text("Eat as many brains as possible before you rot away!", 345, 497);
 
   if (!gameOver) {
     handleInput();
@@ -180,6 +199,7 @@ function draw() {
   }
   else {
     showGameOver();
+    }
   }
 }
 
@@ -371,21 +391,35 @@ function drawPlayer() {
 function showGameOver() {
   // Set up the font
   textFont("Impact")
-  textSize(50);
+  textSize(40);
   textAlign(CENTER, CENTER);
   fill(255);
 
   // Set up the text to display
   let gameOverText = "GAME OVER\n"; // \n means "new line"
-  gameOverText = gameOverText + "You ate " + preyEaten + " brain(s)\n";
-  gameOverText = gameOverText + "before you rotted."
+  gameOverText = gameOverText + "Press the mouse to play again"
   // Display it in the centre of the screen
   text(gameOverText, width / 2, height / 2);
 }
 
-function mousePressed(){
-  setupSound();
-  if (state === "START") {
-    state = "PLAY";
+  // Mouse Pressed allows acts as a necessary action to enable music to play as well as restarting the game.
+  function mousePressed(){
+   if (state === "START") {
+   state = "PLAY";
+   setupSound();
+  }
+   if (gameOver === true){
+   resetGame();
+  }
 }
-}
+
+// The function that resets all the variables to their original game start up.
+  function resetGame(){
+    setupPrey();
+    setupPlayer();
+    gameOver = false;
+    state = "START";
+    playerMaxHealth = 700;
+    preyMaxSpeed = 5;
+    preyEaten = 0;
+  }
