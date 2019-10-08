@@ -2,7 +2,7 @@
 
 /******************************************************
 
-Game - Chaser
+Game - Brain Chaser
 Project 1 - Nancy Savoie
 
 A "simple" game of cat and mouse. The player is a circle and can move with keys,
@@ -72,7 +72,7 @@ let soundZombie;
 let soundBackgroundMusic;
 
 function preload() {
-// Preload images
+  // Preload images
   playerImage = loadImage("assets/images/zombie.png")
   preyImage = loadImage("assets/images/brain.png")
   backgroundImage1 = loadImage("assets/images/bg1.png")
@@ -80,11 +80,11 @@ function preload() {
   backgroundImage3 = loadImage("assets/images/bg3.png")
   backgroundImage4 = loadImage("assets/images/bg4.png")
   backgroundImage5 = loadImage("assets/images/bg5.png")
-// Preload sounds and music
+  // Preload sounds and music
   soundBrain = loadSound('assets/sounds/soundBrain.wav');
   soundZombie = loadSound('assets/sounds/soundZombie.wav');
   soundBackgroundMusic = loadSound('assets/sounds/soundBackgroundMusic.mp3');
-  }
+}
 
 // setup()
 //
@@ -99,9 +99,9 @@ function setup() {
 
 // Setup the sound files
 function setupSound() {
-    soundBackgroundMusic.stop();
-    soundBackgroundMusic.loop();
-    }
+  soundBackgroundMusic.stop();
+  soundBackgroundMusic.loop();
+}
 
 // setupPrey()
 //
@@ -124,6 +124,7 @@ function setupPlayer() {
   preyEaten = 0;
 }
 
+// Function to reset the game after gameover.
 function resetGame() {
   gameOver = true;
 }
@@ -138,67 +139,67 @@ function resetGame() {
 function draw() {
   image(backgroundImage1, 0, 0);
 
-// The start image that must be clicked to start the game.
+  // The start image that must be clicked to start the game.
   if (state === "START") {
     image(backgroundImage5, 0, 0);
     fill(255);
-    textAlign(LEFT,CENTER);
+    textAlign(LEFT, CENTER);
     textSize(50);
     textFont("Impact");
     text("Start Game", 240, 280);
+  }
+
+  // The command to let the code know that the game must be played after pressing start.
+  else if (state === "PLAY") {
+
+    //The background changes at every 10 brains eaten.
+    if (preyEaten > 10) {
+      image(backgroundImage2, 0, 0);
+    }
+    if (preyEaten > 20) {
+      image(backgroundImage3, 0, 0);
+    }
+    if (preyEaten > 30) {
+      image(backgroundImage4, 0, 0);
+    }
+    if (preyEaten > 40) {
+      image(backgroundImage3, 0, 0);
     }
 
-    else if (state === "PLAY"){
-
-//The background changes at every 10 brains eaten.
-  if (preyEaten > 10) {
-    image(backgroundImage2, 0, 0);
-    }
-  if (preyEaten > 20) {
-    image(backgroundImage3, 0, 0);
-    }
-  if (preyEaten > 30) {
-    image(backgroundImage4, 0, 0);
-    }
-  if (preyEaten > 40) {
-    image(backgroundImage3, 0, 0);
-    }
-
-//Displays the player's health
+    //Displays the player's health
     textFont("Impact");
-    textAlign(LEFT,TOP);
+    textAlign(LEFT, TOP);
     textSize(30);
     fill(255);
-    text("Zombie Health: " + playerHealth,0,0);
+    text("Zombie Health: " + playerHealth, 0, 0);
 
-//Displays the ammount of brains eaten
+    //Displays the ammount of brains eaten
     textFont("Impact");
-    textAlign(LEFT,TOP);
+    textAlign(LEFT, TOP);
     textSize(30);
     fill(255);
-    text("Brains Eaten: " + preyEaten,0,35);
+    text("Brains Eaten: " + preyEaten, 0, 35);
 
-//Displays the instructions of the game at the bottom of the canvas
+    //Displays the instructions of the game at the bottom of the canvas.
     textFont("Impact");
-    textAlign(CENTER,BOTTOM);
+    textAlign(CENTER, BOTTOM);
     textSize(25);
     fill(255);
     text("Eat as many brains as possible before you rot away!", 345, 497);
 
-  if (!gameOver) {
-    handleInput();
+    if (!gameOver) {
+      handleInput();
 
-    movePlayer();
-    movePrey();
+      movePlayer();
+      movePrey();
 
-    updateHealth();
-    checkEating();
+      updateHealth();
+      checkEating();
 
-    drawPrey();
-    drawPlayer();
-  }
-  else {
-    showGameOver();
+      drawPrey();
+      drawPlayer();
+    } else {
+      showGameOver();
     }
   }
 }
@@ -211,41 +212,35 @@ function handleInput() {
   // Check for horizontal movement
   if (keyIsDown(LEFT_ARROW)) {
     playerVX = -playerSpeed;
-  }
-  else if (keyIsDown(RIGHT_ARROW)) {
+  } else if (keyIsDown(RIGHT_ARROW)) {
     playerVX = playerSpeed;
-  }
-  else {
+  } else {
     playerVX = 0;
   }
 
   //Sprinting option for the LEFT and RIGHT arrows.
-  if (keyIsDown(SHIFT) && keyIsDown(LEFT_ARROW)){
-      playerVX = -10;
-    }
-  else if (keyIsDown(SHIFT) && keyIsDown(RIGHT_ARROW)){
-      playerVX = 10;
-    }
+  if (keyIsDown(SHIFT) && keyIsDown(LEFT_ARROW)) {
+    playerVX = -10;
+  } else if (keyIsDown(SHIFT) && keyIsDown(RIGHT_ARROW)) {
+    playerVX = 10;
+  }
 
   // Check for vertical movement
   if (keyIsDown(UP_ARROW)) {
     playerVY = -playerSpeed;
-  }
-  else if (keyIsDown(DOWN_ARROW)) {
+  } else if (keyIsDown(DOWN_ARROW)) {
     playerVY = playerSpeed;
-  }
-  else {
+  } else {
     playerVY = 0;
   }
 
   //Sprinting option for the UP and DOWN arrows.
-  if (keyIsDown(SHIFT) && keyIsDown(UP_ARROW)){
-      playerVY = -10;
-    }
-  else if (keyIsDown(SHIFT) && keyIsDown(DOWN_ARROW)){
-      playerVY = 10;
-    }
+  if (keyIsDown(SHIFT) && keyIsDown(UP_ARROW)) {
+    playerVY = -10;
+  } else if (keyIsDown(SHIFT) && keyIsDown(DOWN_ARROW)) {
+    playerVY = 10;
   }
+}
 
 // movePlayer()
 //
@@ -260,8 +255,7 @@ function movePlayer() {
   if (playerX < 0) {
     // Off the left side, so add the width to reset to the right
     playerX = playerX + width;
-  }
-  else if (playerX > width) {
+  } else if (playerX > width) {
     // Off the right side, so subtract the width to reset to the left
     playerX = playerX - width;
   }
@@ -269,8 +263,7 @@ function movePlayer() {
   if (playerY < 0) {
     // Off the top, so add the height to reset to the bottom
     playerY = playerY + height;
-  }
-  else if (playerY > height) {
+  } else if (playerY > height) {
     // Off the bottom, so subtract the height to reset to the top
     playerY = playerY - height;
   }
@@ -284,8 +277,8 @@ function updateHealth() {
   // Reduce player health
   playerHealth = playerHealth - 1;
   // Depletes the player's health faster if the SHIFT Key is down
-  if (keyIsDown(SHIFT)){
-  playerHealth = playerHealth - 2;
+  if (keyIsDown(SHIFT)) {
+    playerHealth = playerHealth - 2;
   }
   // Constrain the result to a sensible range
   playerHealth = constrain(playerHealth, 0, playerMaxHealth);
@@ -340,12 +333,12 @@ function movePrey() {
   // random() will be < 0.05 5% of the time, so the prey
   // will change direction on 5% of frames
 
-    // Use map() to convert from the 0-1 range of the random() function
-    // to the appropriate range of velocities for the prey
-    preyVX = map(noise(tx), 0, 1, -preyMaxSpeed, preyMaxSpeed);
-    preyVY = map(noise(ty), 0, 1, -preyMaxSpeed, preyMaxSpeed);
-    tx += 0.05;
-    ty += 0.05;
+  // Use map() to convert from the 0-1 range of the random() function
+  // to the appropriate range of velocities for the prey
+  preyVX = map(noise(tx), 0, 1, -preyMaxSpeed, preyMaxSpeed);
+  preyVY = map(noise(ty), 0, 1, -preyMaxSpeed, preyMaxSpeed);
+  tx += 0.05;
+  ty += 0.05;
 
   // Update prey position based on velocity
   preyX = preyX + preyVX;
@@ -354,15 +347,13 @@ function movePrey() {
   // Screen wrapping
   if (preyX < 0) {
     preyX = preyX + width;
-  }
-  else if (preyX > width) {
+  } else if (preyX > width) {
     preyX = preyX - width;
   }
 
   if (preyY < 0) {
     preyY = preyY + height;
-  }
-  else if (preyY > height) {
+  } else if (preyY > height) {
     preyY = preyY - height;
   }
 }
@@ -402,24 +393,24 @@ function showGameOver() {
   text(gameOverText, width / 2, height / 2);
 }
 
-  // Mouse Pressed allows acts as a necessary action to enable music to play as well as restarting the game.
-  function mousePressed(){
-   if (state === "START") {
-   state = "PLAY";
-   setupSound();
+// Mouse Pressed allows acts as a necessary action to enable music to play as well as restarting the game.
+function mousePressed() {
+  if (state === "START") {
+    state = "PLAY";
+    setupSound();
   }
-   if (gameOver === true){
-   resetGame();
+  if (gameOver === true) {
+    resetGame();
   }
 }
 
 // The function that resets all the variables to their original game start up.
-  function resetGame(){
-    setupPrey();
-    setupPlayer();
-    gameOver = false;
-    state = "START";
-    playerMaxHealth = 700;
-    preyMaxSpeed = 5;
-    preyEaten = 0;
-  }
+function resetGame() {
+  setupPrey();
+  setupPlayer();
+  gameOver = false;
+  state = "START";
+  playerMaxHealth = 700;
+  preyMaxSpeed = 5;
+  preyEaten = 0;
+}
