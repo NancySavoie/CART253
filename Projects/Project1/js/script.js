@@ -346,8 +346,10 @@ function drawPrey() {
 //
 // Player image with alpha value based on health
 function drawPlayer() {
-  fill(playerFill, playerHealth);
+  push();
+  tint(255, playerHealth);
   image(playerImage, playerX, playerY, 100, 110);
+  pop();
 }
 
 // showGameOver()
