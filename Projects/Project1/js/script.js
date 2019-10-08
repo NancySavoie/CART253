@@ -20,6 +20,9 @@ Prey and Player Images by Nancy Savoie, created on https://make8bitart.com/
 // Track whether the game is over
 let gameOver = false;
 
+// For the game to start and the replay
+let state = "START";
+
 // Player position, size, velocity
 let playerX;
 let playerY;
@@ -29,7 +32,7 @@ let playerVY = 0;
 let playerSpeed = 3;
 // Player health
 let playerHealth;
-let playerMaxHealth = 500;
+let playerMaxHealth = 666;
 // Player fill color
 let playerFill = 50;
 
@@ -92,7 +95,6 @@ function setup() {
   // We're using simple functions to separate code out
   setupPrey();
   setupPlayer();
-  // setupSound();
 }
 
 // Setup the sound files
@@ -112,6 +114,7 @@ function setupPrey() {
   preyVY = preyMaxSpeed;
   preyHealth = preyMaxHealth;
 }
+
 // setupPlayer()
 //
 // Initialises player position and health
@@ -145,13 +148,23 @@ function draw() {
   if (preyEaten > 40) {
     image(backgroundImage3, 0, 0);
     }
+    if (state === "START") {
+      text("Start Game", 285, 250);
+    }
 
 //Displays the player's health
     textFont("Impact");
     textAlign(LEFT,TOP);
-    textSize(35);
+    textSize(30);
     fill(255);
-    text("Player Health: " + playerHealth,0,0);
+    text("Zombie Health: " + playerHealth,0,0);
+
+  //Displays the player's health
+    textFont("Impact");
+    textAlign(LEFT,TOP);
+    textSize(30);
+    fill(255);
+    text("Brains Eaten: " + preyEaten,0,35);
 
   if (!gameOver) {
     handleInput();
@@ -372,4 +385,7 @@ function showGameOver() {
 
 function mousePressed(){
   setupSound();
+  if (state === "START") {
+    state = "PLAY";
+}
 }
