@@ -67,7 +67,6 @@ let backgroundImage5;
 let soundBrain;
 let soundZombie;
 let soundBackgroundMusic;
-let started = false;
 
 function preload() {
 // Preload images
@@ -93,15 +92,15 @@ function setup() {
   // We're using simple functions to separate code out
   setupPrey();
   setupPlayer();
-  setupSound();
+  // setupSound();
 }
 
 // Setup the sound files
 function setupSound() {
-  soundBrain = loadSound('assets/sounds/soundBrain.wav');
-  soundZombie = loadSound('assets/sounds/soundZombie.wav');
-  soundBackgroundMusic = loadSound('assets/sounds/soundBackgroundMusic.mp3');
-}
+     soundBackgroundMusic.loop();
+     soundBrain.play();
+     soundZombie.play();
+    }
 
 // setupPrey()
 //
@@ -133,7 +132,6 @@ function setupPlayer() {
 function draw() {
   image(backgroundImage1, 0, 0);
 
-
 //The background changes at every 10 brains eaten.
   if (preyEaten > 10) {
     image(backgroundImage2, 0, 0);
@@ -150,10 +148,10 @@ function draw() {
 
 //Displays the player's health
     textFont("Impact");
-    textAlign(RIGHT,TOP);
-    textSize(50);
+    textAlign(LEFT,TOP);
+    textSize(35);
     fill(255);
-    text(playerHealth,width,0);
+    text("Player Health: " + playerHealth,0,0);
 
   if (!gameOver) {
     handleInput();
@@ -368,4 +366,8 @@ function showGameOver() {
   gameOverText = gameOverText + "before you rotted."
   // Display it in the centre of the screen
   text(gameOverText, width / 2, height / 2);
+}
+
+function mousePressed(){
+  setupSound();
 }
