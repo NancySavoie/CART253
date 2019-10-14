@@ -2,14 +2,21 @@
 
 // Pong Plus
 // Exercise 4 - Nancy Savoie
-//
+//background image by https://8bitweapon.com/8-bit-weapon-bits-with-byte-background-png/
+//Alien pace ship made by Nancy Savoie
+
+//Instructions:
 // Up and down keys control the right hand paddle, W and S keys control
 // the left hand paddle
+
+//---------------------------------------------------------------------------//
 
 // Whether the game has started
 let playing = false;
 
-
+// Variables for the paddles to keep their score
+let scoreLeftPaddle = 0;
+let scoreRightPaddle = 0;
 
 // BALL
 
@@ -36,7 +43,8 @@ let leftPaddle = {
   vy: 0,
   speed: 5,
   upKey: 87,
-  downKey: 83
+  downKey: 83,
+  paddleColor: 255
 }
 
 // RIGHT PADDLE
@@ -51,7 +59,8 @@ let rightPaddle = {
   vy: 0,
   speed: 5,
   upKey: 38,
-  downKey: 40
+  downKey: 40,
+  paddleColor: 255
 }
 
 // Variables for sounds and images
@@ -78,7 +87,6 @@ function preload() {
 function setup() {
   // Create canvas and set drawing modes
   createCanvas(700, 700);
-  rectMode(CENTER);
   noStroke();
   setupPaddles();
   resetBall();
@@ -98,7 +106,7 @@ function setupPaddles() {
   leftPaddle.y = height / 2;
 
   // Initialise the right paddle position
-  rightPaddle.x = width - rightPaddle.w;
+  rightPaddle.x = 640 + rightPaddle.w;
   rightPaddle.y = height / 2;
 }
 
@@ -108,14 +116,9 @@ function setupPaddles() {
 // See how tidy it looks?!
 function draw() {
   // Fill the background
-  image(spaceBackground, 0, 0);
+  imageMode()
+  image(spaceBackground,0,0);
 
-  //Displays the player's health
-      textFont("Courier");
-      textAlign(LEFT, TOP);
-      textSize(25);
-      fill(255);
-      text("Score: " + checkBallPaddleCollision(leftPaddle), 0, 0);
 
   if (playing) {
     // If the game is in play, we handle input and move the elements around
@@ -195,12 +198,21 @@ function updateBall() {
 // Returns true if so, false otherwise
 function ballIsOutOfBounds() {
   // Check for ball going off the sides
-  if (ball.x < 0 || ball.x > width) {
+  if (ball.x < 0) {
+    scoreRightPaddle = scoreRightPaddle + 1;
+    rightPaddle.paddleColor = color(random(0, 255), random(0, 255), random(0, 255));
+    console.log(scoreRightPaddle);
+    ball.speedX = 5;
+    return true;
+
+  } else if (ball.x > width) {
+    scoreLeftPaddle = scoreLeftPaddle + 1;
+    leftPaddle.paddleColor = color(random(0, 255), random(0, 255), random(0, 255));
+    console.log(scoreLeftPaddle);
+    ball.speedX = -5;
     return true;
   }
-  else {
     return false;
-  }
 }
 
 // checkBallWallCollision()
@@ -256,6 +268,7 @@ function checkBallPaddleCollision(paddle) {
 // Draws the specified paddle
 function displayPaddle(paddle) {
   // Draw the paddles
+  fill(paddle.paddleColor);
   rect(paddle.x, paddle.y, paddle.w, paddle.h);
 }
 
@@ -264,9 +277,11 @@ function displayPaddle(paddle) {
 // Draws the ball on screen as a square
 function displayBall() {
   // Draw the ball
+push();
   fill(255)
   imageMode(CENTER)
   image(alienImage, ball.x, ball.y, ball.size, ball.size);
+  pop();
 }
 
 // resetBall()
@@ -285,6 +300,7 @@ function resetBall() {
 // Shows a message about how to start the game
 function displayStartMessage() {
   push();
+  textFont("Courier");
   textAlign(CENTER);
   textSize(25);
   text("Click to begin your intergalactic journey!", width / 2, height / 3);
