@@ -1,10 +1,7 @@
 "use strict";
 
-// Pong
-// by Pippin Barr
-//
-// A "simple" implementation of Pong with no scoring system
-// just the ability to play the game with the keyboard.
+// Pong Plus
+// Exercise 4 - Nancy Savoie
 //
 // Up and down keys control the right hand paddle, W and S keys control
 // the left hand paddle
@@ -12,9 +9,7 @@
 // Whether the game has started
 let playing = false;
 
-// Game colors (using hexadecimal)
-let bgColor = 0;
-let fgColor = 255;
+
 
 // BALL
 
@@ -23,7 +18,7 @@ let fgColor = 255;
 let ball = {
   x: 0,
   y: 0,
-  size: 20,
+  size: 50,
   vx: 0,
   vy: 0,
   speed: 5
@@ -59,14 +54,20 @@ let rightPaddle = {
   downKey: 40
 }
 
-// A variable to hold the beep sound we will play on bouncing
-let beepSFX;
+// Variables for sounds and images
+let backgroundMusic;
+let shootSFX;
+let spaceBackground;
+let alienImage;
 
 // preload()
 //
-// Loads the beep audio for the sound of bouncing
+// Loads sounds and images
 function preload() {
-  beepSFX = new Audio("assets/sounds/beep.wav");
+  backgroundMusic = loadSound('assets/sounds/backgroundMusic.mp3');
+  shootSFX = loadSound('assets/sounds/shootSFX.wav');
+  spaceBackground = loadImage('assets/images/spaceBackground.png');
+  alienImage = loadImage('assets/images/alienImage.png');
 }
 
 // setup()
@@ -76,13 +77,16 @@ function preload() {
 // and velocities.
 function setup() {
   // Create canvas and set drawing modes
-  createCanvas(640, 480);
+  createCanvas(700, 700);
   rectMode(CENTER);
   noStroke();
-  fill(fgColor);
-
   setupPaddles();
   resetBall();
+}
+// Setup the background music
+function setupSound() {
+  backgroundMusic.stop();
+  backgroundMusic.loop();
 }
 
 // setupPaddles()
@@ -104,7 +108,14 @@ function setupPaddles() {
 // See how tidy it looks?!
 function draw() {
   // Fill the background
-  background(bgColor);
+  image(spaceBackground, 0, 0);
+
+  //Displays the player's health
+      textFont("Courier");
+      textAlign(LEFT, TOP);
+      textSize(25);
+      fill(255);
+      text("Score: " + checkBallPaddleCollision(leftPaddle), 0, 0);
 
   if (playing) {
     // If the game is in play, we handle input and move the elements around
@@ -203,8 +214,8 @@ function checkBallWallCollision() {
     // It hit so reverse velocity
     ball.vy = -ball.vy;
     // Play our bouncing sound effect by rewinding and then playing
-    beepSFX.currentTime = 0;
-    beepSFX.play();
+    shootSFX.currentTime = 0;
+    shootSFX.play();
   }
 }
 
@@ -234,8 +245,8 @@ function checkBallPaddleCollision(paddle) {
       // Reverse its vx so it starts travelling in the opposite direction
       ball.vx = -ball.vx;
       // Play our bouncing sound effect by rewinding and then playing
-      beepSFX.currentTime = 0;
-      beepSFX.play();
+      shootSFX.currentTime = 0;
+      shootSFX.play();
     }
   }
 }
@@ -253,7 +264,9 @@ function displayPaddle(paddle) {
 // Draws the ball on screen as a square
 function displayBall() {
   // Draw the ball
-  rect(ball.x, ball.y, ball.size, ball.size);
+  fill(255)
+  imageMode(CENTER)
+  image(alienImage, ball.x, ball.y, ball.size, ball.size);
 }
 
 // resetBall()
@@ -272,9 +285,9 @@ function resetBall() {
 // Shows a message about how to start the game
 function displayStartMessage() {
   push();
-  textAlign(CENTER, CENTER);
-  textSize(32);
-  text("CLICK TO START", width / 2, height / 2);
+  textAlign(CENTER);
+  textSize(25);
+  text("Click to begin your intergalactic journey!", width / 2, height / 3);
   pop();
 }
 
@@ -284,4 +297,5 @@ function displayStartMessage() {
 // Which will help us be allowed to play audio in the browser
 function mousePressed() {
   playing = true;
+  setupSound();
 }
