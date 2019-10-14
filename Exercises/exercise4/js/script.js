@@ -28,7 +28,8 @@ let ball = {
   size: 50,
   vx: 0,
   vy: 0,
-  speed: 5
+  speedX: 5,
+  speedY: 5,
 }
 
 // PADDLES
@@ -44,7 +45,7 @@ let leftPaddle = {
   speed: 5,
   upKey: 87,
   downKey: 83,
-  paddleColor: 255
+  paddleColor: 255,
 }
 
 // RIGHT PADDLE
@@ -60,7 +61,7 @@ let rightPaddle = {
   speed: 5,
   upKey: 38,
   downKey: 40,
-  paddleColor: 255
+  paddleColor: 255,
 }
 
 // Variables for sounds and images
@@ -116,7 +117,6 @@ function setupPaddles() {
 // See how tidy it looks?!
 function draw() {
   // Fill the background
-  imageMode()
   image(spaceBackground,0,0);
 
 
@@ -135,11 +135,16 @@ function draw() {
     // Check if the ball went out of bounds and respond if so
     // (Note how we can use a function that returns a truth value
     // inside a conditional!)
+
     if (ballIsOutOfBounds()) {
       // If it went off either side, reset it
       resetBall();
-      // This is where we would likely count points, depending on which side
-      // the ball went off...
+      if (scoreRightPaddle = scoreRightPaddle + 1)
+      ball.vy = random(ball.speedY*1,ball.speedY*1);
+
+
+      if (scoreLeftPaddle = scoreLeftPaddle + 1)
+      ball.vy = random(ball.speedY*1,ball.speedY*1);
     }
   }
   else {
@@ -198,18 +203,21 @@ function updateBall() {
 // Returns true if so, false otherwise
 function ballIsOutOfBounds() {
   // Check for ball going off the sides
+  // If the ball (Spaceship) goes off the side, the color changes for the winning paddle
   if (ball.x < 0) {
     scoreRightPaddle = scoreRightPaddle + 1;
-    rightPaddle.paddleColor = color(random(0, 255), random(0, 255), random(0, 255));
+    rightPaddle.paddleColor = color(random(0, 125), random(0, 125), random(0, 125));
     console.log(scoreRightPaddle);
     ball.speedX = 5;
+    ball.speedY = 5;
     return true;
 
   } else if (ball.x > width) {
     scoreLeftPaddle = scoreLeftPaddle + 1;
-    leftPaddle.paddleColor = color(random(0, 255), random(0, 255), random(0, 255));
+    leftPaddle.paddleColor = color(random(126, 255), random(126, 255), random(126, 255));
     console.log(scoreLeftPaddle);
     ball.speedX = -5;
+    ball.speedY = -5;
     return true;
   }
     return false;
@@ -277,7 +285,7 @@ function displayPaddle(paddle) {
 // Draws the ball on screen as a square
 function displayBall() {
   // Draw the ball
-push();
+  push();
   fill(255)
   imageMode(CENTER)
   image(alienImage, ball.x, ball.y, ball.size, ball.size);
@@ -291,8 +299,8 @@ function resetBall() {
   // Initialise the ball's position and velocity
   ball.x = width / 2;
   ball.y = height / 2;
-  ball.vx = ball.speed;
-  ball.vy = ball.speed;
+  ball.vx = ball.speedX;
+  ball.vy = ball.speedY;
 }
 
 // displayStartMessage()
