@@ -117,7 +117,7 @@ function setupPaddles() {
 function draw() {
   push();
   // Nice space background
-  image(spaceBackground,0,0);
+  image(spaceBackground, 0, 0);
 
   //Display the score for the left paddle
   textFont("Courier");
@@ -155,8 +155,7 @@ function draw() {
       // If it went off either side, reset it
       resetBall();
     }
-  }
-  else {
+  } else {
     // Otherwise we display the message to start the game
     displayStartMessage();
   }
@@ -182,8 +181,7 @@ function handleInput(paddle) {
   else if (keyIsDown(paddle.downKey)) {
     // Move down
     paddle.vy = paddle.speed;
-  }
-  else {
+  } else {
     // Otherwise stop moving
     paddle.vy = 0;
   }
@@ -218,7 +216,7 @@ function ballIsOutOfBounds() {
   if (ball.x < 0) {
     scoreRightPaddle = scoreRightPaddle + 1;
     rightPaddle.paddleColor = color(random(0, 125), random(0, 125), random(0, 125));
-    }
+  }
   //Keeping the scores and the color change of the Left Paddle
   if (ball.x > width) {
     scoreLeftPaddle = scoreLeftPaddle + 1
@@ -226,10 +224,9 @@ function ballIsOutOfBounds() {
   }
   // Check for ball going off the sides
   if (ball.x < 0 || ball.x > width) {
-  return true;
-}
-  else {
-  return false;
+    return true;
+  } else {
+    return false;
   }
 }
 // checkBallWallCollision()
@@ -316,7 +313,7 @@ function resetBall() {
     ball.vx = -ball.speed;
     ball.vy = random(1, 12); //Gives the ball a random y velocity
   }
- }
+}
 
 // displayStartMessage()
 //
@@ -337,7 +334,7 @@ function displayStartMessage() {
 function mousePressed() {
   playing = true;
   setupSound();
-//Resets the space ship's position
+  //Resets the space ship's position
   ball.x = width / 2;
   ball.y = height / 2;
   ball.vx = ball.speed;
