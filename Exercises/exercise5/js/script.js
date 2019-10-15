@@ -15,7 +15,6 @@ let antelope;
 let zebra;
 let bee;
 
-
 // setup()
 //
 // Sets up a canvas
@@ -36,6 +35,27 @@ function setup() {
 function draw() {
   // Clear the background to black
   background(0);
+
+    //Display the amount of preys eaten by the tiger
+    textFont("Century Gothic");
+    textAlign(LEFT, TOP);
+    textSize(20);
+    fill(255);
+    text("Preys eaten by Tiger: " + tiger.preyEaten, 0, 0);
+
+    //Display the amount of preys eaten by the lion
+    textFont("Century Gothic");
+    textAlign(RIGHT, TOP);
+    textSize(20);
+    fill(255);
+    text("Preys eaten by Lion: " + lion.preyEaten, 800, 0);
+
+    //Display the amount of preys eaten by the wasp
+    textFont("Century Gothic");
+    textAlign(RIGHT, TOP);
+    textSize(20);
+    fill(255);
+    text("Preys eaten by Wasp: " + wasp.preyEaten, 1600, 0);
 
   // Handle input for the tiger
   tiger.handleInput();

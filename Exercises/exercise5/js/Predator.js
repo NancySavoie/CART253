@@ -31,6 +31,7 @@ class Predator {
     this.downKey = downKey;
     this.leftKey = leftKey;
     this.rightKey = rightKey;
+    this.preyEaten = 0;
   }
 
   // handleInput
@@ -58,6 +59,7 @@ class Predator {
     else {
       this.vy = 0;
     }
+    console.log(this.vx, this.vy, this.speed, this.upKey);
   }
 
   // move
@@ -114,6 +116,7 @@ class Predator {
       prey.health -= this.healthGainPerEat;
       // Check if the prey died and reset it if so
       if (prey.health < 0) {
+        this.preyEaten += 1;
         prey.reset();
       }
     }
@@ -128,7 +131,7 @@ class Predator {
     noStroke();
     fill(this.fillColor);
     this.radius = this.health;
-    ellipse(this.x, this.y, this.radius * 2);
+    ellipse(this.x, this.y, this.radius * 3);
     pop();
   }
 }
