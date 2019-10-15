@@ -8,6 +8,7 @@
 // Our predator
 let tiger;
 let lion;
+let wasp;
 
 // The three prey
 let antelope;
@@ -23,6 +24,7 @@ function setup() {
   createCanvas(windowWidth, windowHeight);
   tiger = new Predator(100, 100, 5, color(200, 200, 0), 40, UP_ARROW, DOWN_ARROW, LEFT_ARROW, RIGHT_ARROW);
   lion = new Predator(200, 200, 5, color(100, 200, 0), 40, 87, 83, 65, 68);
+  wasp = new Predator(50, 200, 5, color(0, 200, 200), 40, 104, 98, 100, 102);
   antelope = new Prey(100, 100, 10, color(255, 100, 10), 50);
   zebra = new Prey(100, 100, 8, color(255, 255, 255), 60);
   bee = new Prey(100, 100, 20, color(255, 255, 0), 10);
@@ -38,6 +40,7 @@ function draw() {
   // Handle input for the tiger
   tiger.handleInput();
   lion.handleInput();
+  wasp.handleInput();
 
   // Move all the "animals"
   tiger.move();
@@ -45,6 +48,7 @@ function draw() {
   zebra.move();
   bee.move();
   lion.move();
+  wasp.move();
 
   // Handle the tiger eating any of the prey
   tiger.handleEating(antelope);
@@ -53,6 +57,9 @@ function draw() {
   lion.handleEating(antelope);
   lion.handleEating(zebra);
   lion.handleEating(bee);
+  wasp.handleEating(antelope);
+  wasp.handleEating(zebra);
+  wasp.handleEating(bee);
 
   // Display all the "animals"
   tiger.display();
@@ -60,5 +67,6 @@ function draw() {
   zebra.display();
   bee.display();
   lion.display();
+  wasp.display();
 
 }
