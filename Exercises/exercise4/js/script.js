@@ -1,13 +1,13 @@
 "use strict";
 
-// Pong Plus
+// Pong Plus...IN SPACE!!!
 // Exercise 4 - Nancy Savoie
-//background image by https://8bitweapon.com/8-bit-weapon-bits-with-byte-background-png/
-//Alien pace ship made by Nancy Savoie
+// Background image by https://8bitweapon.com/8-bit-weapon-bits-with-byte-background-png/
+// Alien paceship made by Nancy Savoie
 
-//Instructions:
-// Up and down keys control the right hand paddle, W and S keys control
-// the left hand paddle
+// Instructions:
+// Up and down keys control the right hand paddle (barrier), W and S keys control
+// the left hand paddle (barrier).
 
 //---------------------------------------------------------------------------//
 
@@ -62,15 +62,17 @@ let rightPaddle = {
 let scoreLeftPaddle = 0;
 let scoreRightPaddle = 0;
 
-// Variables for sounds and images
+// Variables for sounds
 let backgroundMusic;
 let shootSFX;
+
+// Variables images
 let spaceBackground;
 let alienImage;
 
 // preload()
 //
-// Loads sounds and images
+// Preloads sounds and images
 function preload() {
   backgroundMusic = loadSound('assets/sounds/backgroundMusic.mp3');
   shootSFX = loadSound('assets/sounds/shootSFX.wav');
@@ -116,17 +118,17 @@ function setupPaddles() {
 // See how tidy it looks?!
 function draw() {
   push();
-  // Nice space background
+  // A nice space background
   image(spaceBackground, 0, 0);
 
-  //Display the score for the left paddle
+  //Display the score for the left paddle (barrier)
   textFont("Courier");
   textAlign(LEFT, TOP);
   textSize(20);
   fill(255);
   text("Left Barrier: " + scoreLeftPaddle, 0, 0);
 
-  //Display the score for the right paddle
+  //Display the score for the right paddle (barrier)
   textFont("Courier");
   textAlign(RIGHT, TOP);
   textSize(20);
@@ -212,14 +214,14 @@ function ballIsOutOfBounds() {
   // Check for ball going off the sides
   // If the ball (Spaceship) goes off the side, the color changes for the winning paddle
 
-  //Keeping the scores and the color change of the Right Paddle
+  // Keeping the score (along with the number display) by randomly changing the color of the Right Paddle
   if (ball.x < 0) {
     scoreRightPaddle = scoreRightPaddle + 1;
     rightPaddle.paddleColor = color(random(0, 125), random(0, 125), random(0, 125));
   }
-  //Keeping the scores and the color change of the Left Paddle
+  // Keeping the score (along with the number display) by randomly changing the color of the Left Paddle
   if (ball.x > width) {
-    scoreLeftPaddle = scoreLeftPaddle + 1
+    scoreLeftPaddle = scoreLeftPaddle + 1;
     leftPaddle.paddleColor = color(random(126, 255), random(126, 255), random(126, 255));
   }
   // Check for ball going off the sides
@@ -282,7 +284,7 @@ function checkBallPaddleCollision(paddle) {
 // Draws the specified paddle
 function displayPaddle(paddle) {
   // Draw the paddles & colors
-  fill(paddle.paddleColor);
+  fill(paddle.paddleColor); // This allows the paddles to change color when there is a score
   rect(paddle.x, paddle.y, paddle.w, paddle.h);
 }
 
@@ -299,14 +301,14 @@ function displayBall() {
 // Sets the starting position and velocity of the ball
 function resetBall() {
   // Initialise the ball's position and velocity
-  // If the right paddle scored
+  // If the right paddle (barrier) scored
   if (ball.x < 0) {
     ball.x = width / 2;
     ball.y = height / 2;
     ball.vx = ball.speed;
     ball.vy = random(1, 12); //Gives the ball a random y velocity
   }
-  // If the left paddle scored
+  // If the left paddle (barrier) scored
   if (ball.x > width) {
     ball.x = width / 2;
     ball.y = height / 2;
@@ -334,7 +336,7 @@ function displayStartMessage() {
 function mousePressed() {
   playing = true;
   setupSound();
-  //Resets the space ship's position
+  //Resets the spaceship's position
   ball.x = width / 2;
   ball.y = height / 2;
   ball.vx = ball.speed;
