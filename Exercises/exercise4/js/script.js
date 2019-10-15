@@ -14,22 +14,17 @@
 // Whether the game has started
 let playing = false;
 
-// Variables for the paddles to keep their score
-let scoreLeftPaddle = 0;
-let scoreRightPaddle = 0;
-
 // BALL
 
 // A ball object with the properties of
 // position, size, velocity, and speed
 let ball = {
-  x: 0,
-  y: 0,
+  x: 340,
+  y: 350,
   size: 50,
   vx: 0,
   vy: 0,
-  speedX: 5,
-  speedY: 5,
+  speed: 5,
 }
 
 // PADDLES
@@ -63,6 +58,9 @@ let rightPaddle = {
   downKey: 40,
   paddleColor: 255,
 }
+// Variables for the paddles to keep their score
+let scoreLeftPaddle = 0;
+let scoreRightPaddle = 0;
 
 // Variables for sounds and images
 let backgroundMusic;
@@ -92,6 +90,7 @@ function setup() {
   setupPaddles();
   resetBall();
 }
+
 // Setup the background music
 function setupSound() {
   backgroundMusic.stop();
@@ -116,9 +115,24 @@ function setupPaddles() {
 // Calls the appropriate functions to run the game
 // See how tidy it looks?!
 function draw() {
-  // Fill the background
+  push();
+  // Nice space background
   image(spaceBackground,0,0);
 
+  //Display the score for the left paddle
+  textFont("Courier");
+  textAlign(LEFT, TOP);
+  textSize(20);
+  fill(255);
+  text("Left Barrier: " + scoreLeftPaddle, 0, 0);
+
+  //Display the score for the right paddle
+  textFont("Courier");
+  textAlign(RIGHT, TOP);
+  textSize(20);
+  fill(255);
+  text("Right Barrier: " + scoreRightPaddle, 690, 0);
+  pop();
 
   if (playing) {
     // If the game is in play, we handle input and move the elements around
@@ -137,14 +151,9 @@ function draw() {
     // inside a conditional!)
 
     if (ballIsOutOfBounds()) {
+
       // If it went off either side, reset it
       resetBall();
-      if (scoreRightPaddle = scoreRightPaddle + 1)
-      ball.vy = random(ball.speedY*1,ball.speedY*1);
-
-
-      if (scoreLeftPaddle = scoreLeftPaddle + 1)
-      ball.vy = random(ball.speedY*1,ball.speedY*1);
     }
   }
   else {
@@ -204,25 +213,25 @@ function updateBall() {
 function ballIsOutOfBounds() {
   // Check for ball going off the sides
   // If the ball (Spaceship) goes off the side, the color changes for the winning paddle
+
+  //Keeping the scores and the color change of the Right Paddle
   if (ball.x < 0) {
     scoreRightPaddle = scoreRightPaddle + 1;
     rightPaddle.paddleColor = color(random(0, 125), random(0, 125), random(0, 125));
-    console.log(scoreRightPaddle);
-    ball.speedX = 5;
-    ball.speedY = 5;
-    return true;
-
-  } else if (ball.x > width) {
-    scoreLeftPaddle = scoreLeftPaddle + 1;
+    }
+  //Keeping the scores and the color change of the Left Paddle
+  if (ball.x > width) {
+    scoreLeftPaddle = scoreLeftPaddle + 1
     leftPaddle.paddleColor = color(random(126, 255), random(126, 255), random(126, 255));
-    console.log(scoreLeftPaddle);
-    ball.speedX = -5;
-    ball.speedY = -5;
-    return true;
   }
-    return false;
+  // Check for ball going off the sides
+  if (ball.x < 0 || ball.x > width) {
+  return true;
 }
-
+  else {
+  return false;
+  }
+}
 // checkBallWallCollision()
 //
 // Check if the ball has hit the top or bottom of the canvas
@@ -275,7 +284,7 @@ function checkBallPaddleCollision(paddle) {
 //
 // Draws the specified paddle
 function displayPaddle(paddle) {
-  // Draw the paddles
+  // Draw the paddles & colors
   fill(paddle.paddleColor);
   rect(paddle.x, paddle.y, paddle.w, paddle.h);
 }
@@ -284,12 +293,8 @@ function displayPaddle(paddle) {
 //
 // Draws the ball on screen as a square
 function displayBall() {
-  // Draw the ball
-  push();
-  fill(255)
-  imageMode(CENTER)
+  // Draw the spaceship image
   image(alienImage, ball.x, ball.y, ball.size, ball.size);
-  pop();
 }
 
 // resetBall()
@@ -297,11 +302,21 @@ function displayBall() {
 // Sets the starting position and velocity of the ball
 function resetBall() {
   // Initialise the ball's position and velocity
-  ball.x = width / 2;
-  ball.y = height / 2;
-  ball.vx = ball.speedX;
-  ball.vy = ball.speedY;
-}
+  // If the right paddle scored
+  if (ball.x < 0) {
+    ball.x = width / 2;
+    ball.y = height / 2;
+    ball.vx = ball.speed;
+    ball.vy = random(1, 12); //Gives the ball a random y velocity
+  }
+  // If the left paddle scored
+  if (ball.x > width) {
+    ball.x = width / 2;
+    ball.y = height / 2;
+    ball.vx = -ball.speed;
+    ball.vy = random(1, 12); //Gives the ball a random y velocity
+  }
+ }
 
 // displayStartMessage()
 //
@@ -322,4 +337,9 @@ function displayStartMessage() {
 function mousePressed() {
   playing = true;
   setupSound();
+//Resets the space ship's position
+  ball.x = width / 2;
+  ball.y = height / 2;
+  ball.vx = ball.speed;
+  ball.vy = random(1, 12);
 }
