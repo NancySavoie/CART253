@@ -10,7 +10,7 @@ class Predator {
   //
   // Sets the initial values for the Predator's properties
   // Either sets default values or uses the arguments provided
-  constructor(x, y, speed, fillColor, radius, upKey, downKey, leftKey, rightKey) {
+  constructor(x, y, speed, fillColor, radius, upKey, downKey, leftKey, rightKey, sprintKey) {
     // Position
     this.x = x;
     this.y = y;
@@ -31,6 +31,7 @@ class Predator {
     this.downKey = downKey;
     this.leftKey = leftKey;
     this.rightKey = rightKey;
+    this.sprintKey = sprintKey; // Sprinting up key
     this.preyEaten = 0;
   }
 
@@ -59,8 +60,15 @@ class Predator {
     else {
       this.vy = 0;
     }
+    // Predator sprints when designatd key is pressed
+    if (keyIsDown(this.sprintKey)) {
+     this.vx *= 2;
+     this.vy *= 2;
+   }
     console.log(this.vx, this.vy, this.speed, this.upKey);
   }
+
+// Predator speeds up when designatd key is pressed
 
   // move
   //
