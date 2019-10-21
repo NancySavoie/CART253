@@ -25,9 +25,8 @@ class Prey {
     this.maxHealth = radius;
     this.health = this.maxHealth; // Must be AFTER defining this.maxHealth
     // Display properties
-
     this.radius = this.health;
-    this.image = image;
+    this.image = image; // To display the prey image
   }
 
   // move
@@ -56,15 +55,13 @@ class Prey {
     // Off the left or right
     if (this.x < 0) {
       this.x += width;
-    }
-    else if (this.x > width) {
+    } else if (this.x > width) {
       this.x -= width;
     }
     // Off the top or bottom
     if (this.y < 0) {
       this.y += height;
-    }
-    else if (this.y > height) {
+    } else if (this.y > height) {
       this.y -= height;
     }
   }
@@ -75,13 +72,13 @@ class Prey {
   // with a radius the same size as its current health.
   display() {
     if (this.health > 0) {
-    push();
-    noStroke();
-    this.radius = this.health;
-    image(this.image, this.x, this.y, 100, 75);
-    pop();
+      push();
+      noStroke();
+      this.radius = this.health;
+      image(this.image, this.x, this.y, 100, 75);
+      pop();
+    }
   }
-}
   // reset
   //
   // Set the position to a random location and reset health

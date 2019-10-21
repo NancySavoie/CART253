@@ -27,7 +27,7 @@ let antelopeImage;
 let hareImage;
 
 // Preload functions for images
-function preload () {
+function preload() {
   backgroundJungle = loadImage('./assets/images/backgroundJungle.png');
   lionImage = loadImage('./assets/images/lionImage.png');
   tigerImage = loadImage('./assets/images/tigerImage.png');
@@ -55,29 +55,29 @@ function setup() {
 // Handles input, movement, eating, and displaying for the system's objects
 function draw() {
   // Clear the background to black
-  image (backgroundJungle, 0, 0);
+  image(backgroundJungle, 0, 0);
   gameOver();
 
-    //Display the amount of preys eaten by the tiger
-    textFont("Impact");
-    textAlign(LEFT, TOP);
-    textSize(20);
-    fill(255);
-    text("Prey eaten by Tiger: " + tiger.preyEaten, 0, 0);
+  //Display the amount of preys eaten by the tiger
+  textFont("Impact");
+  textAlign(LEFT, TOP);
+  textSize(20);
+  fill(255);
+  text("Prey eaten by Tiger: " + tiger.preyEaten, 0, 0);
 
-    //Display the amount of preys eaten by the lion
-    textFont("Impact");
-    textAlign(RIGHT, TOP);
-    textSize(20);
-    fill(255);
-    text("Prey eaten by Lion: " + lion.preyEaten, 575, 0);
+  //Display the amount of preys eaten by the lion
+  textFont("Impact");
+  textAlign(RIGHT, TOP);
+  textSize(20);
+  fill(255);
+  text("Prey eaten by Lion: " + lion.preyEaten, 575, 0);
 
-    //Display the amount of preys eaten by the wasp
-    textFont("Impact");
-    textAlign(RIGHT, TOP);
-    textSize(20);
-    fill(255);
-    text("Prey eaten by Wolf: " + wolf.preyEaten, 950, 0);
+  //Display the amount of preys eaten by the wasp
+  textFont("Impact");
+  textAlign(RIGHT, TOP);
+  textSize(20);
+  fill(255);
+  text("Prey eaten by Wolf: " + wolf.preyEaten, 950, 0);
 
   // Handle input for the tiger
   tiger.handleInput();
@@ -93,9 +93,9 @@ function draw() {
   wolf.move();
 
   // Verifying if the predators are dead
-   tiger.checkState();
-   lion.checkState();
-   wolf.checkState();
+  tiger.checkState();
+  lion.checkState();
+  wolf.checkState();
 
   // Handle the tiger eating any of the prey
   tiger.handleEating(antelope);
@@ -115,11 +115,10 @@ function draw() {
   hare.display();
   lion.display();
   wolf.display();
-
-
 }
+
 // Game over function
-  function gameOver() {
+function gameOver() {
   if (tiger.predatorDead && lion.predatorDead && wolf.predatorDead)
     text("Game over!", 500, 300);
-  }
+}

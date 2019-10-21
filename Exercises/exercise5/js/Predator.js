@@ -33,7 +33,7 @@ class Predator {
     this.rightKey = rightKey;
     this.sprintKey = sprintKey; // Sprinting key
     this.preyEaten = 0;
-    this.predatorDead = false;
+    this.predatorDead = false; // The status of predators
   }
 
   // handleInput
@@ -44,32 +44,28 @@ class Predator {
     // Horizontal movement
     if (keyIsDown(this.leftKey)) {
       this.vx = -this.speed;
-    }
-    else if (keyIsDown(this.rightKey)) {
+    } else if (keyIsDown(this.rightKey)) {
       this.vx = this.speed;
-    }
-    else {
+    } else {
       this.vx = 0;
     }
     // Vertical movement
     if (keyIsDown(this.upKey)) {
       this.vy = -this.speed;
-    }
-    else if (keyIsDown(this.downKey)) {
+    } else if (keyIsDown(this.downKey)) {
       this.vy = this.speed;
-    }
-    else {
+    } else {
       this.vy = 0;
     }
     // Predator sprints when designatd key is pressed
     if (keyIsDown(this.sprintKey)) {
-     this.vx *= 2;
-     this.vy *= 2;
-   }
+      this.vx *= 2;
+      this.vy *= 2;
+    }
     console.log(this.vx, this.vy, this.speed, this.upKey);
   }
 
-// Predator speeds up when designatd key is pressed
+  // Predator speeds up when designatd key is pressed
 
   // move
   //
@@ -82,16 +78,16 @@ class Predator {
     this.y += this.vy;
 
     // Update health
-    if (this.predatorDead){
+    if (this.predatorDead) {
       this.health = 0;
       this.radius = 0;
+    } else {
+      this.health = this.health - this.healthLossPerMove;
+      this.health = constrain(this.health, 0, this.maxHealth);
+      // Handle wrapping
+      this.handleWrapping();
+    }
   }
-  else { this.health = this.health - this.healthLossPerMove;
-    this.health = constrain(this.health, 0, this.maxHealth);
-    // Handle wrapping
-    this.handleWrapping();
-  }
-}
   // handleWrapping
   //
   // Checks if the predator has gone off the canvas and
@@ -100,15 +96,13 @@ class Predator {
     // Off the left or right
     if (this.x < 0) {
       this.x += width;
-    }
-    else if (this.x > width) {
+    } else if (this.x > width) {
       this.x -= width;
     }
     // Off the top or bottom
     if (this.y < 0) {
       this.y += height;
-    }
-    else if (this.y > height) {
+    } else if (this.y > height) {
       this.y -= height;
     }
   }
@@ -131,27 +125,28 @@ class Predator {
       // Check if the prey died and reset it if so
       if (prey.health < 0) {
         this.preyEaten += 1;
+
         prey.reset();
       }
     }
   }
   // If predator if dead
-    checkState() {
-      if (this.health < 1) {
-        this.predatorDead = true;
-      }
+  checkState() {
+    if (this.health < 1) {
+      this.predatorDead = true;
     }
+  }
   // display
   //
   // Draw the predator as an ellipse on the canvas
   // with a radius the same size as its current health.
-  display () {
+  display() {
     if (!this.predatorDead) {
-    push();
-    this.radius = this.health;
-    image(this.image, this.x, this.y, 2 * this.radius, 2 * this.radius);
-    text("Feast: "+this.preyEaten,this.x, this.y+this.radius+10);
-    pop();
+      push();
+      this.radius = this.health;
+      image(this.image, this.x, this.y, 2 * this.radius, 2 * this.radius);
+      text("Feast: " + this.preyEaten, this.x, this.y + this.radius + 10);
+      pop();
     }
   }
 }
