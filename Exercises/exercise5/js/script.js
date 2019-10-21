@@ -5,7 +5,7 @@
 // The predators chase the prey using differe t keys and consumes them.
 // The predator loses health over time, so must keep eating to survive.
 //
-// Images from freepik.com and vecteezy.com
+// Images from freepik.com
 
 // Our predators
 let tiger; //Controls : Up Key, Down Key, Left Key, Right key. Space bar to sprint
@@ -15,19 +15,26 @@ let wolf; // Controls: I, J, K, L. ALT to sprint
 // The three prey
 let antelope;
 let zebra;
-let rabbit;
+let hare;
 
 // Display the images
 let backgroundJungle;
 let tigerImage;
 let lionImage;
 let wolfImage;
+let zebraImage;
+let antelopeImage;
+let hareImage;
 
+// Preload functions for images
 function preload () {
   backgroundJungle = loadImage('./assets/images/backgroundJungle.png');
   lionImage = loadImage('./assets/images/lionImage.png');
   tigerImage = loadImage('./assets/images/tigerImage.png');
   wolfImage = loadImage('./assets/images/wolfImage.png');
+  zebraImage = loadImage('./assets/images/zebraImage.png');
+  antelopeImage = loadImage('./assets/images/antelopeImage.png');
+  hareImage = loadImage('./assets/images/hareImage.png');
 }
 // setup()
 //
@@ -38,9 +45,9 @@ function setup() {
   tiger = new Predator(100, 100, 5, 40, UP_ARROW, DOWN_ARROW, LEFT_ARROW, RIGHT_ARROW, 32, tigerImage);
   lion = new Predator(200, 200, 5, 40, 87, 83, 65, 68, 16, lionImage);
   wolf = new Predator(50, 200, 5, 40, 73, 75, 74, 76, 18, wolfImage);
-  antelope = new Prey(100, 100, 10, color(255, 100, 10), 50);
-  zebra = new Prey(100, 100, 8, color(255, 255, 255), 60);
-  rabbit = new Prey(100, 100, 20, color(255, 255, 0), 10);
+  antelope = new Prey(100, 100, 10, 50, antelopeImage);
+  zebra = new Prey(100, 100, 8, 60, zebraImage);
+  hare = new Prey(100, 100, 20, 10, hareImage);
 }
 
 // draw()
@@ -81,7 +88,7 @@ function draw() {
   tiger.move();
   antelope.move();
   zebra.move();
-  rabbit.move();
+  hare.move();
   lion.move();
   wolf.move();
 
@@ -93,19 +100,19 @@ function draw() {
   // Handle the tiger eating any of the prey
   tiger.handleEating(antelope);
   tiger.handleEating(zebra);
-  tiger.handleEating(rabbit);
+  tiger.handleEating(hare);
   lion.handleEating(antelope);
   lion.handleEating(zebra);
-  lion.handleEating(rabbit);
+  lion.handleEating(hare);
   wolf.handleEating(antelope);
   wolf.handleEating(zebra);
-  wolf.handleEating(rabbit);
+  wolf.handleEating(hare);
 
   // Display all the "animals"
   tiger.display();
   antelope.display();
   zebra.display();
-  rabbit.display();
+  hare.display();
   lion.display();
   wolf.display();
 
