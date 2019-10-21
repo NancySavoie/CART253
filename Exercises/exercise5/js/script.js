@@ -8,14 +8,14 @@
 // Images from freepik.com and vecteezy.com
 
 // Our predators
-let tiger;
-let lion;
-let wolf;
+let tiger; //Controls : Up Key, Down Key, Left Key, Right key. Space bar to sprint
+let lion; // Controls : A, W, S, D. Shift to sprint
+let wolf; // Controls: I, J, K, L. ALT to sprint
 
 // The three prey
 let antelope;
 let zebra;
-let bee;
+let rabbit;
 
 // Display the images
 let backgroundJungle;
@@ -37,10 +37,10 @@ function setup() {
   createCanvas(960, 720);
   tiger = new Predator(100, 100, 5, 40, UP_ARROW, DOWN_ARROW, LEFT_ARROW, RIGHT_ARROW, 32, tigerImage);
   lion = new Predator(200, 200, 5, 40, 87, 83, 65, 68, 16, lionImage);
-  wolf = new Predator(50, 200, 5, 40, 104, 98, 100, 102, 18, wolfImage);
+  wolf = new Predator(50, 200, 5, 40, 73, 75, 74, 76, 18, wolfImage);
   antelope = new Prey(100, 100, 10, color(255, 100, 10), 50);
   zebra = new Prey(100, 100, 8, color(255, 255, 255), 60);
-  bee = new Prey(100, 100, 20, color(255, 255, 0), 10);
+  rabbit = new Prey(100, 100, 20, color(255, 255, 0), 10);
 }
 
 // draw()
@@ -49,6 +49,7 @@ function setup() {
 function draw() {
   // Clear the background to black
   image (backgroundJungle, 0, 0);
+  gameOver();
 
     //Display the amount of preys eaten by the tiger
     textFont("Impact");
@@ -80,27 +81,38 @@ function draw() {
   tiger.move();
   antelope.move();
   zebra.move();
-  bee.move();
+  rabbit.move();
   lion.move();
   wolf.move();
+
+  // Verifying if the predators are dead
+   tiger.checkState();
+   lion.checkState();
+   wolf.checkState();
 
   // Handle the tiger eating any of the prey
   tiger.handleEating(antelope);
   tiger.handleEating(zebra);
-  tiger.handleEating(bee);
+  tiger.handleEating(rabbit);
   lion.handleEating(antelope);
   lion.handleEating(zebra);
-  lion.handleEating(bee);
+  lion.handleEating(rabbit);
   wolf.handleEating(antelope);
   wolf.handleEating(zebra);
-  wolf.handleEating(bee);
+  wolf.handleEating(rabbit);
 
   // Display all the "animals"
   tiger.display();
   antelope.display();
   zebra.display();
-  bee.display();
+  rabbit.display();
   lion.display();
   wolf.display();
 
+
+}
+// Game over function
+  function gameOver() {
+  if (tiger.predatorDead && lion.predatorDead && wolf.predatorDead)
+    text("Game over!", 500, 300);
   }

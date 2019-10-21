@@ -21,10 +21,9 @@ class Predator {
     // Health properties
     this.maxHealth = radius;
     this.health = this.maxHealth; // Must be AFTER defining this.maxHealth
-    this.healthLossPerMove = 0.1;
+    this.healthLossPerMove = 0.05;
     this.healthGainPerEat = 1;
     // Display properties
-
     this.radius = this.health; // Radius is defined in terms of health
     this.image = image; // Predator images
     // Input properties
@@ -34,6 +33,7 @@ class Predator {
     this.rightKey = rightKey;
     this.sprintKey = sprintKey; // Sprinting key
     this.preyEaten = 0;
+    this.predatorDead = false;
   }
 
   // handleInput
@@ -80,13 +80,18 @@ class Predator {
     // Update position
     this.x += this.vx;
     this.y += this.vy;
+
     // Update health
-    this.health = this.health - this.healthLossPerMove;
+    if (this.predatorDead){
+      this.health = 0;
+      this.radius = 0;
+  }
+  else { this.health = this.health - this.healthLossPerMove;
     this.health = constrain(this.health, 0, this.maxHealth);
     // Handle wrapping
     this.handleWrapping();
   }
-
+}
   // handleWrapping
   //
   // Checks if the predator has gone off the canvas and
@@ -125,22 +130,28 @@ class Predator {
       prey.health -= this.healthGainPerEat;
       // Check if the prey died and reset it if so
       if (prey.health < 0) {
-
         this.preyEaten += 1;
         prey.reset();
       }
     }
   }
-
+  // If predator if dead
+    checkState() {
+      if (this.health < 1) {
+        this.predatorDead = true;
+      }
+    }
   // display
   //
   // Draw the predator as an ellipse on the canvas
   // with a radius the same size as its current health.
   display () {
+    if (!this.predatorDead) {
     push();
     this.radius = this.health;
-    image(this.image, this.x, this.y, this.radius, this.radius);
-    text("Prey eaten: "+this.preyEaten,this.x, this.y+this.radius+10);
+    image(this.image, this.x, this.y, 2 * this.radius, 2 * this.radius);
+    text("Feast: "+this.preyEaten,this.x, this.y+this.radius+10);
     pop();
+    }
   }
 }
