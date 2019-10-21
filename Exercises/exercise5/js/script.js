@@ -1,9 +1,11 @@
-// Predator-Prey Simulation
-// by Pippin Barr
+// Exercise 5
+// by Nancy Savoie
 //
-// Creates a predator and three prey (of different sizes and speeds)
-// The predator chases the prey using the arrow keys and consumes them.
+// Predators and prey (of different sizes and speeds)
+// The predators chase the prey using differe t keys and consumes them.
 // The predator loses health over time, so must keep eating to survive.
+//
+// Images from freepik.com and vecteezy.com
 
 // Our predator
 let tiger;
@@ -15,12 +17,18 @@ let antelope;
 let zebra;
 let bee;
 
+// Display the background image
+let backgroundJungle
+
+function preload () {
+  backgroundJungle = loadImage('./assets/images/backgroundJungle.png');
+}
 // setup()
 //
 // Sets up a canvas
 // Creates objects for the predator and three prey
 function setup() {
-  createCanvas(windowWidth, windowHeight);
+  createCanvas(960, 720);
   tiger = new Predator(100, 100, 5, color(200, 200, 0), 40, UP_ARROW, DOWN_ARROW, LEFT_ARROW, RIGHT_ARROW);
   lion = new Predator(200, 200, 5, color(100, 200, 0), 40, 87, 83, 65, 68);
   wasp = new Predator(50, 200, 5, color(0, 200, 200), 40, 104, 98, 100, 102);
@@ -34,28 +42,28 @@ function setup() {
 // Handles input, movement, eating, and displaying for the system's objects
 function draw() {
   // Clear the background to black
-  background(0);
+  image (backgroundJungle, 0, 0);
 
     //Display the amount of preys eaten by the tiger
-    textFont("Century Gothic");
+    textFont("Impact");
     textAlign(LEFT, TOP);
     textSize(20);
     fill(255);
     text("Preys eaten by Tiger: " + tiger.preyEaten, 0, 0);
 
     //Display the amount of preys eaten by the lion
-    textFont("Century Gothic");
+    textFont("Impact");
     textAlign(RIGHT, TOP);
     textSize(20);
     fill(255);
-    text("Preys eaten by Lion: " + lion.preyEaten, 800, 0);
+    text("Preys eaten by Lion: " + lion.preyEaten, 575, 0);
 
     //Display the amount of preys eaten by the wasp
-    textFont("Century Gothic");
+    textFont("Impact");
     textAlign(RIGHT, TOP);
     textSize(20);
     fill(255);
-    text("Preys eaten by Wasp: " + wasp.preyEaten, 1600, 0);
+    text("Preys eaten by Wasp: " + wasp.preyEaten, 950, 0);
 
   // Handle input for the tiger
   tiger.handleInput();
@@ -89,4 +97,4 @@ function draw() {
   lion.display();
   wasp.display();
 
-}
+  }
