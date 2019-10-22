@@ -6,7 +6,7 @@
 // The pokeball loses energy power over time, so it must keep catching Pokémon in order to go on.
 //
 // Pictures from stickpng.com
-// Music from
+// Music from https://www.youtube.com/watch?v=QaaD9CnWgig
 // © Pokémon. TM, ® Nintendo
 
 
