@@ -1,17 +1,26 @@
-// Predator-Prey Simulation
-// by Pippin Barr
+// Gotta Catch 'em all!
+// Project 2 - Nancy Savoie
 //
-// Creates a predator and three prey (of different sizes and speeds)
-// The predator chases the prey using the arrow keys and consumes them.
-// The predator loses health over time, so must keep eating to survive.
+// A predator and prey type game with adorable Pokémon!
+// The pokeball chases the Pokémon using the arrow keys to catch them all.
+// The pokeball loses energy power over time, so it must keep catching Pokémon in order to go on.
+//
+// Pictures from stickpng.com
+// Music from
+// © Pokémon. TM, ® Nintendo
 
-// Our predator
-let tiger;
 
-// The three prey
-let antelope;
-let zebra;
-let bee;
+// The pokeballs (the predators
+let pokeball1;
+let pokeball2;
+let pokeball3;
+
+// The Pokémon (The prey)
+let pikachu;
+let squirtle;
+let bulbasaur;
+let evee;
+let jigglypuff;
 
 // setup()
 //
