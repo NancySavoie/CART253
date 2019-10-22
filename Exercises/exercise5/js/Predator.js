@@ -125,7 +125,6 @@ class Predator {
       // Check if the prey died and reset it if so
       if (prey.health < 0) {
         this.preyEaten += 1;
-
         prey.reset();
       }
     }

@@ -1,7 +1,7 @@
 // Exercise 5
 // by Nancy Savoie
 //
-// Predators and prey (of different sizes and speeds)
+// Predators and prey
 // The predators chase the prey using differe t keys and consumes them.
 // The predator loses health over time, so must keep eating to survive.
 //
