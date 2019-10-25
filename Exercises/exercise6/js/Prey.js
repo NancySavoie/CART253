@@ -37,7 +37,7 @@ class Prey { //FIXED: Class was spelled "glass"
   //
   // Sets velocity based on the noise() function and the Prey's speed
   // Moves based on the resulting velocity and handles wrapping
-  mover() {
+  move() { //FIXED: The function was called mover instead of move
     // Set velocity via noise()
     this.vx = map(noise(this.tx), 0, 1, -this.speed, this.speed);
     this.vy = map(noise(this.ty), 0, 1, -this.speed, this.speed);
