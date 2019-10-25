@@ -54,6 +54,6 @@ function draw() {
   // Display all the "animals"
   tiger.display();
   antelope.display(); //FIXED: Antelope was missing the letter "e" again
-  zebra.disploy();
+  zebra.display(); //FIXED: The word display was spelled disploy
   bee.display(); //FIXED: Bee was spelled "b"
 }
