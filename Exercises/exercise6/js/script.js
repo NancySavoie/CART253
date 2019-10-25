@@ -44,6 +44,7 @@ function draw() {
   tiger.move();
   antelope.move();
   zebra.move();
+  bee.move(); // FIXED: the bee was missing from the "move all the animals"
 
   // Handle the tiger eating any of the prey
   tiger.handleEating(antelope);
