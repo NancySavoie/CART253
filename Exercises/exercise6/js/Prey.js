@@ -57,7 +57,7 @@ class Prey { //FIXED: Class was spelled "glass"
     // wraps it to the other side if so
     handleWrapping() {
       // Off the left or right
-      if (this.x > 0) {
+      if (this.x < 0) { //FIXED: We want < and not > since we're checking if it's under 0
         this.x += width;
       }
       else if (this.x > width) {
