@@ -49,7 +49,7 @@ class Prey { //FIXED: Class was spelled "glass"
     this.ty += 0.01;
     // Handle wrapping
     this.handleWarping();
-
+  } //FIXED: The move function was missing its curly bracket!
 
     // handleWrapping
     //
