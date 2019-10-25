@@ -39,6 +39,7 @@ function draw() {
   background(0); //FIXED: The word background was missing the letter "d"
 
   // Handle input for the tiger
+  tiger.handleInput(); //FIXED: The handle input was completely missing
 
   // Move all the "animals"
   tiger.move();
