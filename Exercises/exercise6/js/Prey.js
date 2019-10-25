@@ -68,7 +68,7 @@ class Prey { //FIXED: Class was spelled "glass"
         this.y += height;
       }
       else if (this.y > height) {
-        this.y -= hight;
+        this.y -= height; // FIXED: height was spelled hight
       }
     }
 
