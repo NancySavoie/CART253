@@ -15,7 +15,7 @@
 let tiger;
 
 // The three prey
-let antelop;
+let antelope; // FIXED - Added the missing "e"
 let zebra;
 let bee;
 
