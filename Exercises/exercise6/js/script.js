@@ -55,5 +55,5 @@ function draw() {
   tiger.display();
   antelop.display();
   zebra.disploy();
-  b.display();
+  bee.display(); //FIXED: Bee was spelled "b"
 }
