@@ -41,6 +41,8 @@ let backgroundMusic;
 // Preload functions for images
 function preload() {
   backgroundImage = loadImage('./assets/images/backgroundImage.png');
+  startImage = loadImage('./assets/images/startImage.png');
+  endingImage = loadImage('./assets/images/endingImage.jpg');
   pokeball1Image = loadImage('./assets/images/pokeball1Image.png');
   pokeball2Image = loadImage('./assets/images/pokeball2Image.png');
   pokeball3Image = loadImage('./assets/images/pokeball3Image.png');
@@ -72,19 +74,20 @@ function setup() {
 function setupSound() {
   backgroundMusic.play();
   backgroundMusic.loop();
+  backgroundMusic.stop();
 }
 // draw()
 //
 // Handles input, movement, eating, and displaying for the system's objects
 function draw() {
   if (state === "START"){
-    background (0,255,0)
+    image(startImage, 0, 0)
   }
   else if (state === "PLAY"){
     handlePlay();
   }
   else if (state === "GAMEOVER"){
-    background (255,0,0)
+    image (endingImage,0,0)
     text("Game over!", 500, 300);
   }
 }
@@ -161,15 +164,21 @@ function handlePlay(){
   evee.display();
   jigglypuff.display();
 }
-// Game over function
-function checkGameOver() {
-  if (pokeball1.predatorDead && pokeball2.predatorDead && pokeball3.predatorDead)
-    state = "GAMEOVER"
-}
 
 function mousePressed(){
   if (state === "START"){
+    console.log("startedGame")
     state = "PLAY"
+    backgroundMusic.play()
     backgroundMusic.loop()
   }
+}
+
+// Game over function
+function checkGameOver() {
+  if (pokeball1.predatorDead && pokeball2.predatorDead && pokeball3.predatorDead){
+    state = "GAMEOVER"
+    console.log("gameOver")
+backgroundMusic.stop()
+}
 }
