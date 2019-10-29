@@ -72,7 +72,6 @@ function setup() {
 
 // Setup the sound files
 function setupSound() {
-  backgroundMusic.play();
   backgroundMusic.loop();
   backgroundMusic.stop();
 }
@@ -81,16 +80,16 @@ function setupSound() {
 // Handles input, movement, eating, and displaying for the system's objects
 function draw() {
   if (state === "START"){
-    image(startImage, 0, 0)
+    image(startImage, 0, 0);
   }
   else if (state === "PLAY"){
     handlePlay();
   }
   else if (state === "GAMEOVER"){
-    image (endingImage,0,0)
-    text("Game over!", 500, 300);
+    image (endingImage,0,0);
   }
 }
+
 function handlePlay(){
   // Clear the background to black
   image(backgroundImage, 0, 0);
@@ -169,7 +168,6 @@ function mousePressed(){
   if (state === "START"){
     console.log("startedGame")
     state = "PLAY"
-    backgroundMusic.play()
     backgroundMusic.loop()
   }
 }
@@ -179,6 +177,6 @@ function checkGameOver() {
   if (pokeball1.predatorDead && pokeball2.predatorDead && pokeball3.predatorDead){
     state = "GAMEOVER"
     console.log("gameOver")
-backgroundMusic.stop()
+    backgroundMusic.stop()
 }
 }
