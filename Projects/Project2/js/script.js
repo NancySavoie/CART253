@@ -3,12 +3,14 @@
 //
 // A predator and prey type game with adorable Pokémon!
 // The pokeball chases the Pokémon using the arrow keys to catch them all.
-// The pokeball loses energy power over time, so it must keep catching Pokémon in order to go on.
+// The pokeball loses energy power over time, so it must keep catching Pokémon in order to go on!
+// Watch out for legendary Pokémon!
 //
 // Pictures from stickpng.com
 // Music from https://www.youtube.com/watch?v=QaaD9CnWgig
 // © Pokémon. TM, ® Nintendo
 
+let state = "START";
 
 // The pokeballs (the predators
 let pokeball1;
@@ -33,6 +35,9 @@ let bulbasaurImage;
 let eveeImage;
 let jigglypuffImage;
 
+// Display sounds
+let backgroundMusic;
+
 // Preload functions for images
 function preload() {
   backgroundImage = loadImage('./assets/images/backgroundImage.png');
@@ -44,6 +49,8 @@ function preload() {
   bulbasaurImage = loadImage('./assets/images/bulbasaurImage.png');
   eveeImage = loadImage('./assets/images/eveeImage.png');
   jigglypuffImage = loadImage('./assets/images/jigglypuffImage.png');
+  //Preload for sounds
+  backgroundMusic = loadSound('./assets/sounds/backgroundMusic.mp3');
 }
 // setup()
 //
@@ -61,13 +68,30 @@ function setup() {
   jigglypuff = new Prey(100, 100, 20, 10, jigglypuffImage);
 }
 
+// Setup the sound files
+function setupSound() {
+  backgroundMusic.play();
+  backgroundMusic.loop();
+}
 // draw()
 //
 // Handles input, movement, eating, and displaying for the system's objects
 function draw() {
+  if (state === "START"){
+    background (0,255,0)
+  }
+  else if (state === "PLAY"){
+    handlePlay();
+  }
+  else if (state === "GAMEOVER"){
+    background (255,0,0)
+    text("Game over!", 500, 300);
+  }
+}
+function handlePlay(){
   // Clear the background to black
   image(backgroundImage, 0, 0);
-  gameOver();
+  checkGameOver();
 
   //Display the amount of preys eaten by the tiger
   textFont("Impact");
@@ -137,9 +161,15 @@ function draw() {
   evee.display();
   jigglypuff.display();
 }
-
 // Game over function
-function gameOver() {
+function checkGameOver() {
   if (pokeball1.predatorDead && pokeball2.predatorDead && pokeball3.predatorDead)
-    text("Game over!", 500, 300);
+    state = "GAMEOVER"
+}
+
+function mousePressed(){
+  if (state === "START"){
+    state = "PLAY"
+    backgroundMusic.loop()
+  }
 }
