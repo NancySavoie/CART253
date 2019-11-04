@@ -38,8 +38,10 @@ let jigglypuffImage;
 // Display sounds
 let backgroundMusic;
 let gameOverPikaSound;
+let pokemonCaughtSound;
+let pokeballDeadSound;
 
-// Preload functions for images
+// Preload functions for images and sounds
 function preload() {
   backgroundImage = loadImage('./assets/images/backgroundImage.png');
   startImage = loadImage('./assets/images/startImage.jpg');
@@ -55,6 +57,8 @@ function preload() {
   //Preload for sounds
   backgroundMusic = loadSound('./assets/sounds/backgroundMusic.mp3');
   gameOverPikaSound = loadSound('./assets/sounds/gameOverPikaSound.mp3');
+  pokemonCaughtSound = loadSound('./assets/sounds/pokemonCaughtSound.mp3');
+  pokeballDeadSound = loadSound('./assets/sounds/pokeballDeadSound.mp3');
 }
 // setup()
 //
@@ -77,9 +81,8 @@ function setupSound() {
   backgroundMusic.loop();
   backgroundMusic.stop();
 }
+
 // draw()
-//
-// Handles input, movement, eating, and displaying for the system's objects
 function draw() {
   if (state === "START"){
     image(startImage, 0, 0);
@@ -92,38 +95,40 @@ function draw() {
   }
 }
 
+// Handles input, movement, catching, and displaying for the system's objects
+
 function handlePlay(){
-  // Clear the background to black
+  // Pokémon forest as a background image
   image(backgroundImage, 0, 0);
   checkGameOver();
 
-  //Display the amount of preys eaten by the tiger
+  //Display the amount of Pokémon caught by player 1
   textFont("Impact");
   textAlign(LEFT, TOP);
   textSize(20);
   fill(255);
-  text("Pokemon caught: " + pokeball1.preyEaten, 15, 0);
+  text("Player 1 (RED) - Pokemon caught: " + pokeball1.preyEaten, 15, 0);
 
-  //Display the amount of preys eaten by the lion
+  //Display the amount of Pokémon caught by player 2
   textFont("Impact");
   textAlign(RIGHT, TOP);
   textSize(20);
   fill(255);
-  text("Pokemon caught: " + pokeball2.preyEaten, 800, 0);
+  text("Player 2 (YELLOW) - Pokemon caught: " + pokeball2.preyEaten, 800, 0);
 
-  //Display the amount of preys eaten by the wasp
+  //Display the amount of Pokémon caught by player 3
   textFont("Impact");
   textAlign(RIGHT, TOP);
   textSize(20);
   fill(255);
-  text("Pokemon caught: " + pokeball3.preyEaten, 1375, 0);
+  text("Player 3 (BLUE) - Pokemon caught: " + pokeball3.preyEaten, 1375, 0);
 
-  // Handle input for the tiger
+  // Handle input for the pokeballs
   pokeball1.handleInput();
   pokeball2.handleInput();
   pokeball3.handleInput();
 
-  // Move all the "animals"
+  // Move all the pokeballs and the pokemon
   pokeball1.move();
   pokeball2.move();
   pokeball3.move();
@@ -133,12 +138,12 @@ function handlePlay(){
   evee.move();
   jigglypuff.move();
 
-  // Verifying if the predators are dead
+  // Verifying if the Pokeballs ran out of power
   pokeball1.checkState();
   pokeball2.checkState();
   pokeball3.checkState();
 
-  // Handle the tiger eating any of the prey
+  // Handle the Pokeballs catching any of the Pokémon
   pokeball1.handleEating(pikachu);
   pokeball1.handleEating(squirtle);
   pokeball1.handleEating(bulbasaur);
@@ -155,7 +160,7 @@ function handlePlay(){
   pokeball3.handleEating(evee);
   pokeball3.handleEating(jigglypuff);
 
-  // Display all the "animals"
+  // Display all the Pokémon
   pokeball1.display();
   pokeball2.display();
   pokeball3.display();
