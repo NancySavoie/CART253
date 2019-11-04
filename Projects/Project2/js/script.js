@@ -12,7 +12,7 @@
 
 let state = "START";
 
-// The pokeballs (the predators
+// The pokeballs (the predators)
 let pokeball1;
 let pokeball2;
 let pokeball3;
@@ -40,9 +40,11 @@ let backgroundMusic;
 let gameOverPikaSound;
 let pokemonCaughtSound;
 let pokeballDeadSound;
+let pikachuStartSound;
 
 // Preload functions for images and sounds
 function preload() {
+  // Preload for images
   backgroundImage = loadImage('./assets/images/backgroundImage.png');
   startImage = loadImage('./assets/images/startImage.jpg');
   endingImage = loadImage('./assets/images/endingImage.jpg');
@@ -54,16 +56,17 @@ function preload() {
   bulbasaurImage = loadImage('./assets/images/bulbasaurImage.png');
   eveeImage = loadImage('./assets/images/eveeImage.png');
   jigglypuffImage = loadImage('./assets/images/jigglypuffImage.png');
-  //Preload for sounds
+  // Preload for sounds
   backgroundMusic = loadSound('./assets/sounds/backgroundMusic.mp3');
   gameOverPikaSound = loadSound('./assets/sounds/gameOverPikaSound.mp3');
   pokemonCaughtSound = loadSound('./assets/sounds/pokemonCaughtSound.mp3');
   pokeballDeadSound = loadSound('./assets/sounds/pokeballDeadSound.mp3');
+  pikachuStartSound = loadSound('./assets/sounds/pikachuStartSound.mp3');
 }
 // setup()
 //
 // Sets up a canvas
-// Creates objects for the predator and three prey
+// Creates objects for the pokeballs (predators) and the pokemons (prey)
 function setup() {
   createCanvas(1400, 1024);
   pokeball1 = new Predator(100, 100, 5, 40, UP_ARROW, DOWN_ARROW, LEFT_ARROW, RIGHT_ARROW, 32, pokeball1Image);
@@ -175,7 +178,8 @@ function mousePressed(){
   if (state === "START"){
     console.log("startedGame")
     state = "PLAY"
-    backgroundMusic.loop()
+    pikachuStartSound.play();
+    backgroundMusic.loop();
   }
 }
 
@@ -184,7 +188,7 @@ function checkGameOver() {
   if (pokeball1.predatorDead && pokeball2.predatorDead && pokeball3.predatorDead){
     state = "GAMEOVER"
     console.log("gameOver")
-    backgroundMusic.stop()
-    gameOverPikaSound.play()
+    backgroundMusic.stop();
+    gameOverPikaSound.play();
 }
 }
