@@ -37,11 +37,12 @@ let jigglypuffImage;
 
 // Display sounds
 let backgroundMusic;
+let gameOverPikaSound;
 
 // Preload functions for images
 function preload() {
   backgroundImage = loadImage('./assets/images/backgroundImage.png');
-  startImage = loadImage('./assets/images/startImage.png');
+  startImage = loadImage('./assets/images/startImage.jpg');
   endingImage = loadImage('./assets/images/endingImage.jpg');
   pokeball1Image = loadImage('./assets/images/pokeball1Image.png');
   pokeball2Image = loadImage('./assets/images/pokeball2Image.png');
@@ -53,6 +54,7 @@ function preload() {
   jigglypuffImage = loadImage('./assets/images/jigglypuffImage.png');
   //Preload for sounds
   backgroundMusic = loadSound('./assets/sounds/backgroundMusic.mp3');
+  gameOverPikaSound = loadSound('./assets/sounds/gameOverPikaSound.mp3');
 }
 // setup()
 //
@@ -178,5 +180,6 @@ function checkGameOver() {
     state = "GAMEOVER"
     console.log("gameOver")
     backgroundMusic.stop()
+    gameOverPikaSound.play()
 }
 }
