@@ -1,6 +1,6 @@
 // Legendary Pokémon 1
 //
-// A class that represents a challenge to the pokeballs (predators).
+// A class that represents a challenge to the pokeballs (predators), it cannot be caught..
 // It is bigger than a regular prey and if the pokeball touches it, it slows
 // the player down.
 
@@ -69,7 +69,7 @@ class Legendary1 {
   display() {
       push();
       noStroke();
-      image(this.image, this.x, this.y, 100, 75);
+      image(this.image, this.x, this.y, 200, 150);
       pop();
   }
   // reset

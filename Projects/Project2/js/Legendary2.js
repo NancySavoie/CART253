@@ -1,6 +1,6 @@
 // Legendary Pokémon 2
 //
-// A class that represents a challenge to the pokeballs (predators).
+// A class that represents a challenge to the pokeballs (predators), it cannot be caught.
 // It is bigger than a regular prey and if the pokeball touches it, it shrinks
 // the player.
 
@@ -21,11 +21,7 @@ class Legendary2 {
     // Time properties for noise() function
     this.tx = random(0, 1000); // To make x and y noise different
     this.ty = random(0, 1000); // we use random starting values
-    // Health properties
-    this.maxHealth = radius;
-    this.health = this.maxHealth; // Must be AFTER defining this.maxHealth
     // Display properties
-    this.radius = this.health;
     this.image = image; // To display the Pokemon image
   }
 
@@ -75,7 +71,7 @@ class Legendary2 {
       push();
       noStroke();
       this.radius = this.health;
-      image(this.image, this.x, this.y, 100, 75);
+      image(this.image, this.x, this.y, 200, 150);
       pop();
     }
   }
