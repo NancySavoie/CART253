@@ -18,14 +18,14 @@ class LegendaryFade {
     this.vy = 0;
     this.speed = speed;
     // Time properties for noise() function
-    this.tx = random(0, 1000); // To make x and y noise different
-    this.ty = random(0, 1000); // we use random starting values
+    this.tx = random(0, 500); // To make x and y noise different
+    this.ty = random(0, 500); // we use random starting values
     // Display properties
     this.radius = radius;
-    this.image = image; // To display the Pokemon image
-
+    this.image = image; // To display the Pokemon image (Mewtwo)
   }
 
+// This new class makes the player fade away by reducing the predator's tint.
   fade(predator) {
     let d = dist(this.x, this.y, predator.x, predator.y);
     // Check if the pokeball and the pokemon overlap
@@ -39,61 +39,60 @@ class LegendaryFade {
     }
   }
 
-    // move
-    //
-    // Sets velocity based on the noise() function and the Pokemon's speed
-    // Moves based on the resulting velocity and handles wrapping
-    move() {
-      // Set velocity via noise()
-      this.vx = map(noise(this.tx), 0, 1, -this.speed, this.speed);
-      this.vy = map(noise(this.ty), 0, 1, -this.speed, this.speed);
-      // Update position
-      this.x += this.vx;
-      this.y += this.vy;
-      // Update time properties
-      this.tx += 0.01;
-      this.ty += 0.01;
-      // Handle wrapping
-      this.handleWrapping();
+  // move
+  //
+  // Sets velocity based on the noise() function and the Pokemon's speed
+  // Moves based on the resulting velocity and handles wrapping
+  move() {
+    // Set velocity via noise()
+    this.vx = map(noise(this.tx), 0, 1, -this.speed, this.speed);
+    this.vy = map(noise(this.ty), 0, 1, -this.speed, this.speed);
+    // Update position
+    this.x += this.vx;
+    this.y += this.vy;
+    // Update time properties
+    this.tx += 0.01;
+    this.ty += 0.01;
+    // Handle wrapping
+    this.handleWrapping();
+  }
+
+  // handleWrapping
+  //
+  // Checks if the Pokemon has gone off the canvas and
+  // wraps it to the other side if so
+  handleWrapping() {
+    // Off the left or right
+    if (this.x < 0) {
+      this.x += width;
+    } else if (this.x > width) {
+      this.x -= width;
     }
-
-    // handleWrapping
-    //
-    // Checks if the Pokemon has gone off the canvas and
-    // wraps it to the other side if so
-    handleWrapping() {
-      // Off the left or right
-      if (this.x < 0) {
-        this.x += width;
-      } else if (this.x > width) {
-        this.x -= width;
-      }
-      // Off the top or bottom
-      if (this.y < 0) {
-        this.y += height;
-      } else if (this.y > height) {
-        this.y -= height;
-      }
-    }
-
-    // display
-    //
-    // Pokemon images for the "prey" of the game
-    // with a radius the same size as its current health.
-    display() {
-
-        push();
-        noStroke();
-        image(this.image, this.x, this.y, 200, 150);
-        pop();
-
-    }
-    // reset
-    //
-    // Set the position to a random location.
-    reset() {
-      // Random position
-      this.x = random(0, width);
-      this.y = random(0, height);
+    // Off the top or bottom
+    if (this.y < 0) {
+      this.y += height;
+    } else if (this.y > height) {
+      this.y -= height;
     }
   }
+
+  // display
+  //
+  // Pokemon images for the "prey" of the game
+  // with a radius the same size as its current health.
+  display() {
+    push();
+    noStroke();
+    image(this.image, this.x, this.y, 200, 150);
+    pop();
+  }
+
+  // reset
+  //
+  // Set the position to a random location.
+  reset() {
+    // Random position
+    this.x = random(0, width);
+    this.y = random(0, height);
+  }
+}

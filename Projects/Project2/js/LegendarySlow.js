@@ -19,13 +19,13 @@ class LegendarySlow {
     this.radius = radius;
     this.speed = speed;
     // Time properties for noise() function
-    this.tx = random(0, 1000); // To make x and y noise different
-    this.ty = random(0, 1000); // we use random starting values
+    this.tx = random(0, 500); // To make x and y noise different
+    this.ty = random(0, 500); // we use random starting values
     // To display the Pokemon image (Mew)
     this.image = image;
   }
 
-// If a player touches this pokemon, their speed will slow down.
+  // If a player touches this pokemon, their speed will slow down.
   slow(predator) {
     let d = dist(this.x, this.y, predator.x, predator.y);
     // Check if the pokeball and the pokemon overlap
