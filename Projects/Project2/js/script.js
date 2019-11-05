@@ -14,9 +14,6 @@
 let hasGameStarted = false;
 let isGameOver = false;
 
-// let state = "START";
-// let gameOver = false;
-
 // The pokeballs (the predators)
 let pokeball1;
 let pokeball2;
@@ -69,6 +66,8 @@ function preload() {
   bulbasaurImage = loadImage('./assets/images/bulbasaurImage.png');
   eveeImage = loadImage('./assets/images/eveeImage.png');
   jigglypuffImage = loadImage('./assets/images/jigglypuffImage.png');
+  mewImage = loadImage('./assets/images/mewImage.png');
+  mewtwoImage = loadImage('./assets/images/mewtwoImage.png');
   // Preload for sounds
   backgroundMusic = loadSound('./assets/sounds/backgroundMusic.mp3');
   gameOverPikaSound = loadSound('./assets/sounds/gameOverPikaSound.mp3');
@@ -91,13 +90,13 @@ function setup() {
   evee = new Prey(100, 100, 20, 10, eveeImage);
   jigglypuff = new Prey(100, 100, 20, 10, jigglypuffImage);
   // New classes
-
-  //place pokeballs into array
+  mew = new Legendary1(100, 100, 20, 10, mewImage);
+  mewtwo = new Legendary1(100, 100, 20, 10, mewtwoImage);
+  // Place pokeballs into array
   pokeballs = [pokeball1, pokeball2, pokeball3];
-
 }
 
-// draw()
+// Draw()
 function draw(){
   if (isGameOver === true){
     image(endingImage,0,0);
@@ -111,7 +110,6 @@ function draw(){
 }
 
 // Handles input, movement, catching, and displaying for the system's objects
-
 function handlePlay(){
   // Pokémon forest as a background image
   image(backgroundImage, 0, 0);
@@ -138,13 +136,14 @@ function handlePlay(){
   fill(0, 0, 255);
   text("Player 3 (BLUE) - Pokemon caught: " + pokeball3.preyEaten, 1375, 0);
 
-
   // Move all the pokeballs and the pokemon
   pikachu.move();
   squirtle.move();
   bulbasaur.move();
   evee.move();
   jigglypuff.move();
+  mew.move();
+  mewtwo.move();
 
   // Arrays for the pokeballs' check state, handleinput, move and display
   for (let i = 0; i < pokeballs.length; i++){
@@ -177,6 +176,8 @@ function handlePlay(){
   bulbasaur.display();
   evee.display();
   jigglypuff.display();
+  mew.display();
+  mewtwo.display();
 }
 
 function mousePressed(){
@@ -188,13 +189,11 @@ function mousePressed(){
     pikachuStartSound.play();
     backgroundMusic.loop();
   }
-
 }
 
 // Game over function
 function checkGameOver() {
   if (pokeball1.predatorDead && pokeball2.predatorDead && pokeball3.predatorDead){
-
     isGameOver = true;
     console.log("game over")
     backgroundMusic.stop();
@@ -210,11 +209,10 @@ function resetGame() {
   bulbasaur.reset();
   evee.reset();
   jigglypuff.reset();
+  pikachuStartSound.play();
   backgroundMusic.loop();
   pokeball1.reset();
   pokeball2.reset();
   pokeball3.reset();
   isGameOver = false;
-
-
 }
