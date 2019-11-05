@@ -12,8 +12,8 @@ class Legendary2 {
   // Either sets default values or uses the arguments provided
   constructor(x, y, speed, radius, image) {
     // Position
-    this.x = x;
-    this.y = y;
+    this.x = random(0,windowWidth);
+    this.y = random(0,windowWidth);
     // Velocity and speed
     this.vx = 0;
     this.vy = 0;

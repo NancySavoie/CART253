@@ -148,27 +148,15 @@ function handlePlay(){
   // Arrays for the pokeballs' check state, handleinput, move and display
   for (let i = 0; i < pokeballs.length; i++){
     pokeballs[i].checkState();
+    mew.slow(pokeballs[i]);
     pokeballs[i].handleInput();
     pokeballs[i].move();
     pokeballs[i].display();
+    pokeballs[i].handleEating(pikachu);
+    pokeballs[i].handleEating(squirtle);
+    pokeballs[i].handleEating(bulbasaur);
+    pokeballs[i].handleEating(evee);
   }
-
-  // Handle the Pokeballs catching any of the Pokémon
-  pokeball1.handleEating(pikachu);
-  pokeball1.handleEating(squirtle);
-  pokeball1.handleEating(bulbasaur);
-  pokeball1.handleEating(evee);
-  pokeball1.handleEating(jigglypuff);
-  pokeball2.handleEating(pikachu);
-  pokeball2.handleEating(squirtle);
-  pokeball2.handleEating(bulbasaur);
-  pokeball2.handleEating(evee);
-  pokeball2.handleEating(jigglypuff);
-  pokeball3.handleEating(pikachu);
-  pokeball3.handleEating(squirtle);
-  pokeball3.handleEating(bulbasaur);
-  pokeball3.handleEating(evee);
-  pokeball3.handleEating(jigglypuff);
 
   // Display all the Pokémon
   pikachu.display();

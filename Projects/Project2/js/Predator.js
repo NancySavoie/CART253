@@ -21,7 +21,7 @@ class Predator {
     // Health properties
     this.maxHealth = radius;
     this.health = this.maxHealth; // Must be AFTER defining this.maxHealth
-    this.healthLossPerMove = 0.1;
+    this.healthLossPerMove = 0;
     this.healthGainPerEat = 1;
     // Display properties
     this.radius = this.health; // Radius is defined in terms of health
@@ -144,7 +144,7 @@ class Predator {
   // Draw pokeballs as the "predators" of the game
   // with a radius the same size as its current health.
   display() {
-    if (this.radius > 0) {
+    if (this.health > 0) {
       push();
       this.radius = this.health;
       image(this.image, this.x, this.y, 2 * this.radius, 2 * this.radius);

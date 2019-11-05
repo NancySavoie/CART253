@@ -12,11 +12,12 @@ class Legendary1 {
   // Either sets default values or uses the arguments provided
   constructor(x, y, speed, radius, image) {
     // Position
-    this.x = x;
-    this.y = y;
+    this.x = random(0,windowWidth);
+    this.y = random(0,windowWidth);
     // Velocity and speed
     this.vx = 0;
     this.vy = 0;
+    this.radius = radius;
     this.speed = speed;
     // Time properties for noise() function
     this.tx = random(0, 1000); // To make x and y noise different
@@ -24,6 +25,18 @@ class Legendary1 {
     // To display the Pokemon image
     this.image = image;
   }
+
+slow(predator){
+  let d = dist(this.x, this.y, predator.x, predator.y);
+  // console.log(this.radius,predator.radius);
+  // Check if the distance is less than their two radii (an overlap)
+  if (d < this.radius + predator.radius) {
+    predator.speed = predator.speed - 0.1;
+    if (predator.speed < 0) {
+      predator.speed = 0;
+    }
+  }
+}
 
   // move
   //
