@@ -42,8 +42,8 @@ let squirtleImage;
 let bulbasaurImage;
 let eveeImage;
 let jigglypuffImage;
-let mewImage
-let mewtwoImage
+let mewImage;
+let mewtwoImage;
 
 // Display sounds
 let backgroundMusic;

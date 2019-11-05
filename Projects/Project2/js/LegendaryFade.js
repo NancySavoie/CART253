@@ -25,7 +25,7 @@ class LegendaryFade {
     this.image = image; // To display the Pokemon image (Mewtwo)
   }
 
-// This new class makes the player fade away by reducing the predator's tint (alpha).
+  // This new class makes the player fade away by reducing the predator's tint (alpha).
   fade(predator) {
     let d = dist(this.x, this.y, predator.x, predator.y);
     // Check if the pokeball and the pokemon overlap

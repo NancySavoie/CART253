@@ -75,7 +75,7 @@ class LegendarySlow {
 
   // display
   //
-// Pokemon image, Mew for the Legendary Slow class of the game.
+  // Pokemon image, Mew for the Legendary Slow class of the game.
   display() {
     push();
     noStroke();
