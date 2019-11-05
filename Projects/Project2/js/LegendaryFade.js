@@ -1,7 +1,7 @@
 // Legendary Pokémon 2
 //
 // A class that represents a challenge to the pokeballs (predators), it cannot be caught.
-// It is bigger than a regular prey and if the pokeball touches it, the player slowly fades away.
+// It is bigger than a regular pokemon (prey) and if the pokeball touches it, the player slowly fades away.
 
 class LegendaryFade {
 
@@ -25,7 +25,7 @@ class LegendaryFade {
     this.image = image; // To display the Pokemon image (Mewtwo)
   }
 
-// This new class makes the player fade away by reducing the predator's tint.
+// This new class makes the player fade away by reducing the predator's tint (alpha).
   fade(predator) {
     let d = dist(this.x, this.y, predator.x, predator.y);
     // Check if the pokeball and the pokemon overlap
@@ -41,8 +41,8 @@ class LegendaryFade {
 
   // move
   //
-  // Sets velocity based on the noise() function and the Pokemon's speed
-  // Moves based on the resulting velocity and handles wrapping
+  // Sets velocity based on the noise() function and the Pokemon's speed.
+  // Moves based on the resulting velocity and handles wrapping.
   move() {
     // Set velocity via noise()
     this.vx = map(noise(this.tx), 0, 1, -this.speed, this.speed);
@@ -59,8 +59,7 @@ class LegendaryFade {
 
   // handleWrapping
   //
-  // Checks if the Pokemon has gone off the canvas and
-  // wraps it to the other side if so
+  // Checks if the Pokemon has gone off the canvas and wraps it to the other side if it did.
   handleWrapping() {
     // Off the left or right
     if (this.x < 0) {
@@ -78,8 +77,7 @@ class LegendaryFade {
 
   // display
   //
-  // Pokemon images for the "prey" of the game
-  // with a radius the same size as its current health.
+  // Pokemon image, Mewtwo for the Legendary Fade class of the game.
   display() {
     push();
     noStroke();

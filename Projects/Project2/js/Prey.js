@@ -1,8 +1,7 @@
 // Pokémon (prey)
 //
-// A class that represents a simple prey that moves
-// on screen based on a noise() function. It can move around
-// the screen and be caught by the pokeballs.
+// A class that represents a simple prey that moves on screen based on a noise() function.
+// It can move around the screen and be caught by the pokeballs.
 
 class Prey {
 
@@ -49,8 +48,7 @@ class Prey {
 
   // handleWrapping
   //
-  // Checks if the Pokemon has gone off the canvas and
-  // wraps it to the other side if so
+  // Checks if the Pokemon has gone off the canvas and wraps it to the other side if it did.
   handleWrapping() {
     // Off the left or right
     if (this.x < 0) {
@@ -68,8 +66,7 @@ class Prey {
 
   // display
   //
-  // Pokemon images for the "prey" of the game
-  // with a radius the same size as its current health.
+  // Pokemon images for the "prey" of the game with a radius the same size as its current health.
   display() {
     if (this.health > 0) {
       push();
@@ -81,8 +78,7 @@ class Prey {
   }
   // reset
   //
-  // Set the position to a random location and reset health
-  // and radius back to default
+  // Set the position to a random location and reset health and radius back to default.
   reset() {
     // Random position
     this.x = random(0, width);

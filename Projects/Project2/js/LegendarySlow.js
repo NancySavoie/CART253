@@ -57,8 +57,7 @@ class LegendarySlow {
 
   // handleWrapping
   //
-  // Checks if the Pokemon has gone off the canvas and
-  // wraps it to the other side if so
+  // Checks if the Pokemon has gone off the canvas and wraps it to the other side if it did.
   handleWrapping() {
     // Off the left or right
     if (this.x < 0) {
@@ -76,8 +75,7 @@ class LegendarySlow {
 
   // display
   //
-  // Pokemon images for the "prey" of the game
-  // with a radius the same size as its current health.
+// Pokemon image, Mew for the Legendary Slow class of the game.
   display() {
     push();
     noStroke();
