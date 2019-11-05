@@ -26,6 +26,7 @@ class Predator {
     // Display properties
     this.radius = this.health; // Radius is defined in terms of health
     this.image = image; // Predator images
+    this.alpha = 255;
     // Input properties
     this.upKey = upKey;
     this.downKey = downKey;
@@ -82,10 +83,10 @@ class Predator {
     //   this.health = 0;
     //   this.radius = 0;
     // } else {
-      this.health = this.health - this.healthLossPerMove;
-      this.health = constrain(this.health, 0, this.maxHealth);
-      // Handle wrapping
-      this.handleWrapping();
+    this.health = this.health - this.healthLossPerMove;
+    this.health = constrain(this.health, 0, this.maxHealth);
+    // Handle wrapping
+    this.handleWrapping();
     // }
   }
   // handleWrapping
@@ -147,7 +148,7 @@ class Predator {
     if (this.health > 0) {
       push();
       this.radius = this.health;
-      // tint(255,this.alpha)
+      tint(255, this.alpha)
       image(this.image, this.x, this.y, 2 * this.radius, 2 * this.radius);
       fill(255);
       text("Gotcha!: " + this.preyEaten, this.x, this.y + this.radius + 10);
@@ -158,12 +159,12 @@ class Predator {
   // reset()
   //
   // reset positions, locations and values of predator
-  reset(){
+  reset() {
 
     this.radius = 40;
     this.health = this.radius;
-    this.x = random(0,windowWidth);
-    this.y = random(0,windowHeight);
+    this.x = random(0, windowWidth);
+    this.y = random(0, windowHeight);
     this.predatorDead = false;
     this.preyEaten = 0;
   }

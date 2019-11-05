@@ -1,8 +1,7 @@
 // Legendary Pokémon 1
 //
-// A class that represents a challenge to the pokeballs (predators), it cannot be caught..
-// It is bigger than a regular prey and if the pokeball touches it, it slows
-// the player down.
+// A class that represents a challenge to the pokeballs (predators), it cannot be caught...
+// It is bigger than a regular "prey" and if the pokeball touches it, it slows the player down...
 
 class LegendarySlow {
 
@@ -12,8 +11,8 @@ class LegendarySlow {
   // Either sets default values or uses the arguments provided
   constructor(x, y, speed, radius, image) {
     // Position
-    this.x = random(0,windowWidth);
-    this.y = random(0,windowWidth);
+    this.x = random(0, windowWidth);
+    this.y = random(0, windowWidth);
     // Velocity and speed
     this.vx = 0;
     this.vy = 0;
@@ -22,21 +21,21 @@ class LegendarySlow {
     // Time properties for noise() function
     this.tx = random(0, 1000); // To make x and y noise different
     this.ty = random(0, 1000); // we use random starting values
-    // To display the Pokemon image
+    // To display the Pokemon image (Mew)
     this.image = image;
   }
 
-slow(predator){
-  let d = dist(this.x, this.y, predator.x, predator.y);
-  // console.log(this.radius,predator.radius);
-  // Check if the distance is less than their two radii (an overlap)
-  if (d < this.radius + predator.radius) {
-    predator.speed = predator.speed - 0.1;
-    if (predator.speed < 0) {
-      predator.speed = 0;
+// If a player touches this pokemon, their speed will slow down.
+  slow(predator) {
+    let d = dist(this.x, this.y, predator.x, predator.y);
+    // Check if the pokeball and the pokemon overlap
+    if (d < this.radius + predator.radius) {
+      predator.speed = predator.speed - 0.1; // Makes the pokeball gradually slow down
+      if (predator.speed < 0) {
+        predator.speed = 0;
+      }
     }
   }
-}
 
   // move
   //
@@ -80,15 +79,15 @@ slow(predator){
   // Pokemon images for the "prey" of the game
   // with a radius the same size as its current health.
   display() {
-      push();
-      noStroke();
-      image(this.image, this.x, this.y, 200, 150);
-      pop();
+    push();
+    noStroke();
+    image(this.image, this.x, this.y, 200, 150);
+    pop();
   }
+
   // reset
   //
-  // Set the position to a random location and reset health
-  // and radius back to default
+  // Set the position to a random location.
   reset() {
     // Random position
     this.x = random(0, width);

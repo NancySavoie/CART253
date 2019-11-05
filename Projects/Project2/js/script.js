@@ -2,9 +2,9 @@
 // Project 2 - Nancy Savoie
 //
 // A predator and prey type game with adorable Pokémon!
-// The pokeball chases the Pokémon using the arrow keys to catch them all.
+// The pokeball chases the Pokémon using the different keys on the keyboard to catch them all.
 // The pokeball loses energy power over time, so it must keep catching Pokémon in order to go on!
-// Watch out for legendary Pokémon!
+// Watch out for legendary Pokémon! (They can slow and/or fade the player!)
 //
 // Pictures from stickpng.com
 // Music from https://www.youtube.com/watch?v=QaaD9CnWgig
@@ -81,28 +81,28 @@ function preload() {
 // Creates objects for the pokeballs (predators) and the pokemons (prey)
 function setup() {
   createCanvas(1400, 1024);
-  pokeball1 = new Predator(100, 100, 5, 40, UP_ARROW, DOWN_ARROW, LEFT_ARROW, RIGHT_ARROW, 32, pokeball1Image);
-  pokeball2 = new Predator(200, 200, 5, 40, 87, 83, 65, 68, 16, pokeball2Image);
+  pokeball1 = new Predator(200, 200, 5, 40, 87, 83, 65, 68, 16, pokeball1Image);
+  pokeball2 = new Predator(100, 100, 5, 40, UP_ARROW, DOWN_ARROW, LEFT_ARROW, RIGHT_ARROW, 32, pokeball2Image);
   pokeball3 = new Predator(50, 200, 5, 40, 73, 75, 74, 76, 18, pokeball3Image);
-  pikachu = new Prey(100, 100, 10, 50, pikachuImage);
-  squirtle = new Prey(100, 100, 8, 60, squirtleImage);
-  bulbasaur = new Prey(100, 100, 20, 10, bulbasaurImage);
-  evee = new Prey(100, 100, 20, 10, eveeImage);
-  jigglypuff = new Prey(100, 100, 20, 10, jigglypuffImage);
-  // New classes
-  mew = new LegendarySlow(100, 100, 20, 10, mewImage);
-  mewtwo = new LegendaryFade(100, 100, 20, 10, mewtwoImage);
+  pikachu = new Prey(100, 100, 10, 25, pikachuImage);
+  squirtle = new Prey(100, 100, 8, 25, squirtleImage);
+  bulbasaur = new Prey(100, 100, 20, 25, bulbasaurImage);
+  evee = new Prey(100, 100, 20, 25, eveeImage);
+  jigglypuff = new Prey(100, 100, 20, 25, jigglypuffImage);
+  // New classes - Legendary
+  mew = new LegendarySlow(100, 100, 20, 100, mewImage);
+  mewtwo = new LegendaryFade(50, 100, 20, 100, mewtwoImage);
   // Place pokeballs into array
   pokeballs = [pokeball1, pokeball2, pokeball3];
 }
 
 // Draw()
-function draw(){
-  if (isGameOver === true){
-    image(endingImage,0,0);
+function draw() {
+  if (isGameOver === true) {
+    image(endingImage, 0, 0);
 
-  } else if (hasGameStarted === false){
-    image(startImage,0,0);
+  } else if (hasGameStarted === false) {
+    image(startImage, 0, 0);
 
   } else {
     handlePlay();
@@ -110,7 +110,7 @@ function draw(){
 }
 
 // Handles input, movement, catching, and displaying for the system's objects
-function handlePlay(){
+function handlePlay() {
   // Pokémon forest as a background image
   image(backgroundImage, 0, 0);
   checkGameOver();
@@ -145,10 +145,11 @@ function handlePlay(){
   mew.move();
   mewtwo.move();
 
-  // Arrays for the pokeballs' check state, handleinput, move and display
-  for (let i = 0; i < pokeballs.length; i++){
+  // Arrays for the pokeballs' check state, handleInput, move, display and handleEating.
+  for (let i = 0; i < pokeballs.length; i++) {
     pokeballs[i].checkState();
     mew.slow(pokeballs[i]);
+    mewtwo.fade(pokeballs[i]);
     pokeballs[i].handleInput();
     pokeballs[i].move();
     pokeballs[i].display();
@@ -168,10 +169,11 @@ function handlePlay(){
   mewtwo.display();
 }
 
-function mousePressed(){
+// Mousse pressed funtion that allows the game to start and to replay
+function mousePressed() {
   if (isGameOver) {
-      resetGame();
-    } else if (hasGameStarted === false){
+    resetGame();
+  } else if (hasGameStarted === false) {
     console.log("startedGame")
     hasGameStarted = true;
     pikachuStartSound.play();
@@ -181,12 +183,12 @@ function mousePressed(){
 
 // Game over function
 function checkGameOver() {
-  if (pokeball1.predatorDead && pokeball2.predatorDead && pokeball3.predatorDead){
+  if (pokeball1.predatorDead && pokeball2.predatorDead && pokeball3.predatorDead) {
     isGameOver = true;
     console.log("game over")
     backgroundMusic.stop();
     gameOverPikaSound.play();
-}
+  }
 }
 
 // The function that resets all the variables to their original game start up.
@@ -197,10 +199,12 @@ function resetGame() {
   bulbasaur.reset();
   evee.reset();
   jigglypuff.reset();
-  pikachuStartSound.play();
-  backgroundMusic.loop();
+  mew.reset();
+  mewtwo.reset();
   pokeball1.reset();
   pokeball2.reset();
   pokeball3.reset();
+  pikachuStartSound.play();
+  backgroundMusic.loop();
   isGameOver = false;
 }
