@@ -193,8 +193,7 @@ function checkGameOver() {
 
 // The function that resets all the variables to their original game start up.
 function resetGame() {
-  if (isGameOver === true)
-    pikachu.reset();
+  pikachu.reset();
   squirtle.reset();
   bulbasaur.reset();
   evee.reset();

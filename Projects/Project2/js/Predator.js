@@ -26,7 +26,7 @@ class Predator {
     // Display properties
     this.radius = this.health; // Radius is defined in terms of health
     this.image = image; // Predator images
-    this.alpha = 255;
+    this.alpha = 255; // The tint of the image (for the Legendary Fade)
     // Input properties
     this.upKey = upKey;
     this.downKey = downKey;
@@ -166,5 +166,6 @@ class Predator {
     this.y = random(0, windowHeight);
     this.predatorDead = false;
     this.preyEaten = 0;
+    this.alpha = 255;
   }
 }
