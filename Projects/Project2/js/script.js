@@ -10,12 +10,19 @@
 // Music from https://www.youtube.com/watch?v=QaaD9CnWgig
 // © Pokémon. TM, ® Nintendo
 
-let state = "START";
+
+let hasGameStarted = false;
+let isGameOver = false;
+
+// let state = "START";
+// let gameOver = false;
 
 // The pokeballs (the predators)
 let pokeball1;
 let pokeball2;
 let pokeball3;
+// Arrays for the pokeballs
+let pokeballs = [];
 
 // The Pokémon (The prey)
 let pikachu;
@@ -23,6 +30,10 @@ let squirtle;
 let bulbasaur;
 let evee;
 let jigglypuff;
+
+// Legendary Pokemon
+let mew;
+let mewtwo;
 
 // Display the images
 let backgroundImage;
@@ -34,6 +45,8 @@ let squirtleImage;
 let bulbasaurImage;
 let eveeImage;
 let jigglypuffImage;
+let mewImage
+let mewtwoImage
 
 // Display sounds
 let backgroundMusic;
@@ -77,24 +90,23 @@ function setup() {
   bulbasaur = new Prey(100, 100, 20, 10, bulbasaurImage);
   evee = new Prey(100, 100, 20, 10, eveeImage);
   jigglypuff = new Prey(100, 100, 20, 10, jigglypuffImage);
-}
+  // New classes
 
-// Setup the sound files
-function setupSound() {
-  backgroundMusic.loop();
-  backgroundMusic.stop();
+  //place pokeballs into array
+  pokeballs = [pokeball1, pokeball2, pokeball3];
+
 }
 
 // draw()
-function draw() {
-  if (state === "START"){
-    image(startImage, 0, 0);
-  }
-  else if (state === "PLAY"){
+function draw(){
+  if (isGameOver === true){
+    image(endingImage,0,0);
+
+  } else if (hasGameStarted === false){
+    image(startImage,0,0);
+
+  } else {
     handlePlay();
-  }
-  else if (state === "GAMEOVER"){
-    image (endingImage,0,0);
   }
 }
 
@@ -109,42 +121,38 @@ function handlePlay(){
   textFont("Impact");
   textAlign(LEFT, TOP);
   textSize(20);
-  fill(255);
+  fill(255, 20, 0);
   text("Player 1 (RED) - Pokemon caught: " + pokeball1.preyEaten, 15, 0);
 
   //Display the amount of Pokémon caught by player 2
   textFont("Impact");
   textAlign(RIGHT, TOP);
   textSize(20);
-  fill(255);
+  fill(220, 220, 0);
   text("Player 2 (YELLOW) - Pokemon caught: " + pokeball2.preyEaten, 800, 0);
 
   //Display the amount of Pokémon caught by player 3
   textFont("Impact");
   textAlign(RIGHT, TOP);
   textSize(20);
-  fill(255);
+  fill(0, 0, 255);
   text("Player 3 (BLUE) - Pokemon caught: " + pokeball3.preyEaten, 1375, 0);
 
-  // Handle input for the pokeballs
-  pokeball1.handleInput();
-  pokeball2.handleInput();
-  pokeball3.handleInput();
 
   // Move all the pokeballs and the pokemon
-  pokeball1.move();
-  pokeball2.move();
-  pokeball3.move();
   pikachu.move();
   squirtle.move();
   bulbasaur.move();
   evee.move();
   jigglypuff.move();
 
-  // Verifying if the Pokeballs ran out of power
-  pokeball1.checkState();
-  pokeball2.checkState();
-  pokeball3.checkState();
+  // Arrays for the pokeballs' check state, handleinput, move and display
+  for (let i = 0; i < pokeballs.length; i++){
+    pokeballs[i].checkState();
+    pokeballs[i].handleInput();
+    pokeballs[i].move();
+    pokeballs[i].display();
+  }
 
   // Handle the Pokeballs catching any of the Pokémon
   pokeball1.handleEating(pikachu);
@@ -164,9 +172,6 @@ function handlePlay(){
   pokeball3.handleEating(jigglypuff);
 
   // Display all the Pokémon
-  pokeball1.display();
-  pokeball2.display();
-  pokeball3.display();
   pikachu.display();
   squirtle.display();
   bulbasaur.display();
@@ -175,20 +180,41 @@ function handlePlay(){
 }
 
 function mousePressed(){
-  if (state === "START"){
+  if (isGameOver) {
+      resetGame();
+    } else if (hasGameStarted === false){
     console.log("startedGame")
-    state = "PLAY"
+    hasGameStarted = true;
     pikachuStartSound.play();
     backgroundMusic.loop();
   }
+
 }
 
 // Game over function
 function checkGameOver() {
   if (pokeball1.predatorDead && pokeball2.predatorDead && pokeball3.predatorDead){
-    state = "GAMEOVER"
-    console.log("gameOver")
+
+    isGameOver = true;
+    console.log("game over")
     backgroundMusic.stop();
     gameOverPikaSound.play();
 }
+}
+
+// The function that resets all the variables to their original game start up.
+function resetGame() {
+  if (isGameOver === true)
+  pikachu.reset();
+  squirtle.reset();
+  bulbasaur.reset();
+  evee.reset();
+  jigglypuff.reset();
+  backgroundMusic.loop();
+  pokeball1.reset();
+  pokeball2.reset();
+  pokeball3.reset();
+  isGameOver = false;
+
+
 }

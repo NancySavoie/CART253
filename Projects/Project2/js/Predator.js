@@ -21,7 +21,7 @@ class Predator {
     // Health properties
     this.maxHealth = radius;
     this.health = this.maxHealth; // Must be AFTER defining this.maxHealth
-    this.healthLossPerMove = 0.05;
+    this.healthLossPerMove = 0.1;
     this.healthGainPerEat = 1;
     // Display properties
     this.radius = this.health; // Radius is defined in terms of health
@@ -62,7 +62,7 @@ class Predator {
       this.vx *= 2;
       this.vy *= 2;
     }
-    console.log(this.vx, this.vy, this.speed, this.upKey);
+
   }
 
   // Predator speeds up when designatd key is pressed
@@ -78,15 +78,15 @@ class Predator {
     this.y += this.vy;
 
     // Update health
-    if (this.predatorDead) {
-      this.health = 0;
-      this.radius = 0;
-    } else {
+    // if (this.predatorDead) {
+    //   this.health = 0;
+    //   this.radius = 0;
+    // } else {
       this.health = this.health - this.healthLossPerMove;
       this.health = constrain(this.health, 0, this.maxHealth);
       // Handle wrapping
       this.handleWrapping();
-    }
+    // }
   }
   // handleWrapping
   //
@@ -132,9 +132,11 @@ class Predator {
   }
   // If pokeball runs out of energy
   checkState() {
-    if (this.health < 1) {
+    if (this.health < 0.1 && this.health > 0) { // This prevents the sound from repeating itself every frame
+      // this.predatorDead = true;
+      pokeballDeadSound.play(); // Sound plays when the pokeball disapears (runs out of energy)
+      console.log("checkState")
       this.predatorDead = true;
-      
     }
   }
   // display
@@ -142,12 +144,26 @@ class Predator {
   // Draw pokeballs as the "predators" of the game
   // with a radius the same size as its current health.
   display() {
-    if (!this.predatorDead) {
+    if (this.radius > 0) {
       push();
       this.radius = this.health;
       image(this.image, this.x, this.y, 2 * this.radius, 2 * this.radius);
+      fill(255);
       text("Gotcha!: " + this.preyEaten, this.x, this.y + this.radius + 10);
       pop();
     }
+  }
+
+  // reset()
+  //
+  // reset positions, locations and values of predator
+  reset(){
+
+    this.radius = 40;
+    this.health = this.radius;
+    this.x = random(0,windowWidth);
+    this.y = random(0,windowHeight);
+    this.predatorDead = false;
+    this.preyEaten = 0;
   }
 }
