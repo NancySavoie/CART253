@@ -147,6 +147,7 @@ class Predator {
     if (this.health > 0) {
       push();
       this.radius = this.health;
+      // tint(255,this.alpha)
       image(this.image, this.x, this.y, 2 * this.radius, 2 * this.radius);
       fill(255);
       text("Gotcha!: " + this.preyEaten, this.x, this.y + this.radius + 10);

@@ -1,10 +1,10 @@
-// Legendary Pokémon 2
+// Legendary Pokémon 1
 //
-// A class that represents a challenge to the pokeballs (predators), it cannot be caught.
-// It is bigger than a regular prey and if the pokeball touches it, it shrinks
-// the player.
+// A class that represents a challenge to the pokeballs (predators), it cannot be caught..
+// It is bigger than a regular prey and if the pokeball touches it, it slows
+// the player down.
 
-class Legendary2 {
+class LegendarySlow {
 
   // constructor
   //
@@ -17,13 +17,26 @@ class Legendary2 {
     // Velocity and speed
     this.vx = 0;
     this.vy = 0;
+    this.radius = radius;
     this.speed = speed;
     // Time properties for noise() function
     this.tx = random(0, 1000); // To make x and y noise different
     this.ty = random(0, 1000); // we use random starting values
-    // Display properties
-    this.image = image; // To display the Pokemon image
+    // To display the Pokemon image
+    this.image = image;
   }
+
+slow(predator){
+  let d = dist(this.x, this.y, predator.x, predator.y);
+  // console.log(this.radius,predator.radius);
+  // Check if the distance is less than their two radii (an overlap)
+  if (d < this.radius + predator.radius) {
+    predator.speed = predator.speed - 0.1;
+    if (predator.speed < 0) {
+      predator.speed = 0;
+    }
+  }
+}
 
   // move
   //
@@ -67,13 +80,10 @@ class Legendary2 {
   // Pokemon images for the "prey" of the game
   // with a radius the same size as its current health.
   display() {
-    if (this.health > 0) {
       push();
       noStroke();
-      this.radius = this.health;
       image(this.image, this.x, this.y, 200, 150);
       pop();
-    }
   }
   // reset
   //
@@ -83,9 +93,5 @@ class Legendary2 {
     // Random position
     this.x = random(0, width);
     this.y = random(0, height);
-    // Default health
-    this.health = this.maxHealth;
-    // Default radius
-    this.radius = this.health;
   }
 }

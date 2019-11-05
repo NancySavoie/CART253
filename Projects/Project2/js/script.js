@@ -90,8 +90,8 @@ function setup() {
   evee = new Prey(100, 100, 20, 10, eveeImage);
   jigglypuff = new Prey(100, 100, 20, 10, jigglypuffImage);
   // New classes
-  mew = new Legendary1(100, 100, 20, 10, mewImage);
-  mewtwo = new Legendary1(100, 100, 20, 10, mewtwoImage);
+  mew = new LegendarySlow(100, 100, 20, 10, mewImage);
+  mewtwo = new LegendaryFade(100, 100, 20, 10, mewtwoImage);
   // Place pokeballs into array
   pokeballs = [pokeball1, pokeball2, pokeball3];
 }
