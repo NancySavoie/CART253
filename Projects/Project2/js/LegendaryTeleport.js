@@ -1,9 +1,9 @@
-// Legendary Pokémon 1
+// Legendary Pokémon 3
 //
 // A class that represents a challenge to the Pokeballs (predators), it cannot be caught...
-// It is bigger than a regular "prey" and if the Pokeball touches it, it slows the player down...
+// It is bigger than a regular "prey" and if the Pokeball touches it, it teleports the player.
 
-class LegendarySlow {
+class LegendaryTeleport {
 
   // constructor
   //
@@ -21,21 +21,23 @@ class LegendarySlow {
     // Time properties for noise() function
     this.tx = random(0, 500); // To make x and y noise different
     this.ty = random(0, 500); // we use random starting values
-    // To display the Pokemon image (Articuno)
+    // To display the Pokemon image (Zapdos)
     this.image = image;
   }
 
-  // If a player touches this Pokémon, their speed will slow down.
-  slow(predator) {
+  // If a player touches this Pokémon, they will be teleported.
+  teleport(predator) {
+    // Calculate distance from teleport to Pokeball
     let d = dist(this.x, this.y, predator.x, predator.y);
     // Check if the Pokeball and the Pokémon overlap
     if (d < this.radius + predator.radius) {
-      predator.speed = predator.speed - 0.1; // Makes the Pokeball gradually slow down
-      if (predator.speed < 0) {
-        predator.speed = 0;
+      // Random location for the predator when teleporting
+      predator.x = random(0, width);
+      predator.x = random(0, height);
+      // Reset the teleport once the predator (Pokeball) touches it
+      this.reset();
       }
     }
-  }
 
   // move
   //
@@ -75,7 +77,7 @@ class LegendarySlow {
 
   // display
   //
-  // Pokémon image, Articuno, for the Legendary Slow class of the game.
+  // Pokémon image, Zaptos, for the Legendary Slow class of the game.
   display() {
     push();
     noStroke();

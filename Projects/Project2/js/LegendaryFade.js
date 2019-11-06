@@ -22,7 +22,7 @@ class LegendaryFade {
     this.ty = random(0, 500); // we use random starting values
     // Display properties
     this.radius = radius;
-    this.image = image; // To display the Pokémon image (Mewtwo)
+    this.image = image; // To display the Pokémon image (Moltres)
   }
 
   // This new class makes the player fade away by reducing the predator's tint (alpha).
@@ -77,7 +77,7 @@ class LegendaryFade {
 
   // display
   //
-  // Pokémon image, Mewtwo, for the Legendary Fade class of the game.
+  // Pokémon image, Moltres, for the Legendary Fade class of the game.
   display() {
     push();
     noStroke();

@@ -29,8 +29,9 @@ let evee;
 let jigglypuff;
 
 // Legendary Pokemon (The two new classes)
-let mew;
-let mewtwo;
+let zapdos;
+let articuno;
+let moltres;
 
 // Display the images
 let backgroundImage;
@@ -42,8 +43,9 @@ let squirtleImage;
 let bulbasaurImage;
 let eveeImage;
 let jigglypuffImage;
-let mewImage;
-let mewtwoImage;
+let zapdosImage;
+let articunoImage;
+let moltresImage;
 
 // Display sounds
 let backgroundMusic;
@@ -66,8 +68,9 @@ function preload() {
   bulbasaurImage = loadImage('./assets/images/bulbasaurImage.png');
   eveeImage = loadImage('./assets/images/eveeImage.png');
   jigglypuffImage = loadImage('./assets/images/jigglypuffImage.png');
-  mewImage = loadImage('./assets/images/mewImage.png');
-  mewtwoImage = loadImage('./assets/images/mewtwoImage.png');
+  zapdosImage = loadImage('./assets/images/zapdosImage.png');
+  articunoImage = loadImage('./assets/images/articunoImage.png');
+  moltresImage = loadImage('./assets/images/moltresImage.png');
   // Preload for sounds
   backgroundMusic = loadSound('./assets/sounds/backgroundMusic.mp3');
   gameOverPikaSound = loadSound('./assets/sounds/gameOverPikaSound.mp3');
@@ -91,8 +94,9 @@ function setup() {
   evee = new Prey(100, 100, 20, 25, eveeImage);
   jigglypuff = new Prey(100, 100, 20, 25, jigglypuffImage);
   // New classes - Legendary
-  mew = new LegendarySlow(100, 100, 20, 100, mewImage);
-  mewtwo = new LegendaryFade(50, 100, 20, 100, mewtwoImage);
+  articuno = new LegendarySlow(100, 100, 20, 100, articunoImage);
+  moltres = new LegendaryFade(50, 100, 20, 100, moltresImage);
+  zapdos = new LegendaryTeleport(50, 100, 20, 100, zapdosImage);
   // Place pokeballs into array
   pokeballs = [pokeball1, pokeball2, pokeball3];
 }
@@ -143,14 +147,16 @@ function handlePlay() {
   bulbasaur.move();
   evee.move();
   jigglypuff.move();
-  mew.move();
-  mewtwo.move();
+  zapdos.move();
+  articuno.move();
+  moltres.move();
 
   // Arrays for the Pokeballs' check state, handleInput, move, display and handleEating.
   for (let i = 0; i < pokeballs.length; i++) {
     pokeballs[i].checkState();
-    mew.slow(pokeballs[i]);
-    mewtwo.fade(pokeballs[i]);
+    articuno.slow(pokeballs[i]);
+    moltres.fade(pokeballs[i]);
+    zapdos.teleport(pokeballs[i]);
     pokeballs[i].handleInput();
     pokeballs[i].move();
     pokeballs[i].display();
@@ -166,8 +172,9 @@ function handlePlay() {
   bulbasaur.display();
   evee.display();
   jigglypuff.display();
-  mew.display();
-  mewtwo.display();
+  zapdos.display();
+  articuno.display();
+  moltres.display();
 }
 
 // Mousse pressed funtion that allows the game to start and to replay after game over.
@@ -199,8 +206,9 @@ function resetGame() {
   bulbasaur.reset();
   evee.reset();
   jigglypuff.reset();
-  mew.reset();
-  mewtwo.reset();
+  zapdos.reset();
+  articuno.reset();
+  moltres.reset();
   pokeball1.reset();
   pokeball2.reset();
   pokeball3.reset();
