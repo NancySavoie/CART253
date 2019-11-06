@@ -1,13 +1,13 @@
 // Pokémon (prey)
 //
-// A class that represents a simple prey that moves on screen based on a noise() function.
+// A class that represents a simple prey (Pokémon) that moves on screen based on a noise() function.
 // It can move around the screen and be caught by the pokeballs.
 
 class Prey {
 
   // constructor
   //
-  // Sets the initial values for the Pokemon's properties
+  // Sets the initial values for the Pokémon's properties
   // Either sets default values or uses the arguments provided
   constructor(x, y, speed, radius, image) {
     // Position
@@ -25,12 +25,12 @@ class Prey {
     this.health = this.maxHealth; // Must be AFTER defining this.maxHealth
     // Display properties
     this.radius = this.health;
-    this.image = image; // To display the Pokemon image
+    this.image = image; // To display the Pokémon image (Pikachu, Evee, Bulbasaur, Squirtle, Jigglypuff)
   }
 
   // move
   //
-  // Sets velocity based on the noise() function and the Pokemon's speed
+  // Sets velocity based on the noise() function and the Pokémon's speed
   // Moves based on the resulting velocity and handles wrapping
   move() {
     // Set velocity via noise()
@@ -48,7 +48,7 @@ class Prey {
 
   // handleWrapping
   //
-  // Checks if the Pokemon has gone off the canvas and wraps it to the other side if it did.
+  // Checks if the Pokémon has gone off the canvas and wraps it to the other side if it did.
   handleWrapping() {
     // Off the left or right
     if (this.x < 0) {
@@ -66,7 +66,7 @@ class Prey {
 
   // display
   //
-  // Pokemon images for the "prey" of the game with a radius the same size as its current health.
+  // Pokémon images for the "prey" of the game with a radius the same size as its current health.
   display() {
     if (this.health > 0) {
       push();

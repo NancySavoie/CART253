@@ -1,6 +1,6 @@
 // Predator
 //
-// A class that represents a simple predator
+// A class that represents a simple predator (Pokeballs)
 // controlled by the arrow keys. It can move around
 // the screen and consume Prey objects to maintain its health.
 
@@ -34,12 +34,12 @@ class Predator {
     this.rightKey = rightKey;
     this.sprintKey = sprintKey; // Sprinting key
     this.preyEaten = 0;
-    this.predatorDead = false; // The status of predators
+    this.predatorDead = false; // The status of Pokeballs (predators)
   }
 
   // handleInput
   //
-  // Checks if a key is pressed and sets the pokeball's velocity appropriately.
+  // Checks if a key is pressed and sets the Pokeball's velocity appropriately.
   handleInput() {
     // Horizontal movement
     if (keyIsDown(this.leftKey)) {
@@ -83,7 +83,7 @@ class Predator {
 
   // handleWrapping
   //
-  // Checks if the pokeball has gone off the canvas and wraps it to the other side if it did.
+  // Checks if the Pokeball has gone off the canvas and wraps it to the other side if it did.
   handleWrapping() {
     // Off the left or right
     if (this.x < 0) {
@@ -101,19 +101,19 @@ class Predator {
 
   // handleEating
   //
-  // Takes a Pokemon as an argument and checks if the Pokeball overlaps it. If so,
-  // it reduces the pokemon's health and increases the pokeball's. If a Pokemon is caught, it gets reset.
+  // Takes a Pokémon as an argument and checks if the Pokeball overlaps it. If so,
+  // it reduces the Pokémon's health and increases the pokeball's. If a Pokémon is caught, it gets reset.
   handleEating(prey) {
-    // Calculate distance from this pokeball to the pokemon
+    // Calculate distance from this pokeball to the Pokémon
     let d = dist(this.x, this.y, prey.x, prey.y);
-    // Check if the pokeball and the pokemon overlaps
+    // Check if the Pokeball and the pokemon overlaps
     if (d < this.radius + prey.radius) {
       // Increase Pokeball energy and constrain it to its possible range
       this.health += this.healthGainPerEat;
       this.health = constrain(this.health, 0, this.maxHealth);
-      // Decrease Pokemon health by the same amount
+      // Decrease Pokémon health by the same amount
       prey.health -= this.healthGainPerEat;
-      // Check if the Pokemon was caught and reset it if so
+      // Check if the Pokémon was caught and reset it if so
       if (prey.health < 0) {
         this.preyEaten += 1;
         prey.reset();
@@ -125,8 +125,7 @@ class Predator {
   // If pokeball runs out of energy
   checkState() {
     if (this.health < 0.1 && this.health > 0) { // This prevents the sound from repeating itself every frame
-      // this.predatorDead = true;
-      pokeballDeadSound.play(); // Sound plays when the pokeball disapears (runs out of energy)
+      pokeballDeadSound.play(); // Sound plays when the Pokeball disapears (runs out of energy)
       console.log("checkState")
       this.predatorDead = true;
     }
@@ -134,7 +133,7 @@ class Predator {
 
   // display
   //
-  // Draw pokeballs as the "predators" of the game with a radius the same size as its current health.
+  // Draw Pokeballs as the "predators" of the game with a radius the same size as its current health.
   display() {
     if (this.health > 0) {
       push();
@@ -149,7 +148,7 @@ class Predator {
 
   // reset()
   //
-  // Reset positions, locations and values of pokeballs (predators)
+  // Reset positions, locations and values of Pokeballs (predators)
   reset() {
     this.radius = 40;
     this.health = this.radius;

@@ -28,7 +28,7 @@ let bulbasaur;
 let evee;
 let jigglypuff;
 
-// Legendary Pokemon
+// Legendary Pokemon (The two new classes)
 let mew;
 let mewtwo;
 
@@ -75,6 +75,7 @@ function preload() {
   pokeballDeadSound = loadSound('./assets/sounds/pokeballDeadSound.mp3');
   pikachuStartSound = loadSound('./assets/sounds/pikachuStartSound.mp3');
 }
+
 // setup()
 //
 // Sets up a canvas
@@ -136,7 +137,7 @@ function handlePlay() {
   fill(0, 0, 255);
   text("Player 3 (BLUE) - Pokemon caught: " + pokeball3.preyEaten, 1375, 0);
 
-  // Move all the pokeballs and the pokemon
+  // Move all the Pokeballs and the pokemon
   pikachu.move();
   squirtle.move();
   bulbasaur.move();
@@ -145,7 +146,7 @@ function handlePlay() {
   mew.move();
   mewtwo.move();
 
-  // Arrays for the pokeballs' check state, handleInput, move, display and handleEating.
+  // Arrays for the Pokeballs' check state, handleInput, move, display and handleEating.
   for (let i = 0; i < pokeballs.length; i++) {
     pokeballs[i].checkState();
     mew.slow(pokeballs[i]);
@@ -169,7 +170,7 @@ function handlePlay() {
   mewtwo.display();
 }
 
-// Mousse pressed funtion that allows the game to start and to replay
+// Mousse pressed funtion that allows the game to start and to replay after game over.
 function mousePressed() {
   if (isGameOver) {
     resetGame();

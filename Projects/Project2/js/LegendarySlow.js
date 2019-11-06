@@ -1,13 +1,13 @@
 // Legendary Pokémon 1
 //
-// A class that represents a challenge to the pokeballs (predators), it cannot be caught...
-// It is bigger than a regular "prey" and if the pokeball touches it, it slows the player down...
+// A class that represents a challenge to the Pokeballs (predators), it cannot be caught...
+// It is bigger than a regular "prey" and if the Pokeball touches it, it slows the player down...
 
 class LegendarySlow {
 
   // constructor
   //
-  // Sets the initial values for the Pokemon's properties
+  // Sets the initial values for the Pokémon's properties
   // Either sets default values or uses the arguments provided
   constructor(x, y, speed, radius, image) {
     // Position
@@ -25,12 +25,12 @@ class LegendarySlow {
     this.image = image;
   }
 
-  // If a player touches this pokemon, their speed will slow down.
+  // If a player touches this Pokémon, their speed will slow down.
   slow(predator) {
     let d = dist(this.x, this.y, predator.x, predator.y);
-    // Check if the pokeball and the pokemon overlap
+    // Check if the Pokeball and the Pokémon overlap
     if (d < this.radius + predator.radius) {
-      predator.speed = predator.speed - 0.1; // Makes the pokeball gradually slow down
+      predator.speed = predator.speed - 0.1; // Makes the Pokeball gradually slow down
       if (predator.speed < 0) {
         predator.speed = 0;
       }
@@ -39,7 +39,7 @@ class LegendarySlow {
 
   // move
   //
-  // Sets velocity based on the noise() function and the Pokemon's speed
+  // Sets velocity based on the noise() function and the Pokémon's speed
   // Moves based on the resulting velocity and handles wrapping
   move() {
     // Set velocity via noise()
@@ -57,7 +57,7 @@ class LegendarySlow {
 
   // handleWrapping
   //
-  // Checks if the Pokemon has gone off the canvas and wraps it to the other side if it did.
+  // Checks if the Pokémon has gone off the canvas and wraps it to the other side if it did.
   handleWrapping() {
     // Off the left or right
     if (this.x < 0) {
@@ -75,7 +75,7 @@ class LegendarySlow {
 
   // display
   //
-  // Pokemon image, Mew for the Legendary Slow class of the game.
+  // Pokémon image, Mew, for the Legendary Slow class of the game.
   display() {
     push();
     noStroke();

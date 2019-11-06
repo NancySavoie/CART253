@@ -1,13 +1,13 @@
 // Legendary Pokémon 2
 //
-// A class that represents a challenge to the pokeballs (predators), it cannot be caught.
-// It is bigger than a regular pokemon (prey) and if the pokeball touches it, the player slowly fades away.
+// A class that represents a challenge to the Pokeballs (predators), it cannot be caught.
+// It is bigger than a regular Pokémon (prey) and if the Pokeball touches it, the player slowly fades away.
 
 class LegendaryFade {
 
   // constructor
   //
-  // Sets the initial values for the Pokemon's properties
+  // Sets the initial values for the Pokémon's properties
   // Either sets default values or uses the arguments provided
   constructor(x, y, speed, radius, image) {
     // Position
@@ -22,13 +22,13 @@ class LegendaryFade {
     this.ty = random(0, 500); // we use random starting values
     // Display properties
     this.radius = radius;
-    this.image = image; // To display the Pokemon image (Mewtwo)
+    this.image = image; // To display the Pokémon image (Mewtwo)
   }
 
   // This new class makes the player fade away by reducing the predator's tint (alpha).
   fade(predator) {
     let d = dist(this.x, this.y, predator.x, predator.y);
-    // Check if the pokeball and the pokemon overlap
+    // Check if the Pokeball and the Pokémon overlap
     console.log(d)
     if (d < this.radius + predator.radius) {
       console.log(predator)
@@ -41,7 +41,7 @@ class LegendaryFade {
 
   // move
   //
-  // Sets velocity based on the noise() function and the Pokemon's speed.
+  // Sets velocity based on the noise() function and the Pokémon's speed.
   // Moves based on the resulting velocity and handles wrapping.
   move() {
     // Set velocity via noise()
@@ -59,7 +59,7 @@ class LegendaryFade {
 
   // handleWrapping
   //
-  // Checks if the Pokemon has gone off the canvas and wraps it to the other side if it did.
+  // Checks if the Pokémon has gone off the canvas and wraps it to the other side if it did.
   handleWrapping() {
     // Off the left or right
     if (this.x < 0) {
@@ -77,7 +77,7 @@ class LegendaryFade {
 
   // display
   //
-  // Pokemon image, Mewtwo for the Legendary Fade class of the game.
+  // Pokémon image, Mewtwo, for the Legendary Fade class of the game.
   display() {
     push();
     noStroke();
