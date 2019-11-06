@@ -57,7 +57,7 @@ let pikachuStartSound;
 // Preload functions for images and sounds
 function preload() {
   // Preload for images
-  backgroundImage = loadImage('./assets/images/backgroundImage.png');
+  backgroundImage = loadImage('./assets/images/backgroundImage.jpg');
   startImage = loadImage('./assets/images/startImage.jpg');
   endingImage = loadImage('./assets/images/endingImage.jpg');
   pokeball1Image = loadImage('./assets/images/pokeball1Image.png');
