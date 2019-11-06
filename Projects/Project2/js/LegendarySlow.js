@@ -79,7 +79,7 @@ class LegendarySlow {
   display() {
     push();
     noStroke();
-    image(this.image, this.x, this.y, 200, 150);
+    image(this.image, this.x, this.y, 250, 200);
     pop();
   }
 

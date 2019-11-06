@@ -31,7 +31,7 @@ class LegendaryTeleport {
     let d = dist(this.x, this.y, predator.x, predator.y);
     // Check if the Pokeball and the Pokémon overlap
     if (d < this.radius + predator.radius) {
-      // Random location for the predator when teleporting
+      // Random location for the predator (pokeball) when teleporting
       predator.x = random(0, width);
       predator.x = random(0, height);
       // Reset the teleport once the predator (Pokeball) touches it
@@ -81,7 +81,7 @@ class LegendaryTeleport {
   display() {
     push();
     noStroke();
-    image(this.image, this.x, this.y, 200, 150);
+    image(this.image, this.x, this.y, 250, 200);
     pop();
   }
 
