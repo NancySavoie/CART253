@@ -1,7 +1,7 @@
 // Legendary Pokémon 1
 //
-// A class that represents a challenge to the Pokeballs (predators), it cannot be caught...
-// It is bigger than a regular "prey" and if the Pokeball touches it, it slows the player down...
+// A class that represents a challenge to the Pokeballs (predators), it cannot be caught!
+// It is bigger than a regular "prey" and if the Pokeball touches it, it slows the player down.
 
 class LegendarySlow {
 

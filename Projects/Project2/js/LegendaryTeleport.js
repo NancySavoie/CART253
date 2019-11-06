@@ -1,6 +1,6 @@
 // Legendary Pokémon 3
 //
-// A class that represents a challenge to the Pokeballs (predators), it cannot be caught...
+// A class that represents a challenge to the Pokeballs (predators), it cannot be caught!
 // It is bigger than a regular "prey" and if the Pokeball touches it, it teleports the player.
 
 class LegendaryTeleport {
@@ -36,8 +36,8 @@ class LegendaryTeleport {
       predator.x = random(0, height);
       // Reset the teleport once the predator (Pokeball) touches it
       this.reset();
-      }
     }
+  }
 
   // move
   //

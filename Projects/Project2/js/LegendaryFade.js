@@ -1,6 +1,6 @@
 // Legendary Pokémon 2
 //
-// A class that represents a challenge to the Pokeballs (predators), it cannot be caught.
+// A class that represents a challenge to the Pokeballs (predators), it cannot be caught!
 // It is bigger than a regular Pokémon (prey) and if the Pokeball touches it, the player slowly fades away.
 
 class LegendaryFade {

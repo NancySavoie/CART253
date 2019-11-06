@@ -10,7 +10,6 @@
 // Music from https://www.youtube.com/watch?v=QaaD9CnWgig
 // © Pokémon. TM, ® Nintendo
 
-
 let hasGameStarted = false;
 let isGameOver = false;
 

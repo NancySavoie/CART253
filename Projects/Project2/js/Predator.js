@@ -12,8 +12,8 @@ class Predator {
   // Either sets default values or uses the arguments provided
   constructor(x, y, speed, radius, upKey, downKey, leftKey, rightKey, sprintKey, image, alpha) {
     // Position
-    this.x = random(1000,0);
-    this.y = random(0,1000);
+    this.x = random(1000, 0);
+    this.y = random(0, 1000);
     // Velocity and speed
     this.vx = 0;
     this.vy = 0;
@@ -145,7 +145,7 @@ class Predator {
       pop();
     }
   }
-
+  
   // reset()
   //
   // Reset positions, locations and values of Pokeballs (predators)
