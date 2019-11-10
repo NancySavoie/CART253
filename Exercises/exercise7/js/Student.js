@@ -1,14 +1,11 @@
-// Predator
-//
-// A class that represents a simple predator
-// controlled by the arrow keys. It can move around
-// the screen and consume Prey objects to maintain its health.
+// A class that represents the student class controlled by the arrow keys. It can move around
+// the screen and can consume focus & distraction objects.
 
-class Students {
+class Student {
 
   // constructor
   //
-  // Sets the initial values for the Predator's properties
+  // Sets the initial values for the student's properties
   // Either sets default values or uses the arguments provided
   constructor(x, y, speed, radius, upKey, downKey, leftKey, rightKey, sprintKey, fillColor) {
     // Position
@@ -33,11 +30,13 @@ class Students {
     this.leftKey = leftKey;
     this.rightKey = rightKey;
     this.sprintKey = sprintKey; // Sprinting key
+    this.focusEaten = 0;
+    this.studentDead = false; // The status of students
   }
 
   // handleInput
   //
-  // Checks if an arrow key is pressed and sets the predator's
+  // Checks if an arrow key is pressed and sets the student's
   // velocity appropriately.
   handleInput() {
     // Horizontal movement
@@ -60,7 +59,12 @@ class Students {
     else {
       this.vy = 0;
     }
-  }
+    // Predator sprints when designatd key is pressed
+      if (keyIsDown(this.sprintKey)) {
+        this.vx *= 2;
+        this.vy *= 2;
+      }
+    }
 
   // move
   //
@@ -71,16 +75,21 @@ class Students {
     // Update position
     this.x += this.vx;
     this.y += this.vy;
-    // Update health
-    this.health = this.health - this.healthLossPerMove;
-    this.health = constrain(this.health, 0, this.maxHealth);
-    // Handle wrapping
-    this.handleWrapping();
-  }
 
+    // Update health
+    if (this.studentDead) {
+      this.health = 0;
+      this.radius = 0;
+    } else {
+      this.health = this.health - this.healthLossPerMove;
+      this.health = constrain(this.health, 0, this.maxHealth);
+      // Handle wrapping
+      this.handleWrapping();
+  }
+}
   // handleWrapping
   //
-  // Checks if the predator has gone off the canvas and
+  // Checks if the student has gone off the canvas and
   // wraps it to the other side if so
   handleWrapping() {
     // Off the left or right
@@ -101,36 +110,46 @@ class Students {
 
   // handleEating
   //
-  // Takes a Prey object as an argument and checks if the predator
-  // overlaps it. If so, reduces the prey's health and increases
-  // the predator's. If the prey dies, it gets reset.
-  handleEating(prey) {
-    // Calculate distance from this predator to the prey
-    let d = dist(this.x, this.y, prey.x, prey.y);
+  // Takes a focus object as an argument and checks if the student
+  // overlaps it. If so, reduces the focus' health and increases
+  // the student's. If the focus dies, it gets reset.
+  handleEating(focus) {
+    // Calculate distance from this student to the focus
+    let d = dist(this.x, this.y, focus.x, focus.y);
     // Check if the distance is less than their two radii (an overlap)
-    if (d < this.radius + prey.radius) {
-      // Increase predator health and constrain it to its possible range
+    if (d < this.radius + focus.radius) {
+      // Increase student health and constrain it to its possible range
       this.health += this.healthGainPerEat;
       this.health = constrain(this.health, 0, this.maxHealth);
-      // Decrease prey health by the same amount
-      prey.health -= this.healthGainPerEat;
-      // Check if the prey died and reset it if so
-      if (prey.health < 0) {
-        prey.reset();
+      // Decrease focus health by the same amount
+      focus.health -= this.healthGainPerEat;
+      // Check if the focus died and reset it if so
+      if (focus.health < 0) {
+        focus.reset();
       }
     }
   }
 
+  // If student is dead
+    checkState() {
+      if (this.health < 1) {
+        this.studentDead = true;
+      }
+    }
+
   // display
   //
-  // Draw the predator as an ellipse on the canvas
+  // Draw the student as an ellipse on the canvas
   // with a radius the same size as its current health.
   display() {
+      if (!this.studentDead) {
     push();
     noStroke();
     fill(this.fillColor);
     this.radius = this.health;
-    ellipse(this.x, this.y, this.radius * 2);
+    ellipse(this.x, this.y, this.radius * 4);
+    text("Student: " + this.focusEaten, this.x, this.y + this.radius + 10);
     pop();
   }
+}
 }

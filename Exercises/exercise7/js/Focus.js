@@ -1,14 +1,11 @@
-// Prey
-//
-// A class that represents a simple prey that moves
-// on screen based on a noise() function. It can move around
-// the screen and be consumed by Predator objects.
+// A class that represents a focus items that moves on screen based on a noise() function.
+// It can move around the screen and be consumed by student objects.
 
 class Focus {
 
   // constructor
   //
-  // Sets the initial values for the Predator's properties
+  // Sets the initial values for the student's properties
   // Either sets default values or uses the arguments provided
   constructor(x, y, speed, fillColor, radius) {
     // Position
@@ -31,7 +28,7 @@ class Focus {
 
   // move
   //
-  // Sets velocity based on the noise() function and the Prey's speed
+  // Sets velocity based on the noise() function and the focus's speed
   // Moves based on the resulting velocity and handles wrapping
   move() {
     // Set velocity via noise()
@@ -49,7 +46,7 @@ class Focus {
 
   // handleWrapping
   //
-  // Checks if the prey has gone off the canvas and
+  // Checks if the focus has gone off the canvas and
   // wraps it to the other side if so
   handleWrapping() {
     // Off the left or right
@@ -66,9 +63,26 @@ class Focus {
     }
   }
 
+  handleEating(focus) {
+      // Calculate distance from this student to the focus
+      let d = dist(this.x, this.y, focus.x, focus.y);
+      // Check if the distance is less than their two radii (an overlap)
+      if (d < this.radius + focus.radius) {
+        // Increase student health and constrain it to its possible range
+        this.health += this.healthGainPerEat;
+        this.health = constrain(this.health, 0, this.maxHealth);
+        // Decrease focus health by the same amount
+        focus.health -= this.healthGainPerEat;
+        // Check if the focus died and reset it if so
+        if (focus.health < 0) {
+          this.focusEaten += 1;
+          focus.reset();
+        }
+        }
+}
   // display
   //
-  // Draw the prey as an ellipse on the canvas
+  // Draw the focus as an ellipse on the canvas
   // with a radius the same size as its current health.
   display() {
     push();
