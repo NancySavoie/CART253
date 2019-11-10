@@ -86,7 +86,6 @@ class Focus {
   // with a radius the same size as its current health.
   display() {
     push();
-    noStroke();
     image(this.image, this.x, this.y, 100, 100);
     this.radius = this.health;
     pop();

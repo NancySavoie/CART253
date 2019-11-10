@@ -18,10 +18,11 @@ class Student {
     // Health properties
     this.maxHealth = radius;
     this.health = this.maxHealth; // Must be AFTER defining this.maxHealth
-    this.healthLossPerMove = 0.05;
+    this.healthLossPerMove = 0.03;
     this.healthGainPerEat = 1;
     // Display properties
     this.fillColor = fillColor;
+    this.alpha = 255;
     this.radius = this.health; // Radius is defined in terms of health
     // Input properties
     // Input properties
