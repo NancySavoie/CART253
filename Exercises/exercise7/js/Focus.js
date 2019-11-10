@@ -7,7 +7,7 @@ class Focus {
   //
   // Sets the initial values for the student's properties
   // Either sets default values or uses the arguments provided
-  constructor(x, y, speed, fillColor, radius) {
+  constructor(x, y, speed, image, radius) {
     // Position
     this.x = x;
     this.y = y;
@@ -22,7 +22,7 @@ class Focus {
     this.maxHealth = radius;
     this.health = this.maxHealth; // Must be AFTER defining this.maxHealth
     // Display properties
-    this.fillColor = fillColor;
+    this.image = image;
     this.radius = this.health;
   }
 
@@ -87,9 +87,8 @@ class Focus {
   display() {
     push();
     noStroke();
-    fill(this.fillColor);
+    image(this.image, this.x, this.y, 100, 100);
     this.radius = this.health;
-    ellipse(this.x, this.y, this.radius * 2);
     pop();
   }
 

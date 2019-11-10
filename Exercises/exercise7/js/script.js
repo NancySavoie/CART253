@@ -14,10 +14,16 @@ let books;
 
 // Display the images
 let backgroundImage;
+let coffeeImage;
+let laptopImage;
+let booksImage;
 
 // Preload functions for images
 function preload() {
   backgroundImage = loadImage('./assets/images/backgroundImage.jpg');
+  coffeeImage = loadImage('./assets/images/coffeeImage.png');
+  laptopImage = loadImage('./assets/images/laptopImage.png');
+  booksImage = loadImage('./assets/images/booksImage.png');
 }
 // setup()
 //
@@ -27,9 +33,9 @@ function setup() {
   createCanvas(1500, 900);
   student1 = new Student(100, 100, 5, 40, UP_ARROW, DOWN_ARROW, LEFT_ARROW, RIGHT_ARROW, 32, color(250, 225, 25), 40);
   student2 = new Student(200, 200, 5, 40, 87, 83, 65, 68, 16, color(250, 190, 25), 40);
-  coffee = new Focus(100, 100, 10, color(60, 170, 90), 50);
-  laptop = new Focus(100, 100, 8, color(145, 170, 170), 60);
-  books = new Focus(100, 100, 20, color(15, 115, 190), 10);
+  coffee = new Focus(100, 100, 10, coffeeImage, 50);
+  laptop = new Focus(100, 100, 8, laptopImage, 50);
+  books = new Focus(100, 100, 20, booksImage, 50);
 }
 
 // draw()

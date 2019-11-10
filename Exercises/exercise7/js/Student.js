@@ -148,7 +148,6 @@ class Student {
     fill(this.fillColor);
     this.radius = this.health;
     ellipse(this.x, this.y, this.radius * 4);
-    text("Student: " + this.focusEaten, this.x, this.y + this.radius + 10);
     pop();
   }
 }
