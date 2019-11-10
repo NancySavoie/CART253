@@ -64,22 +64,22 @@ class Focus {
   }
 
   handleEating(focus) {
-      // Calculate distance from this student to the focus
-      let d = dist(this.x, this.y, focus.x, focus.y);
-      // Check if the distance is less than their two radii (an overlap)
-      if (d < this.radius + focus.radius) {
-        // Increase student health and constrain it to its possible range
-        this.health += this.healthGainPerEat;
-        this.health = constrain(this.health, 0, this.maxHealth);
-        // Decrease focus health by the same amount
-        focus.health -= this.healthGainPerEat;
-        // Check if the focus died and reset it if so
-        if (focus.health < 0) {
-          this.focusEaten += 1;
-          focus.reset();
-        }
-        }
-}
+    // Calculate distance from this student to the focus
+    let d = dist(this.x, this.y, focus.x, focus.y);
+    // Check if the distance is less than their two radii (an overlap)
+    if (d < this.radius + focus.radius) {
+      // Increase student health and constrain it to its possible range
+      this.health += this.healthGainPerEat;
+      this.health = constrain(this.health, 0, this.maxHealth);
+      // Decrease focus health by the same amount
+      focus.health -= this.healthGainPerEat;
+      // Check if the focus died and reset it if so
+      if (focus.health < 0) {
+        this.focusEaten += 1;
+        focus.reset();
+      }
+    }
+  }
   // display
   //
   // Draw the focus as an ellipse on the canvas
