@@ -7,7 +7,7 @@ class Student {
   //
   // Sets the initial values for the student's properties
   // Either sets default values or uses the arguments provided
-  constructor(x, y, speed, radius, upKey, downKey, leftKey, rightKey, sprintKey, fillColor) {
+  constructor(x, y, speed, radius, upKey, downKey, leftKey, rightKey, sprintKey, image) {
     // Position
     this.x = x;
     this.y = y;
@@ -21,7 +21,7 @@ class Student {
     this.healthLossPerMove = 0.03;
     this.healthGainPerEat = 1;
     // Display properties
-    this.fillColor = fillColor;
+    this.image = image;
     this.alpha = 255;
     this.radius = this.health; // Radius is defined in terms of health
     // Input properties
@@ -146,9 +146,9 @@ class Student {
       if (!this.studentDead) {
     push();
     noStroke();
-    fill(this.fillColor);
+    image(this.image, this.x, this.y, 2 * this.radius, 2 * this.radius);
+    fill(255);
     this.radius = this.health;
-    ellipse(this.x, this.y, this.radius * 4);
     pop();
   }
 }

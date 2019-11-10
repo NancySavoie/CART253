@@ -17,6 +17,8 @@ let books;
 
 // Display the images
 let backgroundImage;
+let student1Image;
+let student2Image;
 let coffeeImage;
 let laptopImage;
 let booksImage;
@@ -25,6 +27,8 @@ let booksImage;
 // Preload functions for images
 function preload() {
   backgroundImage = loadImage('./assets/images/backgroundImage.jpg');
+  student1Image = loadImage('./assets/images/student1Image.png');
+  student2Image = loadImage('./assets/images/student2Image.png');
   coffeeImage = loadImage('./assets/images/coffeeImage.png');
   laptopImage = loadImage('./assets/images/laptopImage.png');
   booksImage = loadImage('./assets/images/booksImage.png');
@@ -36,8 +40,8 @@ function preload() {
 // Creates objects for the students, the focus and the distraction objects
 function setup() {
   createCanvas(1500, 900);
-  student1 = new Student(100, 100, 5, 40, UP_ARROW, DOWN_ARROW, LEFT_ARROW, RIGHT_ARROW, 32, color(250, 225, 25), 40);
-  student2 = new Student(200, 200, 5, 40, 87, 83, 65, 68, 16, color(250, 190, 25), 40);
+  student1 = new Student(100, 100, 5, 40, UP_ARROW, DOWN_ARROW, LEFT_ARROW, RIGHT_ARROW, 32, student1Image, 40);
+  student2 = new Student(200, 200, 5, 40, 87, 83, 65, 68, 16, student2Image, 40);
   // The focus class
   coffee = new Focus(100, 100, 10, coffeeImage, 50);
   laptop = new Focus(100, 100, 8, laptopImage, 50);
