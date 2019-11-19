@@ -7,10 +7,9 @@
 // Artwork by Nancy Savoie and creative commons
 // Music from https://www.youtube.com/watch?v=cSqdu7Qlz7k
 
-// States
+// State
 let titleScreen = false;
 let instructionsScreen = false;
-let playScreen = false;
 let gameOverScreen = false;
 
 // The Dinosaurs (the Dinos)
@@ -32,6 +31,7 @@ let articuno;
 let moltres;
 
 // Display the images
+let foregroundImage;
 let backgroundImage1;
 let backgroundImage2;
 let backgroundImage3;
@@ -56,6 +56,7 @@ let gameStartSound;
 // Preload functions for images and sounds
 function preload() {
   // Preload for images
+  foregroundImage = loadImage('./assets/images/foregroundImage.png');
   backgroundImage1 = loadImage('./assets/images/backgroundImage1.png');
   backgroundImage2 = loadImage('./assets/images/backgroundImage2.png');
   backgroundImage3 = loadImage('./assets/images/backgroundImage3.png');
@@ -122,6 +123,7 @@ function handlePlay() {
   if (titleScreen === true) {
     // Dinosaur jungle as a background image
     image(backgroundImage1, 0, 0);
+
     checkGameOver();
 
     //The background changes after a certain ammount of food was eaten.
@@ -139,19 +141,20 @@ function handlePlay() {
     }
   }
 
+
   //Display the amount of Pokémon caught by player 1
   textFont("Futura");
-  textAlign(LEFT, TOP);
+  textAlign(LEFT, BOTTOM);
   textSize(20);
   fill(40, 115, 80);
-  text("Stegosaurus: " + dinoStegosaurus.foodEaten, 15, 0);
+  text("Stegosaurus: " + dinoStegosaurus.foodEaten, 15, 480);
 
   //Display the amount of Pokémon caught by player 2
   textFont("Futura");
-  textAlign(RIGHT, TOP);
+  textAlign(RIGHT, BOTTOM);
   textSize(20);
   fill(40, 115, 80);
-  text("Triceratops: " + dinoTriceratops.foodEaten, 680, 0);
+  text("Triceratops: " + dinoTriceratops.foodEaten, 675, 480);
 
   // Move all the dinos and the food
   foodLeaves.move();
@@ -183,6 +186,9 @@ function handlePlay() {
   //  zapdos.display();
   //  articuno.display();
   //  moltres.display();
+
+// A foreground image of foliage
+  image(foregroundImage, 0, 0);
 }
 
 // Mousse pressed funtion that allows the game to start and to replay after game over.
@@ -192,11 +198,12 @@ function mousePressed() {
   } else if (titleScreen === false) {
     console.log("startedGame")
     titleScreen = true;
-    gameStartSound.play();
+
     backgroundMusic.loop();
 
 } else if (instructionsScreen === false) {
   instructionsScreen = true;
+  gameStartSound.play();
   }
 }
 
