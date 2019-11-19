@@ -1,11 +1,11 @@
-// Gotta Catch 'em all!
+// The Last Dinosaur
 // Exercise 8 / Project 3 - Nancy Savoie
 //
 // Based on Project 2 and 1.
 // Building on these previous codes while making it different (eventually).
 //
 // Dinosaur avatars by Nancy Savoie
-// Music from https://www.youtube.com/watch?v=QaaD9CnWgig
+// Music from TBD
 // Background and additional pixel art from the Itch.o community, modified by Nancy Savoie.
 
 let hasGameStarted = false;
@@ -19,11 +19,9 @@ let dinoTriceratops;
 let dinos = [];
 
 // The survival items (The food)
-let pikachu;
-let squirtle;
-let bulbasaur;
-let evee;
-let jigglypuff;
+let foodLeaves;
+let foodBerries;
+let foodPlant;
 
 // The Catalysts
 let zapdos;
@@ -38,14 +36,12 @@ let backgroundImage4;
 let backgroundImage5;
 let dinoStegosaurusImage;
 let dinoTriceratopsImage;
-let pikachuImage;
-let squirtleImage;
-let bulbasaurImage;
-let eveeImage;
-let jigglypuffImage;
-let zapdosImage;
-let articunoImage;
-let moltresImage;
+let foodLeavesImage;
+let foodBerriesImage;
+let foodPlantImage;
+//let zapdosImage;
+//let articunoImage;
+//let moltresImage;
 
 // Display sounds
 let backgroundMusic;
@@ -66,14 +62,13 @@ function preload() {
   endingImage = loadImage('./assets/images/endingImage.jpg');
   dinoStegosaurusImage = loadImage('./assets/images/dinoStegosaurusImage.png');
   dinoTriceratopsImage = loadImage('./assets/images/dinoTriceratopsImage.png');
-  pikachuImage = loadImage('./assets/images/pikachuImage.png');
-  squirtleImage = loadImage('./assets/images/squirtleImage.png');
-  bulbasaurImage = loadImage('./assets/images/bulbasaurImage.png');
-  eveeImage = loadImage('./assets/images/eveeImage.png');
-  jigglypuffImage = loadImage('./assets/images/jigglypuffImage.png');
-  zapdosImage = loadImage('./assets/images/zapdosImage.png');
-  articunoImage = loadImage('./assets/images/articunoImage.png');
-  moltresImage = loadImage('./assets/images/moltresImage.png');
+  foodLeavesImage = loadImage('./assets/images/foodLeavesImage.png');
+  foodBerriesImage = loadImage('./assets/images/foodBerriesImage.png');
+  foodPlantImage = loadImage('./assets/images/foodPlantImage.png');
+
+  //zapdosImage = loadImage('./assets/images/zapdosImage.png');
+  //articunoImage = loadImage('./assets/images/articunoImage.png');
+  //moltresImage = loadImage('./assets/images/moltresImage.png');
   // Preload for sounds
   backgroundMusic = loadSound('./assets/sounds/backgroundMusic.mp3');
   gameOverPikaSound = loadSound('./assets/sounds/gameOverPikaSound.mp3');
@@ -90,15 +85,13 @@ function setup() {
   createCanvas(700, 500);
   dinoStegosaurus = new Dino(200, 200, 5, 40, 87, 83, 65, 68, 16, dinoStegosaurusImage);
   dinoTriceratops = new Dino(100, 100, 5, 40, UP_ARROW, DOWN_ARROW, LEFT_ARROW, RIGHT_ARROW, 32, dinoTriceratopsImage);
-  pikachu = new Food(100, 100, 10, 25, pikachuImage);
-  squirtle = new Food(100, 100, 8, 25, squirtleImage);
-  bulbasaur = new Food(100, 100, 20, 25, bulbasaurImage);
-  evee = new Food(100, 100, 20, 25, eveeImage);
-  jigglypuff = new Food(100, 100, 20, 25, jigglypuffImage);
+  foodLeaves = new Food(100, 100, 10, 25, foodLeavesImage);
+  foodBerries = new Food(100, 100, 8, 25, foodBerriesImage);
+  foodPlant = new Food(100, 100, 20, 25, foodPlantImage);
   // New classes - Legendary
-  articuno = new CatalystFlood(100, 100, 20, 100, articunoImage);
-  moltres = new CatalystFire(50, 100, 20, 100, moltresImage);
-  zapdos = new CatalystMeteor(50, 100, 20, 100, zapdosImage);
+//  articuno = new CatalystFlood(100, 100, 20, 100, articunoImage);
+//  moltres = new CatalystFire(50, 100, 20, 100, moltresImage);
+//  zapdos = new CatalystMeteor(50, 100, 20, 100, zapdosImage);
   // Place dinos into array
   dinos = [dinoStegosaurus, dinoTriceratops];
 }
@@ -136,40 +129,36 @@ function handlePlay() {
   fill(220, 220, 0);
   text("Triceratops: " + dinoTriceratops.foodEaten, 680, 0);
 
-  // Move all the dinos and the pokemon
-  pikachu.move();
-  squirtle.move();
-  bulbasaur.move();
-  evee.move();
-  jigglypuff.move();
-  zapdos.move();
-  articuno.move();
-  moltres.move();
+  // Move all the dinos and the food
+  foodLeaves.move();
+  foodBerries.move();
+  foodPlant.move();
+  //zapdos.move();
+//articuno.move();
+//  moltres.move();
 
   // Arrays for the dinos' check state, handleInput, move, display and handleEating.
   for (let i = 0; i < dinos.length; i++) {
     dinos[i].checkState();
-    articuno.slow(dinos[i]);
-    moltres.fade(dinos[i]);
-    zapdos.teleport(dinos[i]);
+  //  articuno.slow(dinos[i]);
+  //  moltres.fade(dinos[i]);
+  //  zapdos.teleport(dinos[i]);
     dinos[i].handleInput();
     dinos[i].move();
     dinos[i].display();
-    dinos[i].handleEating(pikachu);
-    dinos[i].handleEating(squirtle);
-    dinos[i].handleEating(bulbasaur);
-    dinos[i].handleEating(evee);
+    dinos[i].handleEating(foodLeaves);
+    dinos[i].handleEating(foodBerries);
+    dinos[i].handleEating(foodPlant);
+
   }
 
   // Display all the Pokémon
-  pikachu.display();
-  squirtle.display();
-  bulbasaur.display();
-  evee.display();
-  jigglypuff.display();
-  zapdos.display();
-  articuno.display();
-  moltres.display();
+  foodLeaves.display();
+  foodBerries.display();
+  foodPlant.display();
+//  zapdos.display();
+//  articuno.display();
+//  moltres.display();
 }
 
 // Mousse pressed funtion that allows the game to start and to replay after game over.
@@ -196,14 +185,12 @@ function checkGameOver() {
 
 // The function that resets all the variables to their original game start up.
 function resetGame() {
-  pikachu.reset();
-  squirtle.reset();
-  bulbasaur.reset();
-  evee.reset();
-  jigglypuff.reset();
-  zapdos.reset();
-  articuno.reset();
-  moltres.reset();
+  foodLeaves.reset();
+  foodBerries.reset();
+  foodPlant.reset();
+//  zapdos.reset();
+//  articuno.reset();
+//  moltres.reset();
   dinoStegosaurus.reset();
   dinoTriceratops.reset();
   pikachuStartSound.play();
