@@ -1,13 +1,13 @@
-// Legendary Pokémon 1
+// Flood Catalyst
 //
 // A class that represents a challenge to the dinos (dinos), it cannot be caught!
-// It is bigger than a regular "food" and if the Pokeball touches it, it slows the player down.
+// If a player encounters a flood, it will slow the dinosaur(s) down.
 
 class CatalystFlood {
 
   // constructor
   //
-  // Sets the initial values for the Pokémon's properties
+  // Sets the initial values for the Catalyst's properties
   // Either sets default values or uses the arguments provided
   constructor(x, y, speed, radius, image) {
     // Position
@@ -21,14 +21,14 @@ class CatalystFlood {
     // Time properties for noise() function
     this.tx = random(0, 500); // To make x and y noise different
     this.ty = random(0, 500); // we use random starting values
-    // To display the Pokemon image (Articuno)
+    // To display the Catalyst image (Flood)
     this.image = image;
   }
 
   // If a player touches this Catalyst, their speed will slow down.
   slow(dino) {
     let d = dist(this.x, this.y, dino.x, dino.y);
-    // Check if the Pokeball and the Pokémon overlap
+    // Check if the Dinosaur and the Catalyst overlap
     if (d < this.radius + dino.radius) {
       dino.speed = dino.speed - 0.1; // Makes the Dinosaur gradually slow down
       if (dino.speed < 0) {
@@ -39,7 +39,7 @@ class CatalystFlood {
 
   // move
   //
-  // Sets velocity based on the noise() function and the Pokémon's speed
+  // Sets velocity based on the noise() function and the Catalyst's speed
   // Moves based on the resulting velocity and handles wrapping
   move() {
     // Set velocity via noise()
@@ -57,7 +57,7 @@ class CatalystFlood {
 
   // handleWrapping
   //
-  // Checks if the Pokémon has gone off the canvas and wraps it to the other side if it did.
+  // Checks if the Catalyst has gone off the canvas and wraps it to the other side if it did.
   handleWrapping() {
     // Off the left or right
     if (this.x < 0) {
@@ -75,7 +75,7 @@ class CatalystFlood {
 
   // display
   //
-  // Pokémon image, Articuno, for the Legendary Slow class of the game.
+  // Catalyst image (water for the flood)
   display() {
     push();
     noStroke();

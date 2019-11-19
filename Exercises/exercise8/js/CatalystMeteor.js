@@ -1,13 +1,13 @@
-// Legendary Pokémon 3
+// Meteor Catalyst
 //
-// A class that represents a challenge to the dinos (dinos), it cannot be caught!
-// It is bigger than a regular "food" and if the Pokeball touches it, it teleports the player.
+// A class that represents a challenge to the dinosaurs.
+// If the player touches a meteor, it will catapult the dinosaur(s) somewhere else on the canvas.
 
 class CatalystMeteor {
 
   // constructor
   //
-  // Sets the initial values for the Pokémon's properties
+  // Sets the initial values for the catalyst's properties
   // Either sets default values or uses the arguments provided
   constructor(x, y, speed, radius, image) {
     // Position
@@ -21,27 +21,27 @@ class CatalystMeteor {
     // Time properties for noise() function
     this.tx = random(0, 500); // To make x and y noise different
     this.ty = random(0, 500); // we use random starting values
-    // To display the Pokemon image (Zapdos)
+    // To display the catalyst image (Meteor)
     this.image = image;
   }
 
-  // If a player touches this Pokémon, they will be teleported.
+  // If a player touches this catalyst, they will be teleported.
   teleport(dino) {
-    // Calculate distance from teleport to Pokeball
+    // Calculate distance from teleport to Dinosaur
     let d = dist(this.x, this.y, dino.x, dino.y);
-    // Check if the Pokeball and the Pokémon overlap
+    // Check if the Dinosaur and the catalyst overlap
     if (d < this.radius + dino.radius) {
-      // Random location for the dino (pokeball) when teleporting
+      // Random location for the dino when teleporting
       dino.x = random(0, width);
       dino.x = random(0, height);
-      // Reset the teleport once the dino (Pokeball) touches it
+      // Reset the teleport once the dino touches it
       this.reset();
     }
   }
 
   // move
   //
-  // Sets velocity based on the noise() function and the Pokémon's speed
+  // Sets velocity based on the noise() function and the catalyst's speed
   // Moves based on the resulting velocity and handles wrapping
   move() {
     // Set velocity via noise()
@@ -59,7 +59,7 @@ class CatalystMeteor {
 
   // handleWrapping
   //
-  // Checks if the Pokémon has gone off the canvas and wraps it to the other side if it did.
+  // Checks if the catalyst has gone off the canvas and wraps it to the other side if it did.
   handleWrapping() {
     // Off the left or right
     if (this.x < 0) {
@@ -77,7 +77,7 @@ class CatalystMeteor {
 
   // display
   //
-  // Pokémon image, Zaptos, for the Legendary Slow class of the game.
+  // catalyst image, Zaptos, for the Legendary Slow class of the game.
   display() {
     push();
     noStroke();

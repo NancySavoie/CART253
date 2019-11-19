@@ -2,11 +2,11 @@
 // Exercise 8 / Project 3 - Nancy Savoie
 //
 // Based on Project 2 and 1.
-// Building on these previous codes while making it different.
+// Building on these previous codes while making it different (eventually).
 //
 // Dinosaur avatars by Nancy Savoie
 // Music from https://www.youtube.com/watch?v=QaaD9CnWgig
-// Background and additional pixel art from the Itch.o community.
+// Background and additional pixel art from the Itch.o community, modified by Nancy Savoie.
 
 let hasGameStarted = false;
 let isGameOver = false;
@@ -18,14 +18,14 @@ let dinoTriceratops;
 // Arrays for the dinos
 let dinos = [];
 
-// The Pokémon (The food)
+// The survival items (The food)
 let pikachu;
 let squirtle;
 let bulbasaur;
 let evee;
 let jigglypuff;
 
-// Legendary Pokemon (The two new classes)
+// The Catalysts
 let zapdos;
 let articuno;
 let moltres;
@@ -38,7 +38,6 @@ let backgroundImage4;
 let backgroundImage5;
 let dinoStegosaurusImage;
 let dinoTriceratopsImage;
-
 let pikachuImage;
 let squirtleImage;
 let bulbasaurImage;
@@ -88,10 +87,9 @@ function preload() {
 // Sets up a canvas
 // Creates objects for the dinos (Dinos) and the pokemons (food)
 function setup() {
-  createCanvas(700, 400);
+  createCanvas(700, 500);
   dinoStegosaurus = new Dino(200, 200, 5, 40, 87, 83, 65, 68, 16, dinoStegosaurusImage);
   dinoTriceratops = new Dino(100, 100, 5, 40, UP_ARROW, DOWN_ARROW, LEFT_ARROW, RIGHT_ARROW, 32, dinoTriceratopsImage);
-
   pikachu = new Food(100, 100, 10, 25, pikachuImage);
   squirtle = new Food(100, 100, 8, 25, squirtleImage);
   bulbasaur = new Food(100, 100, 20, 25, bulbasaurImage);
@@ -125,18 +123,18 @@ function handlePlay() {
   checkGameOver();
 
   //Display the amount of Pokémon caught by player 1
-  textFont("Impact");
+  textFont("Courier");
   textAlign(LEFT, TOP);
   textSize(20);
   fill(255, 20, 0);
-  text("Player 1 (RED) - Pokemon caught: " + dinoStegosaurus.foodEaten, 15, 0);
+  text("Stegosaurus: " + dinoStegosaurus.foodEaten, 15, 0);
 
   //Display the amount of Pokémon caught by player 2
-  textFont("Impact");
+  textFont("Courier");
   textAlign(RIGHT, TOP);
   textSize(20);
   fill(220, 220, 0);
-  text("Player 2 (YELLOW) - Pokemon caught: " + dinoTriceratops.foodEaten, 800, 0);
+  text("Triceratops: " + dinoTriceratops.foodEaten, 680, 0);
 
   // Move all the dinos and the pokemon
   pikachu.move();

@@ -1,13 +1,13 @@
-// Pokémon (Food)
+// Survival Items (Food)
 //
-// A class that represents a simple Food (Pokémon) that moves on screen based on a noise() function.
-// It can move around the screen and be caught by the dinos.
+// A class that represents a survival item (food) that moves on screen based on a noise() function.
+// It can move around the screen and be eaten by the dinosaurs.
 
 class Food {
 
   // constructor
   //
-  // Sets the initial values for the Pokémon's properties
+  // Sets the initial values for the food's properties
   // Either sets default values or uses the arguments provided
   constructor(x, y, speed, radius, image) {
     // Position
@@ -25,12 +25,12 @@ class Food {
     this.health = this.maxHealth; // Must be AFTER defining this.maxHealth
     // Display properties
     this.radius = this.health;
-    this.image = image; // To display the Pokémon image (Pikachu, Evee, Bulbasaur, Squirtle, Jigglypuff)
+    this.image = image; // To display the food item image
   }
 
   // move
   //
-  // Sets velocity based on the noise() function and the Pokémon's speed
+  // Sets velocity based on the noise() function and the food's speed
   // Moves based on the resulting velocity and handles wrapping
   move() {
     // Set velocity via noise()
@@ -48,7 +48,7 @@ class Food {
 
   // handleWrapping
   //
-  // Checks if the Pokémon has gone off the canvas and wraps it to the other side if it did.
+  // Checks if the food item has gone off the canvas and wraps it to the other side if it did.
   handleWrapping() {
     // Off the left or right
     if (this.x < 0) {
@@ -66,7 +66,7 @@ class Food {
 
   // display
   //
-  // Pokémon images for the "Food" of the game with a radius the same size as its current health.
+  // Images for the "Food" of the game with a radius the same size as its current health.
   display() {
     if (this.health > 0) {
       push();

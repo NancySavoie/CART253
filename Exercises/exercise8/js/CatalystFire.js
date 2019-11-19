@@ -1,13 +1,13 @@
-// Legendary Pokémon 2
+// Fire Catalyst
 //
-// A class that represents a challenge to the dinos (dinos), it cannot be caught!
-// It is bigger than a regular Pokémon (food) and if the Pokeball touches it, the player slowly fades away.
+// A class that represents a challenge to the Dinausaurs.
+// If the player touches the fire, the dinosaur(s) will slowly fades away.
 
 class CatalystFire {
 
   // constructor
   //
-  // Sets the initial values for the Pokémon's properties
+  // Sets the initial values for the catalyst's properties
   // Either sets default values or uses the arguments provided
   constructor(x, y, speed, radius, image) {
     // Position
@@ -22,13 +22,13 @@ class CatalystFire {
     this.ty = random(0, 500); // we use random starting values
     // Display properties
     this.radius = radius;
-    this.image = image; // To display the Pokémon image (Moltres)
+    this.image = image; // To display the catalyst image (Fire)
   }
 
   // This new class makes the player fade away by reducing the dino's tint (alpha).
   fade(dino) {
     let d = dist(this.x, this.y, dino.x, dino.y);
-    // Check if the Pokeball and the Pokémon overlap
+    // Check if the dino and the catalyst overlap
     console.log(d)
     if (d < this.radius + dino.radius) {
       console.log(dino)
@@ -41,7 +41,7 @@ class CatalystFire {
 
   // move
   //
-  // Sets velocity based on the noise() function and the Pokémon's speed.
+  // Sets velocity based on the noise() function and the catalyst's speed.
   // Moves based on the resulting velocity and handles wrapping.
   move() {
     // Set velocity via noise()
@@ -59,7 +59,7 @@ class CatalystFire {
 
   // handleWrapping
   //
-  // Checks if the Pokémon has gone off the canvas and wraps it to the other side if it did.
+  // Checks if the catalyst has gone off the canvas and wraps it to the other side if it did.
   handleWrapping() {
     // Off the left or right
     if (this.x < 0) {
@@ -77,7 +77,7 @@ class CatalystFire {
 
   // display
   //
-  // Pokémon image, Moltres, for the Legendary Fade class of the game.
+  // Catalyst image
   display() {
     push();
     noStroke();
