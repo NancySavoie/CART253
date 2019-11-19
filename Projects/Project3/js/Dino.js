@@ -139,9 +139,7 @@ class Dino {
       push();
       this.radius = this.health;
       tint(255, this.alpha);
-      image(this.image, this.x, this.y, 4 * this.radius, 2 * this.radius);
-      fill(255);
-      text("Gotcha!: " + this.foodEaten, this.x, this.y + this.radius + 10);
+      image(this.image, this.x, this.y, 5 * this.radius, 3 * this.radius);
       pop();
     }
   }

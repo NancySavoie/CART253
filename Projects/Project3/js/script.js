@@ -7,15 +7,19 @@
 // Artwork by Nancy Savoie and creative commons
 // Music from https://www.youtube.com/watch?v=cSqdu7Qlz7k
 
-let hasGameStarted = false;
-let isGameOver = false;
+// States
+let titleScreen = false;
+let instructionsScreen = false;
+let playScreen = false;
+let gameOverScreen = false;
 
 // The Dinosaurs (the Dinos)
 let dinoStegosaurus;
 let dinoTriceratops;
 
-// Arrays for the dinos
+// Arrays
 let dinos = [];
+let food = [];
 
 // The survival items (The food)
 let foodLeaves;
@@ -58,6 +62,7 @@ function preload() {
   backgroundImage4 = loadImage('./assets/images/backgroundImage4.png');
   backgroundImage5 = loadImage('./assets/images/backgroundImage5.png');
   startImage = loadImage('./assets/images/startImage.jpg');
+  instructionsImage = loadImage('./assets/images/instructionsImage.jpg');
   endingImage = loadImage('./assets/images/endingImage.jpg');
   dinoStegosaurusImage = loadImage('./assets/images/dinoStegosaurusImage.png');
   dinoTriceratopsImage = loadImage('./assets/images/dinoTriceratopsImage.png');
@@ -98,11 +103,14 @@ function setup() {
 
 // Draw()
 function draw() {
-  if (isGameOver === true) {
+  if (gameOverScreen === true) {
     image(endingImage, 0, 0);
 
-  } else if (hasGameStarted === false) {
+  } else if (titleScreen === false) {
     image(startImage, 0, 0);
+
+  } else if (instructionsScreen === false) {
+    image(instructionsImage, 0, 0);
 
   } else {
     handlePlay();
@@ -111,7 +119,7 @@ function draw() {
 
 // Handles input, movement, eating, and displaying for the system's objects
 function handlePlay() {
-  if (hasGameStarted === true) {
+  if (titleScreen === true) {
     // Dinosaur jungle as a background image
     image(backgroundImage1, 0, 0);
     checkGameOver();
@@ -132,17 +140,17 @@ function handlePlay() {
   }
 
   //Display the amount of Pokémon caught by player 1
-  textFont("Courier");
+  textFont("Futura");
   textAlign(LEFT, TOP);
   textSize(20);
-  fill(255, 20, 0);
+  fill(40, 115, 80);
   text("Stegosaurus: " + dinoStegosaurus.foodEaten, 15, 0);
 
   //Display the amount of Pokémon caught by player 2
-  textFont("Courier");
+  textFont("Futura");
   textAlign(RIGHT, TOP);
   textSize(20);
-  fill(220, 220, 0);
+  fill(40, 115, 80);
   text("Triceratops: " + dinoTriceratops.foodEaten, 680, 0);
 
   // Move all the dinos and the food
@@ -179,20 +187,23 @@ function handlePlay() {
 
 // Mousse pressed funtion that allows the game to start and to replay after game over.
 function mousePressed() {
-  if (isGameOver) {
+  if (gameOverScreen) {
     resetGame();
-  } else if (hasGameStarted === false) {
+  } else if (titleScreen === false) {
     console.log("startedGame")
-    hasGameStarted = true;
+    titleScreen = true;
     gameStartSound.play();
     backgroundMusic.loop();
+
+} else if (instructionsScreen === false) {
+  instructionsScreen = true;
   }
 }
 
 // Game over function
 function checkGameOver() {
   if (dinoStegosaurus.dinoDead && dinoTriceratops.dinoDead) {
-    isGameOver = true;
+    gameOverScreen = true;
     console.log("game over")
     backgroundMusic.stop();
     gameOverSound.play();
@@ -211,5 +222,5 @@ function resetGame() {
   dinoTriceratops.reset();
   gameStartSound.play();
   backgroundMusic.loop();
-  isGameOver = false;
+  gameOverScreen = false;
 }
