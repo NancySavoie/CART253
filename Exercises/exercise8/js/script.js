@@ -4,9 +4,8 @@
 // Based on Project 2 and 1.
 // Building on these previous codes while making it different (eventually).
 //
-// Dinosaur avatars by Nancy Savoie
+// Artwork by Nancy Savoie and creative commons
 // Music from TBD
-// Background and additional pixel art from the Itch.o community, modified by Nancy Savoie.
 
 let hasGameStarted = false;
 let isGameOver = false;
