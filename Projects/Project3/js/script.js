@@ -11,6 +11,7 @@
 let titleScreen = false;
 let instructionsScreen = false;
 let gameOverScreen = false;
+let gameWon = false;
 
 // The Dinosaurs (the Dinos)
 let dinoStegosaurus;
@@ -65,6 +66,7 @@ function preload() {
   startImage = loadImage('./assets/images/startImage.jpg');
   instructionsImage = loadImage('./assets/images/instructionsImage.jpg');
   endingImage = loadImage('./assets/images/endingImage.jpg');
+  gameWonImage = loadImage('./assets/images/gameWonImage.jpg');
   dinoStegosaurusImage = loadImage('./assets/images/dinoStegosaurusImage.png');
   dinoTriceratopsImage = loadImage('./assets/images/dinoTriceratopsImage.png');
   foodLeavesImage = loadImage('./assets/images/foodLeavesImage.png');
@@ -100,6 +102,7 @@ function setup() {
   //  zapdos = new CatalystMeteor(50, 100, 20, 100, zapdosImage);
   // Place dinos into array
   dinos = [dinoStegosaurus, dinoTriceratops];
+  titleScreen = true;
 }
 
 // Draw()
@@ -107,11 +110,14 @@ function draw() {
   if (gameOverScreen === true) {
     image(endingImage, 0, 0);
 
-  } else if (titleScreen === false) {
+  } else if (titleScreen === true) {
     image(startImage, 0, 0);
 
-  } else if (instructionsScreen === false) {
+  } else if (instructionsScreen === true) {
     image(instructionsImage, 0, 0);
+
+  } else if (gameWon === true) {
+    image(gameWonImage, 0, 0);
 
   } else {
     handlePlay();
@@ -120,26 +126,28 @@ function draw() {
 
 // Handles input, movement, eating, and displaying for the system's objects
 function handlePlay() {
-  if (titleScreen === true) {
     // Dinosaur jungle as a background image
     image(backgroundImage1, 0, 0);
 
     checkGameOver();
 
     //The background changes after a certain ammount of food was eaten.
-    if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten > 10) {
+    if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten > 1) {
       image(backgroundImage2, 0, 0);
     }
-    if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten > 15) {
+    if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten > 2) {
       image(backgroundImage3, 0, 0);
     }
-    if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten > 20) {
+    if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten > 3) {
       image(backgroundImage4, 0, 0);
     }
-    if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten > 25) {
+    if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten > 4) {
       image(backgroundImage5, 0, 0);
     }
-  }
+    if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten > 5) {
+      gameWon = true;
+      return;
+    }
 
 
   //Display the amount of Pokémon caught by player 1
@@ -195,21 +203,24 @@ function handlePlay() {
 function mousePressed() {
   if (gameOverScreen) {
     resetGame();
-  } else if (titleScreen === false) {
+  } else if (titleScreen === true) {
     console.log("startedGame")
-    titleScreen = true;
-
+    titleScreen = false;
+    instructionsScreen = true;
     backgroundMusic.loop();
 
-} else if (instructionsScreen === false) {
-  instructionsScreen = true;
+} else if (instructionsScreen === true) {
+  instructionsScreen = false;
   gameStartSound.play();
+
+} else if (gameWon === true) {
+  resetGame();
   }
 }
 
 // Game over function
 function checkGameOver() {
-  if (dinoStegosaurus.dinoDead && dinoTriceratops.dinoDead) {
+  if (dinoStegosaurus.dinoDead || dinoTriceratops.dinoDead) {
     gameOverScreen = true;
     console.log("game over")
     backgroundMusic.stop();
@@ -230,4 +241,7 @@ function resetGame() {
   gameStartSound.play();
   backgroundMusic.loop();
   gameOverScreen = false;
+  titleScreen = true;
+  instructionsScreen = false;
+  gameWon = false;
 }

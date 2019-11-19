@@ -72,7 +72,7 @@ class Food {
       push();
       noStroke();
       this.radius = this.health;
-      image(this.image, this.x, this.y, 75, 50);
+      image(this.image, this.x, this.y, 60, 35);
       pop();
     }
   }

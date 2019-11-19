@@ -22,7 +22,7 @@ class Dino {
     this.maxHealth = radius;
     this.health = this.maxHealth; // Must be AFTER defining this.maxHealth
     this.healthLossPerMove = 0.03;
-    this.healthGainPerEat = 1;
+    this.healthGainPerEat = 2;
     // Display properties
     this.radius = this.health; // Radius is defined in terms of health
     this.image = image; // Dino images
