@@ -5,7 +5,7 @@
 // Building on these previous codes while making it different (eventually).
 //
 // Artwork by Nancy Savoie and creative commons
-// Music from TBD
+// Music from https://www.youtube.com/watch?v=cSqdu7Qlz7k
 
 let hasGameStarted = false;
 let isGameOver = false;
@@ -44,10 +44,10 @@ let foodPlantImage;
 
 // Display sounds
 let backgroundMusic;
-let gameOverPikaSound;
-let pokemonCaughtSound;
-let pokeballDeadSound;
-let pikachuStartSound;
+let gameOverSound;
+let foodEatenSound;
+let dinoDeadSound;
+let gameStartSound;
 
 // Preload functions for images and sounds
 function preload() {
@@ -70,10 +70,10 @@ function preload() {
   //moltresImage = loadImage('./assets/images/moltresImage.png');
   // Preload for sounds
   backgroundMusic = loadSound('./assets/sounds/backgroundMusic.mp3');
-  gameOverPikaSound = loadSound('./assets/sounds/gameOverPikaSound.mp3');
-  pokemonCaughtSound = loadSound('./assets/sounds/pokemonCaughtSound.mp3');
-  pokeballDeadSound = loadSound('./assets/sounds/pokeballDeadSound.mp3');
-  pikachuStartSound = loadSound('./assets/sounds/pikachuStartSound.mp3');
+  gameOverSound = loadSound('./assets/sounds/gameOverSound.mp3');
+  foodEatenSound = loadSound('./assets/sounds/foodEatenSound.mp3');
+  dinoDeadSound = loadSound('./assets/sounds/dinoDeadSound.mp3');
+  gameStartSound = loadSound('./assets/sounds/gameStartSound.mp3');
 }
 
 // setup()
@@ -167,7 +167,7 @@ function mousePressed() {
   } else if (hasGameStarted === false) {
     console.log("startedGame")
     hasGameStarted = true;
-    pikachuStartSound.play();
+    gameStartSound.play();
     backgroundMusic.loop();
   }
 }
@@ -178,7 +178,7 @@ function checkGameOver() {
     isGameOver = true;
     console.log("game over")
     backgroundMusic.stop();
-    gameOverPikaSound.play();
+    gameOverSound.play();
   }
 }
 
@@ -192,7 +192,7 @@ function resetGame() {
 //  moltres.reset();
   dinoStegosaurus.reset();
   dinoTriceratops.reset();
-  pikachuStartSound.play();
+  gameStartSound.play();
   backgroundMusic.loop();
   isGameOver = false;
 }

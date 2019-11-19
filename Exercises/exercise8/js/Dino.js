@@ -117,7 +117,7 @@ class Dino {
       if (food.health < 0) {
         this.foodEaten += 1;
         food.reset();
-        pokemonCaughtSound.play();
+        foodEatenSound.play();
       }
     }
   }
@@ -125,7 +125,7 @@ class Dino {
   // If Dinosaur runs out of energy
   checkState() {
     if (this.health < 0.1 && this.health > 0) { // This prevents the sound from repeating itself every frame
-      pokeballDeadSound.play(); // Sound plays when the Dinosaur disapears (runs out of energy)
+      dinoDeadSound.play(); // Sound plays when the Dinosaur disapears (runs out of energy)
       console.log("checkState")
       this.dinoDead = true;
     }
