@@ -68,6 +68,7 @@ function preload() {
   //zapdosImage = loadImage('./assets/images/zapdosImage.png');
   //articunoImage = loadImage('./assets/images/articunoImage.png');
   //moltresImage = loadImage('./assets/images/moltresImage.png');
+
   // Preload for sounds
   backgroundMusic = loadSound('./assets/sounds/backgroundMusic.mp3');
   gameOverSound = loadSound('./assets/sounds/gameOverSound.mp3');
@@ -88,9 +89,9 @@ function setup() {
   foodBerries = new Food(100, 100, 8, 25, foodBerriesImage);
   foodPlant = new Food(100, 100, 20, 25, foodPlantImage);
   // New classes - Legendary
-//  articuno = new CatalystFlood(100, 100, 20, 100, articunoImage);
-//  moltres = new CatalystFire(50, 100, 20, 100, moltresImage);
-//  zapdos = new CatalystMeteor(50, 100, 20, 100, zapdosImage);
+  //  articuno = new CatalystFlood(100, 100, 20, 100, articunoImage);
+  //  moltres = new CatalystFire(50, 100, 20, 100, moltresImage);
+  //  zapdos = new CatalystMeteor(50, 100, 20, 100, zapdosImage);
   // Place dinos into array
   dinos = [dinoStegosaurus, dinoTriceratops];
 }
@@ -108,11 +109,27 @@ function draw() {
   }
 }
 
-// Handles input, movement, catching, and displaying for the system's objects
+// Handles input, movement, eating, and displaying for the system's objects
 function handlePlay() {
-  // Pokémon forest as a background image
-  image(backgroundImage1, 0, 0);
-  checkGameOver();
+  if (hasGameStarted === true) {
+    // Dinosaur jungle as a background image
+    image(backgroundImage1, 0, 0);
+    checkGameOver();
+
+    //The background changes after a certain ammount of food was eaten.
+    if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten > 10) {
+      image(backgroundImage2, 0, 0);
+    }
+    if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten > 15) {
+      image(backgroundImage3, 0, 0);
+    }
+    if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten > 20) {
+      image(backgroundImage4, 0, 0);
+    }
+    if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten > 25) {
+      image(backgroundImage5, 0, 0);
+    }
+  }
 
   //Display the amount of Pokémon caught by player 1
   textFont("Courier");
@@ -133,15 +150,15 @@ function handlePlay() {
   foodBerries.move();
   foodPlant.move();
   //zapdos.move();
-//articuno.move();
-//  moltres.move();
+  //articuno.move();
+  //  moltres.move();
 
   // Arrays for the dinos' check state, handleInput, move, display and handleEating.
   for (let i = 0; i < dinos.length; i++) {
     dinos[i].checkState();
-  //  articuno.slow(dinos[i]);
-  //  moltres.fade(dinos[i]);
-  //  zapdos.teleport(dinos[i]);
+    //  articuno.slow(dinos[i]);
+    //  moltres.fade(dinos[i]);
+    //  zapdos.teleport(dinos[i]);
     dinos[i].handleInput();
     dinos[i].move();
     dinos[i].display();
@@ -155,9 +172,9 @@ function handlePlay() {
   foodLeaves.display();
   foodBerries.display();
   foodPlant.display();
-//  zapdos.display();
-//  articuno.display();
-//  moltres.display();
+  //  zapdos.display();
+  //  articuno.display();
+  //  moltres.display();
 }
 
 // Mousse pressed funtion that allows the game to start and to replay after game over.
@@ -187,9 +204,9 @@ function resetGame() {
   foodLeaves.reset();
   foodBerries.reset();
   foodPlant.reset();
-//  zapdos.reset();
-//  articuno.reset();
-//  moltres.reset();
+  //  zapdos.reset();
+  //  articuno.reset();
+  //  moltres.reset();
   dinoStegosaurus.reset();
   dinoTriceratops.reset();
   gameStartSound.play();
