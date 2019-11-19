@@ -2,17 +2,15 @@
 
 /******************************************************
 
+
 Game - Brain Chaser
 Project 1 - Nancy Savoie
-
 A "simple" game of cat and mouse. The player is a circle and can move with keys,
 if they overlap the (randomly moving) prey they "eat it" by sucking out its life
 and adding it to their own. The player "dies" slowly over time so they have to keep
 eating to stay alive.
-
 Includes: Physics-based movement, keyboard controls, health/stamina,
 random movement, screen wrap.
-
 Background Image from https://steamcommunity.com/market/listings/753/428550-Sacred%20Ordalia%20Grove
 Prey and Player Images by Nancy Savoie, created on https://make8bitart.com/
 ******************************************************/
