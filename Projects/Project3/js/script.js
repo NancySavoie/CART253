@@ -1,7 +1,7 @@
 // The Last Dinosaurs
 // Project 3 - Nancy Savoie
 //
-// This co-op survival game is based on the previous projects of CART253.
+// This co-op survival game is based on the learnings of previous CART 253 projects.
 // The last two dinosaurs must work together and eat as much as possible in order
 // to get strong and survive the natural catastrophies. If one of them dies,
 // the game is lost along with the dinausors' hope!
@@ -177,17 +177,24 @@ function handlePlay() {
 
   //Display the amount of food eaten by the Dinausors (as a team)
   textFont("Futura");
-  textAlign(LEFT, BOTTOM);
+  textAlign(LEFT, CENTER);
   textSize(20);
   fill(40, 115, 80);
-  text("Survival Level: " + dinoTriceratops.foodEaten + dinoStegosaurus.foodEaten, 15, 480);
+  text("Survival Level: " + dinoTriceratops.foodEaten + dinoStegosaurus.foodEaten, 250, 480);
+
+  //Display the amount of food eaten by the Stegosaurus
+  textFont("Futura");
+  textAlign(LEFT, BOTTOM);
+  textSize(15);
+  fill(40, 115, 80);
+  text("Stegosaurus: " + dinoStegosaurus.foodEaten, 15, 480);
 
   //Display the amount of food eaten by the Triceratops
-//  textFont("Futura");
-//  textAlign(RIGHT, BOTTOM);
-//  textSize(20);
-//  fill(40, 115, 80);
-//  text("Triceratops: " + dinoTriceratops.foodEaten, 675, 480);
+  textFont("Futura");
+  textAlign(RIGHT, BOTTOM);
+  textSize(15);
+  fill(40, 115, 80);
+  text("Triceratops: " + dinoTriceratops.foodEaten, 675, 480);
 
   // Move all the dinos and the food
   foodLeaves.move();

@@ -117,7 +117,6 @@ class Dino {
       // Check if the food was caught and reset it if so
       if (food.health < 0) {
         this.foodEaten += 1;
-
         food.reset();
         foodEatenSound.play();
       }
@@ -128,7 +127,6 @@ class Dino {
   checkState() {
     if (this.health < 0.1 && this.health > 0) { // This prevents the sound from repeating itself every frame
       dinoDeadSound.play(); // Sound plays when the Dinosaur disapears (runs out of energy)
-      console.log("checkState")
       this.dinoDead = true;
     }
   }

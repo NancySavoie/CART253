@@ -41,18 +41,13 @@ class CatalystMeteor {
 
   // move
   //
-  // Sets velocity based on the noise() function and the catalyst's speed
-  // Moves based on the resulting velocity and handles wrapping
   move() {
-    // Set velocity via noise()
-    this.vx = map(noise(this.tx), 0, 1, -this.speed, this.speed);
-    this.vy = map(noise(this.ty), 0, 1, -this.speed, this.speed);
+    // Set velocity, diagonal movement for the meteor falling from the sky
+    this.vx = 15
+    this.vy = 20
     // Update position
     this.x += this.vx;
     this.y += this.vy;
-    // Update time properties
-    this.tx += 0.01;
-    this.ty += 0.01;
     // Handle wrapping
     this.handleWrapping();
   }
