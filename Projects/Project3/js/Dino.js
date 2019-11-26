@@ -26,7 +26,7 @@ class Dino {
     // Display properties
     this.radius = this.health; // Radius is defined in terms of health
     this.image = image; // Dino images
-    this.alpha = 255; // The tint of the image (for the Legendary Fade)
+    this.alpha = 255; // The tint of the image (for the Fire Catalyst)
     // Input properties
     this.upKey = upKey;
     this.downKey = downKey;
@@ -34,7 +34,7 @@ class Dino {
     this.rightKey = rightKey;
     this.sprintKey = sprintKey; // Sprinting key
     this.foodEaten = 0;
-    this.dinoDead = false; // The status of dinos (dinos)
+    this.dinoDead = false; // The status of dinos
   }
 
   // handleInput
@@ -116,7 +116,7 @@ class Dino {
       // Check if the food was caught and reset it if so
       if (food.health < 0) {
         this.foodEaten += 1;
-        
+
         food.reset();
         foodEatenSound.play();
       }

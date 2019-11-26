@@ -1,8 +1,10 @@
-// The Last Dinosaur
-// Exercise 8 / Project 3 - Nancy Savoie
+// The Last Dinosaurs
+// Project 3 - Nancy Savoie
 //
-// Based on Project 2 and 1.
-// Building on these previous codes while making it different (eventually).
+// This team survival game is based on the previous projects of CART253.
+// The last two dinosaurs must work together and eat as much as possible in order
+// to get strong and survive the natural catastrophies. If one of them dies,
+// the game is lost along with the dinausors' hope!
 //
 // Artwork by Nancy Savoie and creative commons
 // Music from https://www.youtube.com/watch?v=cSqdu7Qlz7k
@@ -42,6 +44,8 @@ let backgroundImage2;
 let backgroundImage3;
 let backgroundImage4;
 let backgroundImage5;
+let babyStegosaurusImage;
+let babyTriceratopsImage;
 let dinoStegosaurusImage;
 let dinoTriceratopsImage;
 let foodLeavesImage;
@@ -75,6 +79,8 @@ function preload() {
   instructionsImage = loadImage('./assets/images/instructionsImage.jpg');
   endingImage = loadImage('./assets/images/endingImage.jpg');
   gameWonImage = loadImage('./assets/images/gameWonImage.jpg');
+  babyStegosaurusImage = loadImage('./assets/images/babyStegosaurusImage.png');
+  babyTriceratopsImage = loadImage('./assets/images/babyTriceratopsImage.png');
   dinoStegosaurusImage = loadImage('./assets/images/dinoStegosaurusImage.png');
   dinoTriceratopsImage = loadImage('./assets/images/dinoTriceratopsImage.png');
   foodLeavesImage = loadImage('./assets/images/foodLeavesImage.png');
@@ -103,8 +109,6 @@ function setup() {
   foodLeaves = new Food(100, 100, 10, 25, foodLeavesImage);
   foodBerries = new Food(100, 100, 8, 25, foodBerriesImage);
   foodPlant = new Food(100, 100, 20, 25, foodPlantImage);
-  // New classes - Legendary
-
 
 
   // Place dinos into array
@@ -131,24 +135,25 @@ function draw() {
   }
 }
 
+// New classes - Catalysts
+// They appear only after a certain amount of food has been eaten by the Dinos to slowly increase difficulty
 function createCatalysts() {
-  if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten === 3) {
+  if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten === 2) {
     tornado = new CatalystTornado(100, 100, 20, 100, catalystTornadoImage);
   }
-  if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten === 5) {
+  if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten === 4) {
     fire = new CatalystFire(50, 100, 20, 100, catalystFireImage);
   }
-  if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten === 7) {
+  if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten === 6) {
     meteor = new CatalystMeteor(50, 100, 20, 100, catalystMeteorImage);
   }
 }
 
 // Handles input, movement, eating, and displaying for the system's objects
 function handlePlay() {
+  checkGameOver();
   // Dinosaur jungle as a background image
   image(backgroundImage1, 0, 0);
-
-  checkGameOver();
 
   //The background changes after a certain ammount of food was eaten.
   if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten > 1) {
@@ -190,10 +195,10 @@ function handlePlay() {
 
   if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten >= 3) {
     tornado.move();
+    tornado.display();
     for (let i = 0; i < dinos.length; i++) {
       tornado.slow(dinos[i]);
     }
-    tornado.display();
   }
   if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten >= 5) {
     fire.move();
@@ -204,13 +209,11 @@ function handlePlay() {
   }
   if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten >= 7) {
     meteor.move();
+    meteor.display();
     for (let i = 0; i < dinos.length; i++) {
       meteor.teleport(dinos[i]);
     }
-    meteor.display();
   }
-
-
 
   // Arrays for the dinos' check state, handleInput, move, display and handleEating.
   for (let i = 0; i < dinos.length; i++) {
@@ -223,11 +226,10 @@ function handlePlay() {
     dinos[i].handleEating(foodPlant);
   }
 
-  // Display all the Pokémon
+  // Display all the Food
   foodLeaves.display();
   foodBerries.display();
   foodPlant.display();
-
 
   // A foreground image of foliage
   image(foregroundImage1, 0, 0);
@@ -279,13 +281,13 @@ function resetGame() {
   foodLeaves.reset();
   foodBerries.reset();
   foodPlant.reset();
-  if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten >= 7) {
+  if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten >= 2) {
   tornado.reset();
   }
-  if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten >= 7) {
+  if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten >= 4) {
   fire.reset();
   }
-  if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten >= 7) {
+  if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten >= 6) {
   meteor.reset();
   }
 

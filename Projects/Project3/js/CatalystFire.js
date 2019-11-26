@@ -32,8 +32,8 @@ class CatalystFire {
     if (d < this.radius + dino.radius) {
       console.log(dino)
       dino.alpha = dino.alpha - 1;
-      if (dino.alpha < 10) {
-        dino.alpha = 10;
+      if (dino.alpha < 50) {
+        dino.alpha = 50;
       }
     }
   }
