@@ -39,7 +39,7 @@ class CatalystTornado {
   move() {
     // Set velocity,
     this.vx = 15
-    this.vy = 20
+    this.vy = 0
     // Update position
     this.x += this.vx;
     this.y += this.vy;
