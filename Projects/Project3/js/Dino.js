@@ -10,7 +10,7 @@ class Dino {
   //
   // Sets the initial values for the Dinosaur's properties
   // Either sets default values or uses the arguments provided
-  constructor(x, y, speed, radius, upKey, downKey, leftKey, rightKey, sprintKey, image, alpha) {
+  constructor(x, y, speed, radius, upKey, downKey, leftKey, rightKey, sprintKey, images, alpha) {
     // Position
     this.x = random(1000, 0);
     this.y = random(0, 1000);
@@ -25,7 +25,8 @@ class Dino {
     this.healthGainPerEat = 2;
     // Display properties
     this.radius = this.health; // Radius is defined in terms of health
-    this.image = image; // Dino images
+    this.images = images; // Dino images
+    this.currentImage = 0;
     this.alpha = 255; // The tint of the image (for the Fire Catalyst)
     // Input properties
     this.upKey = upKey;
@@ -140,7 +141,7 @@ class Dino {
       push();
       this.radius = this.health;
       tint(255, this.alpha);
-      image(this.image, this.x, this.y, 5 * this.radius, 3 * this.radius);
+      image(this.images[this.currentImage], this.x, this.y, 5 * this.radius, 3 * this.radius);
       pop();
     }
   }
@@ -154,7 +155,8 @@ class Dino {
     this.x = random(0, windowWidth);
     this.y = random(0, windowHeight);
     this.dinoDead = false;
-    this.FoodEaten = 0;
+    this.foodEaten = 0;
     this.alpha = 255;
+    this.currentImage = 0;
   }
 }

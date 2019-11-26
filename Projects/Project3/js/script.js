@@ -104,8 +104,8 @@ function preload() {
 // Creates objects for the dinos (Dinos) and the pokemons (food)
 function setup() {
   createCanvas(700, 500);
-  dinoStegosaurus = new Dino(200, 200, 5, 40, 87, 83, 65, 68, 16, dinoStegosaurusImage);
-  dinoTriceratops = new Dino(100, 100, 5, 40, UP_ARROW, DOWN_ARROW, LEFT_ARROW, RIGHT_ARROW, 32, dinoTriceratopsImage);
+  dinoStegosaurus = new Dino(200, 200, 5, 40, 87, 83, 65, 68, 16, [babyStegosaurusImage, dinoStegosaurusImage]);
+  dinoTriceratops = new Dino(100, 100, 5, 40, UP_ARROW, DOWN_ARROW, LEFT_ARROW, RIGHT_ARROW, 32, [babyTriceratopsImage, dinoTriceratopsImage]);
   foodLeaves = new Food(100, 100, 10, 25, foodLeavesImage);
   foodBerries = new Food(100, 100, 8, 25, foodBerriesImage);
   foodPlant = new Food(100, 100, 20, 25, foodPlantImage);
@@ -152,6 +152,7 @@ function createCatalysts() {
 // Handles input, movement, eating, and displaying for the system's objects
 function handlePlay() {
   checkGameOver();
+
   // Dinosaur jungle as a background image
   image(backgroundImage1, 0, 0);
 
@@ -161,6 +162,8 @@ function handlePlay() {
   }
   if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten > 2) {
     image(backgroundImage3, 0, 0);
+    dinoStegosaurus.currentImage = 1;
+    dinoTriceratops.currentImage = 1;
   }
   if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten > 3) {
     image(backgroundImage4, 0, 0);
@@ -170,18 +173,18 @@ function handlePlay() {
   }
   if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten > 5) {
     gameWon = true;
+
     return;
   }
 
-
-  //Display the amount of Pokémon caught by player 1
+  //Display the amount of food eaten by the Stegosaurus
   textFont("Futura");
   textAlign(LEFT, BOTTOM);
   textSize(20);
   fill(40, 115, 80);
   text("Stegosaurus: " + dinoStegosaurus.foodEaten, 15, 480);
 
-  //Display the amount of Pokémon caught by player 2
+  //Display the amount of food eaten by the Triceratops
   textFont("Futura");
   textAlign(RIGHT, BOTTOM);
   textSize(20);
@@ -290,7 +293,6 @@ function resetGame() {
   if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten >= 6) {
   meteor.reset();
   }
-
   dinoStegosaurus.reset();
   dinoTriceratops.reset();
   gameStartSound.play();
