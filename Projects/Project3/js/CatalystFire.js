@@ -1,7 +1,7 @@
 // Fire Catalyst
 //
 // A class that represents a challenge to the Dinausaurs.
-// If the player touches the fire, the dinosaur(s) will slowly fades away.
+// If the player touches the fire, the dinosaur(s) will slowly disintegrate (fade) away.
 
 class CatalystFire {
 

@@ -1,7 +1,7 @@
 // Meteor Catalyst
 //
 // A class that represents a challenge to the dinosaurs.
-// If the player touches a meteor, it will catapult the dinosaur(s) somewhere else on the canvas.
+// If the player touches a meteor, it will catapult (teleport) the dinosaur(s) somewhere else on the canvas.
 
 class CatalystMeteor {
 

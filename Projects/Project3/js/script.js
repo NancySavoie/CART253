@@ -1,7 +1,7 @@
 // The Last Dinosaurs
 // Project 3 - Nancy Savoie
 //
-// This team survival game is based on the previous projects of CART253.
+// This co-op survival game is based on the previous projects of CART253.
 // The last two dinosaurs must work together and eat as much as possible in order
 // to get strong and survive the natural catastrophies. If one of them dies,
 // the game is lost along with the dinausors' hope!
@@ -109,8 +109,6 @@ function setup() {
   foodLeaves = new Food(100, 100, 10, 25, foodLeavesImage);
   foodBerries = new Food(100, 100, 8, 25, foodBerriesImage);
   foodPlant = new Food(100, 100, 20, 25, foodPlantImage);
-
-
   // Place dinos into array
   dinos = [dinoStegosaurus, dinoTriceratops];
   titleScreen = true;
@@ -177,19 +175,19 @@ function handlePlay() {
     return;
   }
 
-  //Display the amount of food eaten by the Stegosaurus
+  //Display the amount of food eaten by the Dinausors (as a team)
   textFont("Futura");
   textAlign(LEFT, BOTTOM);
   textSize(20);
   fill(40, 115, 80);
-  text("Stegosaurus: " + dinoStegosaurus.foodEaten, 15, 480);
+  text("Survival Level: " + dinoTriceratops.foodEaten + dinoStegosaurus.foodEaten, 15, 480);
 
   //Display the amount of food eaten by the Triceratops
-  textFont("Futura");
-  textAlign(RIGHT, BOTTOM);
-  textSize(20);
-  fill(40, 115, 80);
-  text("Triceratops: " + dinoTriceratops.foodEaten, 675, 480);
+//  textFont("Futura");
+//  textAlign(RIGHT, BOTTOM);
+//  textSize(20);
+//  fill(40, 115, 80);
+//  text("Triceratops: " + dinoTriceratops.foodEaten, 675, 480);
 
   // Move all the dinos and the food
   foodLeaves.move();
@@ -295,8 +293,8 @@ function resetGame() {
   }
   dinoStegosaurus.reset();
   dinoTriceratops.reset();
-  gameStartSound.play();
-  backgroundMusic.play();
+  //gameStartSound.play();
+  //backgroundMusic.play();
   gameOverScreen = false;
   titleScreen = true;
   instructionsScreen = false;
