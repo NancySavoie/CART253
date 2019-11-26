@@ -87,5 +87,6 @@ class Food {
     this.health = this.maxHealth;
     // Default radius
     this.radius = this.health;
+    createCatalysts(); //In the Food class to make sure it doesn't get reset every frame.
   }
 }

@@ -1,9 +1,9 @@
-// Flood Catalyst
+// Tornado Catalyst
 //
 // A class that represents a challenge to the dinos (dinos), it cannot be caught!
-// If a player encounters a flood, it will slow the dinosaur(s) down.
+// If a player encounters a Tornado, it will slow the dinosaur(s) down.
 
-class CatalystFlood {
+class CatalystTornado {
 
   // constructor
   //
@@ -21,7 +21,7 @@ class CatalystFlood {
     // Time properties for noise() function
     this.tx = random(0, 500); // To make x and y noise different
     this.ty = random(0, 500); // we use random starting values
-    // To display the Catalyst image (Flood)
+    // To display the Catalyst image (Tornado)
     this.image = image;
   }
 
@@ -31,8 +31,8 @@ class CatalystFlood {
     // Check if the Dinosaur and the Catalyst overlap
     if (d < this.radius + dino.radius) {
       dino.speed = dino.speed - 0.1; // Makes the Dinosaur gradually slow down
-      if (dino.speed < 0) {
-        dino.speed = 0;
+      if (dino.speed < 2) {
+        dino.speed = 2;
       }
     }
   }
@@ -75,7 +75,7 @@ class CatalystFlood {
 
   // display
   //
-  // Catalyst image (water for the flood)
+  // Catalyst image (water for the Tornado)
   display() {
     push();
     noStroke();

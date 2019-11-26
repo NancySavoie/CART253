@@ -29,12 +29,11 @@ class CatalystFire {
   fade(dino) {
     let d = dist(this.x, this.y, dino.x, dino.y);
     // Check if the dino and the catalyst overlap
-    console.log(d)
     if (d < this.radius + dino.radius) {
       console.log(dino)
       dino.alpha = dino.alpha - 1;
-      if (dino.alpha < 0) {
-        dino.alpha = 0;
+      if (dino.alpha < 10) {
+        dino.alpha = 10;
       }
     }
   }

@@ -27,12 +27,16 @@ let foodBerries;
 let foodPlant;
 
 // The Catalysts
-let zapdos;
-let articuno;
-let moltres;
+let tornado;
+let fire;
+let meteor;
 
 // Display the images
-let foregroundImage;
+let foregroundImage1;
+let foregroundImage2;
+let foregroundImage3;
+let foregroundImage4;
+let foregroundImage5;
 let backgroundImage1;
 let backgroundImage2;
 let backgroundImage3;
@@ -43,9 +47,9 @@ let dinoTriceratopsImage;
 let foodLeavesImage;
 let foodBerriesImage;
 let foodPlantImage;
-//let zapdosImage;
-//let articunoImage;
-//let moltresImage;
+let catalystTornadoImagee;
+let catalystFireImage;
+let catalystMeteorImage;
 
 // Display sounds
 let backgroundMusic;
@@ -57,7 +61,11 @@ let gameStartSound;
 // Preload functions for images and sounds
 function preload() {
   // Preload for images
-  foregroundImage = loadImage('./assets/images/foregroundImage.png');
+  foregroundImage1 = loadImage('./assets/images/foregroundImage1.png');
+  foregroundImage2 = loadImage('./assets/images/foregroundImage2.png');
+  foregroundImage3 = loadImage('./assets/images/foregroundImage3.png');
+  foregroundImage4 = loadImage('./assets/images/foregroundImage4.png');
+  foregroundImage5 = loadImage('./assets/images/foregroundImage5.png');
   backgroundImage1 = loadImage('./assets/images/backgroundImage1.png');
   backgroundImage2 = loadImage('./assets/images/backgroundImage2.png');
   backgroundImage3 = loadImage('./assets/images/backgroundImage3.png');
@@ -72,10 +80,9 @@ function preload() {
   foodLeavesImage = loadImage('./assets/images/foodLeavesImage.png');
   foodBerriesImage = loadImage('./assets/images/foodBerriesImage.png');
   foodPlantImage = loadImage('./assets/images/foodPlantImage.png');
-
-  //zapdosImage = loadImage('./assets/images/zapdosImage.png');
-  //articunoImage = loadImage('./assets/images/articunoImage.png');
-  //moltresImage = loadImage('./assets/images/moltresImage.png');
+  catalystTornadoImage = loadImage('./assets/images/catalystTornadoImage.png');
+  catalystFireImage = loadImage('./assets/images/catalystFireImage.png');
+  catalystMeteorImage = loadImage('./assets/images/catalystMeteorImage.png');
 
   // Preload for sounds
   backgroundMusic = loadSound('./assets/sounds/backgroundMusic.mp3');
@@ -97,9 +104,9 @@ function setup() {
   foodBerries = new Food(100, 100, 8, 25, foodBerriesImage);
   foodPlant = new Food(100, 100, 20, 25, foodPlantImage);
   // New classes - Legendary
-  //  articuno = new CatalystFlood(100, 100, 20, 100, articunoImage);
-  //  moltres = new CatalystFire(50, 100, 20, 100, moltresImage);
-  //  zapdos = new CatalystMeteor(50, 100, 20, 100, zapdosImage);
+
+
+
   // Place dinos into array
   dinos = [dinoStegosaurus, dinoTriceratops];
   titleScreen = true;
@@ -124,30 +131,42 @@ function draw() {
   }
 }
 
+function createCatalysts() {
+  if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten === 3) {
+    tornado = new CatalystTornado(100, 100, 20, 100, catalystTornadoImage);
+  }
+  if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten === 5) {
+    fire = new CatalystFire(50, 100, 20, 100, catalystFireImage);
+  }
+  if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten === 7) {
+    meteor = new CatalystMeteor(50, 100, 20, 100, catalystMeteorImage);
+  }
+}
+
 // Handles input, movement, eating, and displaying for the system's objects
 function handlePlay() {
-    // Dinosaur jungle as a background image
-    image(backgroundImage1, 0, 0);
+  // Dinosaur jungle as a background image
+  image(backgroundImage1, 0, 0);
 
-    checkGameOver();
+  checkGameOver();
 
-    //The background changes after a certain ammount of food was eaten.
-    if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten > 1) {
-      image(backgroundImage2, 0, 0);
-    }
-    if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten > 2) {
-      image(backgroundImage3, 0, 0);
-    }
-    if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten > 3) {
-      image(backgroundImage4, 0, 0);
-    }
-    if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten > 4) {
-      image(backgroundImage5, 0, 0);
-    }
-    if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten > 5) {
-      gameWon = true;
-      return;
-    }
+  //The background changes after a certain ammount of food was eaten.
+  if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten > 1) {
+    image(backgroundImage2, 0, 0);
+  }
+  if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten > 2) {
+    image(backgroundImage3, 0, 0);
+  }
+  if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten > 3) {
+    image(backgroundImage4, 0, 0);
+  }
+  if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten > 4) {
+    image(backgroundImage5, 0, 0);
+  }
+  if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten > 5) {
+    gameWon = true;
+    return;
+  }
 
 
   //Display the amount of Pokémon caught by player 1
@@ -168,35 +187,63 @@ function handlePlay() {
   foodLeaves.move();
   foodBerries.move();
   foodPlant.move();
-  //zapdos.move();
-  //articuno.move();
-  //  moltres.move();
+
+  if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten >= 3) {
+    tornado.move();
+    for (let i = 0; i < dinos.length; i++) {
+      tornado.slow(dinos[i]);
+    }
+    tornado.display();
+  }
+  if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten >= 5) {
+    fire.move();
+    fire.display();
+    for (let i = 0; i < dinos.length; i++) {
+      fire.fade(dinos[i]);
+    }
+  }
+  if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten >= 7) {
+    meteor.move();
+    for (let i = 0; i < dinos.length; i++) {
+      meteor.teleport(dinos[i]);
+    }
+    meteor.display();
+  }
+
+
 
   // Arrays for the dinos' check state, handleInput, move, display and handleEating.
   for (let i = 0; i < dinos.length; i++) {
     dinos[i].checkState();
-    //  articuno.slow(dinos[i]);
-    //  moltres.fade(dinos[i]);
-    //  zapdos.teleport(dinos[i]);
     dinos[i].handleInput();
     dinos[i].move();
     dinos[i].display();
     dinos[i].handleEating(foodLeaves);
     dinos[i].handleEating(foodBerries);
     dinos[i].handleEating(foodPlant);
-
   }
 
   // Display all the Pokémon
   foodLeaves.display();
   foodBerries.display();
   foodPlant.display();
-  //  zapdos.display();
-  //  articuno.display();
-  //  moltres.display();
 
-// A foreground image of foliage
-  image(foregroundImage, 0, 0);
+
+  // A foreground image of foliage
+  image(foregroundImage1, 0, 0);
+
+  if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten > 1) {
+    image(foregroundImage2, 0, 0);
+  }
+  if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten > 2) {
+    image(foregroundImage3, 0, 0);
+  }
+  if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten > 3) {
+    image(foregroundImage4, 0, 0);
+  }
+  if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten > 4) {
+    image(foregroundImage5, 0, 0);
+  }
 }
 
 // Mousse pressed funtion that allows the game to start and to replay after game over.
@@ -204,17 +251,17 @@ function mousePressed() {
   if (gameOverScreen) {
     resetGame();
   } else if (titleScreen === true) {
-    console.log("startedGame")
     titleScreen = false;
     instructionsScreen = true;
-    backgroundMusic.loop();
+    backgroundMusic.play();
 
-} else if (instructionsScreen === true) {
-  instructionsScreen = false;
-  gameStartSound.play();
+  } else if (instructionsScreen === true) {
+    instructionsScreen = false;
+    gameStartSound.play();
 
-} else if (gameWon === true) {
-  resetGame();
+  } else if (gameWon === true) {
+    backgroundMusic.stop();
+    resetGame();
   }
 }
 
@@ -222,7 +269,6 @@ function mousePressed() {
 function checkGameOver() {
   if (dinoStegosaurus.dinoDead || dinoTriceratops.dinoDead) {
     gameOverScreen = true;
-    console.log("game over")
     backgroundMusic.stop();
     gameOverSound.play();
   }
@@ -233,13 +279,20 @@ function resetGame() {
   foodLeaves.reset();
   foodBerries.reset();
   foodPlant.reset();
-  //  zapdos.reset();
-  //  articuno.reset();
-  //  moltres.reset();
+  if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten >= 7) {
+  tornado.reset();
+  }
+  if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten >= 7) {
+  fire.reset();
+  }
+  if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten >= 7) {
+  meteor.reset();
+  }
+
   dinoStegosaurus.reset();
   dinoTriceratops.reset();
   gameStartSound.play();
-  backgroundMusic.loop();
+  backgroundMusic.play();
   gameOverScreen = false;
   titleScreen = true;
   instructionsScreen = false;

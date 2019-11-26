@@ -116,13 +116,14 @@ class Dino {
       // Check if the food was caught and reset it if so
       if (food.health < 0) {
         this.foodEaten += 1;
+        
         food.reset();
         foodEatenSound.play();
       }
     }
   }
 
-  // If Dinosaur runs out of energy
+  // If Dinosaur runs out of food
   checkState() {
     if (this.health < 0.1 && this.health > 0) { // This prevents the sound from repeating itself every frame
       dinoDeadSound.play(); // Sound plays when the Dinosaur disapears (runs out of energy)
@@ -133,7 +134,7 @@ class Dino {
 
   // display
   //
-  // Draw dinos as the "dinos" of the game with a radius the same size as its current health.
+  // Draw dinos with a radius the same size as its current health.
   display() {
     if (this.health > 0) {
       push();
@@ -146,7 +147,7 @@ class Dino {
 
   // reset()
   //
-  // Reset positions, locations and values of dinos (dinos)
+  // Reset positions, locations and values of dinos
   reset() {
     this.radius = 40;
     this.health = this.radius;
