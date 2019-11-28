@@ -11,8 +11,8 @@ class CatalystTornado {
   // Either sets default values or uses the arguments provided
   constructor(x, y, speed, radius, image) {
     // Position
-    this.x = random(0, windowWidth);
-    this.y = random(0, windowWidth);
+    this.x = random(0, width);
+    this.y = random(0, height);
     // Velocity and speed
     this.vx = 0;
     this.vy = 0;
@@ -27,10 +27,8 @@ class CatalystTornado {
     let d = dist(this.x, this.y, dino.x, dino.y);
     // Check if the Dinosaur and the Catalyst overlap
     if (d < this.radius + dino.radius) {
-      dino.speed = dino.speed - 0.1; // Makes the Dinosaur gradually slow down
-      if (dino.speed < 2) {
-        dino.speed = 2;
-      }
+      dino.currentSpeed = dino.slowSpeed; // Makes the Dinosaur gradually slow down
+      dino.slowDuration = 5;
     }
   }
 
@@ -56,6 +54,7 @@ class CatalystTornado {
       this.x += width;
     } else if (this.x > width) {
       this.x -= width;
+      this.y = random(0, height);
     }
     // Off the top or bottom
     if (this.y < 0) {

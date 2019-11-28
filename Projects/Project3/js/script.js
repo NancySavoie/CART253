@@ -104,6 +104,7 @@ function preload() {
 // Creates objects for the dinos (Dinos) and the pokemons (food)
 function setup() {
   createCanvas(700, 500);
+  frameRate(30);
   dinoStegosaurus = new Dino(200, 200, 5, 40, 87, 83, 65, 68, 16, [babyStegosaurusImage, dinoStegosaurusImage]);
   dinoTriceratops = new Dino(100, 100, 5, 40, UP_ARROW, DOWN_ARROW, LEFT_ARROW, RIGHT_ARROW, 32, [babyTriceratopsImage, dinoTriceratopsImage]);
   foodLeaves = new Food(100, 100, 10, 25, foodLeavesImage);
@@ -155,21 +156,21 @@ function handlePlay() {
   image(backgroundImage1, 0, 0);
 
   //The background changes after a certain ammount of food was eaten.
-  if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten > 1) {
+  if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten > 3) {
     image(backgroundImage2, 0, 0);
   }
-  if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten > 2) {
+  if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten > 7) {
     image(backgroundImage3, 0, 0);
     dinoStegosaurus.currentImage = 1;
     dinoTriceratops.currentImage = 1;
   }
-  if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten > 3) {
+  if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten > 9) {
     image(backgroundImage4, 0, 0);
   }
-  if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten > 4) {
+  if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten > 10) {
     image(backgroundImage5, 0, 0);
   }
-  if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten > 5) {
+  if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten > 12) {
     gameWon = true;
 
     return;
@@ -180,7 +181,7 @@ function handlePlay() {
   textAlign(LEFT, CENTER);
   textSize(20);
   fill(40, 115, 80);
-  text("Survival Level: " + dinoTriceratops.foodEaten + dinoStegosaurus.foodEaten, 250, 480);
+  text("Survival Level: " + (dinoTriceratops.foodEaten + dinoStegosaurus.foodEaten), 250, 480);
 
   //Display the amount of food eaten by the Stegosaurus
   textFont("Futura");
@@ -227,7 +228,7 @@ function handlePlay() {
   for (let i = 0; i < dinos.length; i++) {
     dinos[i].checkState();
     dinos[i].handleInput();
-    dinos[i].move();
+    dinos[i].move(deltaTime);
     dinos[i].display();
     dinos[i].handleEating(foodLeaves);
     dinos[i].handleEating(foodBerries);

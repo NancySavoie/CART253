@@ -18,6 +18,9 @@ class Dino {
     this.vx = 0;
     this.vy = 0;
     this.speed = speed;
+    this.currentSpeed = speed;
+    this.slowSpeed = this.speed/3;
+    this.slowDuration = 0;
     // Health properties
     this.maxHealth = radius;
     this.health = this.maxHealth; // Must be AFTER defining this.maxHealth
@@ -44,17 +47,17 @@ class Dino {
   handleInput() {
     // Horizontal movement
     if (keyIsDown(this.leftKey)) {
-      this.vx = -this.speed;
+      this.vx = -this.currentSpeed;
     } else if (keyIsDown(this.rightKey)) {
-      this.vx = this.speed;
+      this.vx = this.currentSpeed;
     } else {
       this.vx = 0;
     }
     // Vertical movement
     if (keyIsDown(this.upKey)) {
-      this.vy = -this.speed;
+      this.vy = -this.currentSpeed;
     } else if (keyIsDown(this.downKey)) {
-      this.vy = this.speed;
+      this.vy = this.currentSpeed;
     } else {
       this.vy = 0;
     }
@@ -70,7 +73,13 @@ class Dino {
   // Updates the position according to velocity
   // Lowers energy power
   // Handles wrapping
-  move() {
+  move(elapsed) {
+    if (this.slowDuration > 0) {
+      this.slowDuration -= elapsed/1000;
+      if (this.slowDuration <= 0) {
+        this.currentSpeed = this.speed;
+      }
+      }
     // Update position
     this.x += this.vx;
     this.y += this.vy;
@@ -113,13 +122,13 @@ class Dino {
       this.health += this.healthGainPerEat;
       this.health = constrain(this.health, 0, this.maxHealth);
       // Decrease food health by the same amount
-      food.health -= this.healthGainPerEat;
+      //food.health -= this.healthGainPerEat*1000;
       // Check if the food was caught and reset it if so
-      if (food.health < 0) {
+    //  if (food.health < 0) {
         this.foodEaten += 1;
         food.reset();
         foodEatenSound.play();
-      }
+      //}
     }
   }
 
@@ -139,6 +148,7 @@ class Dino {
       push();
       this.radius = this.health;
       tint(255, this.alpha);
+      imageMode (CENTER);
       image(this.images[this.currentImage], this.x, this.y, 5 * this.radius, 3 * this.radius);
       pop();
     }
