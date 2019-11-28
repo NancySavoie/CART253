@@ -19,7 +19,7 @@ class Dino {
     this.vy = 0;
     this.speed = speed;
     this.currentSpeed = speed;
-    this.slowSpeed = this.speed/3;
+    this.slowSpeed = this.speed / 3;
     this.slowDuration = 0;
     // Health properties
     this.maxHealth = radius;
@@ -75,11 +75,11 @@ class Dino {
   // Handles wrapping
   move(elapsed) {
     if (this.slowDuration > 0) {
-      this.slowDuration -= elapsed/1000;
+      this.slowDuration -= elapsed / 1000;
       if (this.slowDuration <= 0) {
         this.currentSpeed = this.speed;
       }
-      }
+    }
     // Update position
     this.x += this.vx;
     this.y += this.vy;
@@ -124,10 +124,10 @@ class Dino {
       // Decrease food health by the same amount
       //food.health -= this.healthGainPerEat*1000;
       // Check if the food was caught and reset it if so
-    //  if (food.health < 0) {
-        this.foodEaten += 1;
-        food.reset();
-        foodEatenSound.play();
+      //  if (food.health < 0) {
+      this.foodEaten += 1;
+      food.reset();
+      foodEatenSound.play();
       //}
     }
   }
@@ -148,7 +148,7 @@ class Dino {
       push();
       this.radius = this.health;
       tint(255, this.alpha);
-      imageMode (CENTER);
+      imageMode(CENTER);
       image(this.images[this.currentImage], this.x, this.y, 5 * this.radius, 3 * this.radius);
       pop();
     }
