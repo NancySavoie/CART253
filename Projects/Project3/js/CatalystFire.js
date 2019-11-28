@@ -11,8 +11,8 @@ class CatalystFire {
   // Either sets default values or uses the arguments provided
   constructor(x, y, speed, radius, image) {
     // Position
-    this.x = random(0, windowWidth);
-    this.y = random(0, windowWidth);
+    this.x = random(0, width);
+    this.y = random(0, height);
     // Velocity and speed
     this.vx = 0;
     this.vy = 0;
@@ -59,12 +59,14 @@ class CatalystFire {
       this.x += width;
     } else if (this.x > width) {
       this.x -= width;
+
     }
     // Off the top or bottom
     if (this.y < 0) {
       this.y += height;
     } else if (this.y > height) {
       this.y -= height;
+      this.x = random(0, height);
     }
   }
 
@@ -74,7 +76,7 @@ class CatalystFire {
   display() {
     push();
     noStroke();
-    image(this.image, this.x, this.y, 250, 200);
+    image(this.image, this.x, this.y, 200, 150);
     pop();
   }
 

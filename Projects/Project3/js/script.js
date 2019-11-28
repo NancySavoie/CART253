@@ -156,21 +156,21 @@ function handlePlay() {
   image(backgroundImage1, 0, 0);
 
   //The background changes after a certain ammount of food was eaten.
-  if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten > 3) {
+  if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten > 10) {
     image(backgroundImage2, 0, 0);
   }
-  if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten > 7) {
+  if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten > 20) {
     image(backgroundImage3, 0, 0);
     dinoStegosaurus.currentImage = 1;
     dinoTriceratops.currentImage = 1;
   }
-  if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten > 9) {
+  if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten > 30) {
     image(backgroundImage4, 0, 0);
   }
-  if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten > 10) {
+  if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten > 40) {
     image(backgroundImage5, 0, 0);
   }
-  if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten > 12) {
+  if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten > 50) {
     gameWon = true;
 
     return;
@@ -202,21 +202,21 @@ function handlePlay() {
   foodBerries.move();
   foodPlant.move();
 
-  if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten >= 3) {
+  if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten >= 20) {
     tornado.move();
     tornado.display();
     for (let i = 0; i < dinos.length; i++) {
       tornado.slow(dinos[i]);
     }
   }
-  if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten >= 5) {
+  if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten >= 30) {
     fire.move();
     fire.display();
     for (let i = 0; i < dinos.length; i++) {
       fire.fade(dinos[i]);
     }
   }
-  if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten >= 7) {
+  if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten >= 40) {
     meteor.move();
     meteor.display();
     for (let i = 0; i < dinos.length; i++) {
@@ -243,16 +243,16 @@ function handlePlay() {
   // A foreground image of foliage
   image(foregroundImage1, 0, 0);
 
-  if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten > 1) {
+  if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten > 10) {
     image(foregroundImage2, 0, 0);
   }
-  if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten > 2) {
+  if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten > 20) {
     image(foregroundImage3, 0, 0);
   }
-  if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten > 3) {
+  if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten > 30) {
     image(foregroundImage4, 0, 0);
   }
-  if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten > 4) {
+  if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten > 40) {
     image(foregroundImage5, 0, 0);
   }
 }
@@ -290,14 +290,14 @@ function resetGame() {
   foodLeaves.reset();
   foodBerries.reset();
   foodPlant.reset();
-  if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten >= 2) {
-  tornado.reset();
+  if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten >= 20) {
+    tornado.reset();
   }
-  if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten >= 4) {
-  fire.reset();
+  if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten >= 30) {
+    fire.reset();
   }
-  if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten >= 6) {
-  meteor.reset();
+  if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten >= 40) {
+    meteor.reset();
   }
   dinoStegosaurus.reset();
   dinoTriceratops.reset();

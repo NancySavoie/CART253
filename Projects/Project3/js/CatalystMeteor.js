@@ -11,8 +11,8 @@ class CatalystMeteor {
   // Either sets default values or uses the arguments provided
   constructor(x, y, speed, radius, image) {
     // Position
-    this.x = random(0, windowWidth);
-    this.y = random(0, windowWidth);
+    this.x = random(0, width);
+    this.y = random(0, height);
     // Velocity and speed
     this.vx = 0;
     this.vy = 0;
