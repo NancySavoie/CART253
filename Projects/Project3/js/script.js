@@ -46,6 +46,8 @@ let backgroundImage4;
 let backgroundImage5;
 let babyStegosaurusImage;
 let babyTriceratopsImage;
+let childStegosaurusImage;
+let childTriceratopsImage;
 let dinoStegosaurusImage;
 let dinoTriceratopsImage;
 let foodLeavesImage;
@@ -81,6 +83,8 @@ function preload() {
   gameWonImage = loadImage('./assets/images/gameWonImage.jpg');
   babyStegosaurusImage = loadImage('./assets/images/babyStegosaurusImage.png');
   babyTriceratopsImage = loadImage('./assets/images/babyTriceratopsImage.png');
+  childStegosaurusImage = loadImage('./assets/images/childStegosaurusImage.png');
+  childTriceratopsImage = loadImage('./assets/images/childTriceratopsImage.png');
   dinoStegosaurusImage = loadImage('./assets/images/dinoStegosaurusImage.png');
   dinoTriceratopsImage = loadImage('./assets/images/dinoTriceratopsImage.png');
   foodLeavesImage = loadImage('./assets/images/foodLeavesImage.png');
@@ -105,8 +109,8 @@ function preload() {
 function setup() {
   createCanvas(700, 500);
   frameRate(30);
-  dinoStegosaurus = new Dino(200, 200, 5, 40, 87, 83, 65, 68, 16, [babyStegosaurusImage, dinoStegosaurusImage]);
-  dinoTriceratops = new Dino(100, 100, 5, 40, UP_ARROW, DOWN_ARROW, LEFT_ARROW, RIGHT_ARROW, 32, [babyTriceratopsImage, dinoTriceratopsImage]);
+  dinoStegosaurus = new Dino(200, 200, 5, 40, 87, 83, 65, 68, 16, [babyStegosaurusImage, childStegosaurusImage, dinoStegosaurusImage]);
+  dinoTriceratops = new Dino(100, 100, 5, 40, UP_ARROW, DOWN_ARROW, LEFT_ARROW, RIGHT_ARROW, 32, [babyTriceratopsImage, childTriceratopsImage, dinoTriceratopsImage]);
   foodLeaves = new Food(100, 100, 10, 25, foodLeavesImage);
   foodBerries = new Food(100, 100, 8, 25, foodBerriesImage);
   foodPlant = new Food(100, 100, 20, 25, foodPlantImage);
@@ -166,6 +170,8 @@ function handlePlay() {
   }
   if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten > 30) {
     image(backgroundImage4, 0, 0);
+    dinoStegosaurus.currentImage = 2;
+    dinoTriceratops.currentImage = 2;
   }
   if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten > 40) {
     image(backgroundImage5, 0, 0);
