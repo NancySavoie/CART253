@@ -27,12 +27,18 @@ let foodPlant;
 // Arrays
 let dinos = [];
 let food = [];
-let catalysts = [];
 
 // The Catalysts
 let tornado;
 let fire;
 let meteor;
+
+// Varialbes for the Catalysts
+let foodAmountCatalyst = 20;
+
+// Varialbes for the Background & Foreground change
+let foodAmountBackground = 10;
+let foodAmountForeground = 10;
 
 // Display the images
 let foregroundImage1;
@@ -64,10 +70,6 @@ let gameOverSound;
 let foodEatenSound;
 let dinoDeadSound;
 let gameStartSound;
-
-let foodAmountCatalyst = 20;
-let foodAmountBackground = 10;
-let foodAmountForeground = 10;
 
 // Preload functions for images and sounds
 function preload() {
@@ -274,13 +276,13 @@ function handlePlay() {
   if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten > foodAmountForeground) {
     image(foregroundImage2, 0, 0);
   }
-  if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten > foodAmountForeground + 9) {
+  if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten > foodAmountForeground+9) {
     image(foregroundImage3, 0, 0);
   }
-  if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten > foodAmountForeground + 19) {
+  if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten > foodAmountForeground+19) {
     image(foregroundImage4, 0, 0);
   }
-  if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten > foodAmountForeground + 29) {
+  if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten > foodAmountForeground+29) {
     image(foregroundImage5, 0, 0);
   }
 }
@@ -315,9 +317,6 @@ function checkGameOver() {
 
 // The function that resets all the variables to their original game start up.
 function resetGame() {
-  foodLeaves.reset();
-  foodBerries.reset();
-  foodPlant.reset();
   if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten >= 20) {
     tornado.reset();
   }
@@ -327,6 +326,9 @@ function resetGame() {
   if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten >= 40) {
     meteor.reset();
   }
+  foodLeaves.reset();
+  foodBerries.reset();
+  foodPlant.reset();
   dinoStegosaurus.reset();
   dinoTriceratops.reset();
   gameOverScreen = false;
