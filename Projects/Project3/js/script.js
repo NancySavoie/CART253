@@ -21,7 +21,6 @@ let dinoTriceratops;
 
 // Arrays
 let dinos = [];
-let food = [];
 
 // The survival items (The food)
 let foodLeaves;
@@ -178,7 +177,6 @@ function handlePlay() {
   }
   if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten > 49) {
     gameWon = true;
-
     return;
   }
 

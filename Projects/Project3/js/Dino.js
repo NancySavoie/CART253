@@ -151,7 +151,7 @@ class Dino {
     if (this.fadeDuration > 0) {
       this.fadeDuration -= deltaTime / 1000;
       if (this.fadeDuration <= 0) {
-        this.currentAlpha= 255;
+        this.currentAlpha = 255;
       }
     }
     if (this.health > 0) {

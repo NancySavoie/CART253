@@ -29,11 +29,11 @@ class CatalystFire {
     if (d < this.radius + dino.radius) {
       //dino.alpha = dino.alpha - 1;
       //if (dino.alpha < 50) {
-        //dino.alpha = 50;
-        dino.currentAlpha = dino.fadeAlpha; // Makes the Dinosaur fade slightly.
-        dino.fadeDuration = 5;
-      }
+      //dino.alpha = 50;
+      dino.currentAlpha = dino.fadeAlpha; // Makes the Dinosaur fade slightly.
+      dino.fadeDuration = 5;
     }
+  }
 
 
   // move
