@@ -100,7 +100,6 @@ function preload() {
   catalystTornadoImage = loadImage('./assets/images/catalystTornadoImage.png');
   catalystFireImage = loadImage('./assets/images/catalystFireImage.png');
   catalystMeteorImage = loadImage('./assets/images/catalystMeteorImage.png');
-
   // Preload for sounds
   backgroundMusic = loadSound('./assets/sounds/backgroundMusic.mp3');
   gameOverSound = loadSound('./assets/sounds/gameOverSound.mp3');
@@ -216,11 +215,6 @@ function handlePlay() {
   fill(40, 115, 80);
   text("Triceratops: " + dinoTriceratops.foodEaten, 675, 480);
 
-  // Move all the dinos and the food
-  //foodLeaves.move();
-  //  foodBerries.move();
-  //  foodPlant.move();
-
   if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten >= 21) {
     tornado.move();
     tornado.display();
@@ -262,12 +256,6 @@ function handlePlay() {
     food[j].move();
     food[j].display();
   }
-
-
-  // Display all the Food
-  //  foodLeaves.display();
-  //  foodBerries.display();
-  //  foodPlant.display();
 
   // A foreground image of foliage + changes of foliage to match background
   image(foregroundImage1, 0, 0);

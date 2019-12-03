@@ -41,7 +41,7 @@ class Dino {
     this.rightKey = rightKey;
     this.sprintKey = sprintKey; // Sprinting key
     this.foodEaten = 0;
-    this.dinoDead = false; // The status of dinos
+    this.dinoDead = false; // The status of the dinos
   }
 
   // handleInput
@@ -124,14 +124,9 @@ class Dino {
       // Increase Dinosaur energy and constrain it to its possible range
       this.health += this.healthGainPerEat;
       this.health = constrain(this.health, 0, this.maxHealth);
-      // Decrease food health by the same amount
-      //food.health -= this.healthGainPerEat*1000;
-      // Check if the food was caught and reset it if so
-      //  if (food.health < 0) {
       this.foodEaten += 1;
       food.reset();
       foodEatenSound.play();
-      //}
     }
   }
 
