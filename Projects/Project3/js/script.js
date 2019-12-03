@@ -177,6 +177,7 @@ function handlePlay() {
   }
   if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten > 49) {
     gameWon = true;
+
     return;
   }
 

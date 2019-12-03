@@ -72,7 +72,7 @@ class CatalystMeteor {
 
   // display
   //
-  // catalyst image, Zaptos, for the Legendary Slow class of the game.
+  // Catalyst image, Meteor.
   display() {
     push();
     noStroke();
