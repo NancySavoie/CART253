@@ -27,13 +27,14 @@ class CatalystFire {
     let d = dist(this.x, this.y, dino.x, dino.y);
     // Check if the dino and the catalyst overlap
     if (d < this.radius + dino.radius) {
-      console.log(dino)
-      dino.alpha = dino.alpha - 1;
-      if (dino.alpha < 50) {
-        dino.alpha = 50;
+      //dino.alpha = dino.alpha - 1;
+      //if (dino.alpha < 50) {
+        //dino.alpha = 50;
+        dino.currentAlpha = dino.fadeAlpha; // Makes the Dinosaur fade slightly.
+        dino.fadeDuration = 5;
       }
     }
-  }
+
 
   // move
   //

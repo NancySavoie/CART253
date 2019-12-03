@@ -28,7 +28,7 @@ class CatalystTornado {
     // Check if the Dinosaur and the Catalyst overlap
     if (d < this.radius + dino.radius) {
       dino.currentSpeed = dino.slowSpeed; // Makes the Dinosaur gradually slow down
-      dino.slowDuration = 5;
+      dino.slowDuration = 3;
     }
   }
 

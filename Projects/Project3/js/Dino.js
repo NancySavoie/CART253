@@ -31,6 +31,9 @@ class Dino {
     this.images = images; // Dino images
     this.currentImage = 0;
     this.alpha = 255; // The tint of the image (for the Fire Catalyst)
+    this.currentAlpha = 255;
+    this.fadeAlpha = 50;
+    this.fadeDuration = 0;
     // Input properties
     this.upKey = upKey;
     this.downKey = downKey;
@@ -144,10 +147,17 @@ class Dino {
   //
   // Draw dinos with a radius the same size as its current health.
   display() {
+
+    if (this.fadeDuration > 0) {
+      this.fadeDuration -= deltaTime / 1000;
+      if (this.fadeDuration <= 0) {
+        this.currentAlpha= 255;
+      }
+    }
     if (this.health > 0) {
       push();
       this.radius = this.health;
-      tint(255, this.alpha);
+      tint(255, this.currentAlpha);
       imageMode(CENTER);
       image(this.images[this.currentImage], this.x, this.y, 5 * this.radius, 3 * this.radius);
       pop();
@@ -165,6 +175,7 @@ class Dino {
     this.dinoDead = false;
     this.foodEaten = 0;
     this.alpha = 255;
+    this.currentAlpha = this.alpha;
     this.currentImage = 0;
   }
 }

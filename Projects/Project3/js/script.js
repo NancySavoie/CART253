@@ -141,13 +141,13 @@ function draw() {
 // New classes - Catalysts
 // They appear only after a certain amount of food has been eaten by the Dinos to slowly increase difficulty
 function createCatalysts() {
-  if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten === 2) {
+  if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten === 20) {
     tornado = new CatalystTornado(100, 100, 20, 100, catalystTornadoImage);
   }
-  if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten === 4) {
+  if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten === 30) {
     fire = new CatalystFire(50, 100, 20, 100, catalystFireImage);
   }
-  if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten === 6) {
+  if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten === 40) {
     meteor = new CatalystMeteor(50, 100, 20, 100, catalystMeteorImage);
   }
 }
@@ -235,7 +235,7 @@ function handlePlay() {
     dinos[i].checkState();
     dinos[i].handleInput();
     dinos[i].move(deltaTime);
-    dinos[i].display();
+    dinos[i].display(alpha);
     dinos[i].handleEating(foodLeaves);
     dinos[i].handleEating(foodBerries);
     dinos[i].handleEating(foodPlant);
@@ -307,8 +307,6 @@ function resetGame() {
   }
   dinoStegosaurus.reset();
   dinoTriceratops.reset();
-  //gameStartSound.play();
-  //backgroundMusic.play();
   gameOverScreen = false;
   titleScreen = true;
   instructionsScreen = false;
