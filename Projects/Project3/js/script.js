@@ -19,13 +19,15 @@ let gameWon = false;
 let dinoStegosaurus;
 let dinoTriceratops;
 
-// Arrays
-let dinos = [];
-
 // The survival items (The food)
 let foodLeaves;
 let foodBerries;
 let foodPlant;
+
+// Arrays
+let dinos = [];
+let food = [];
+let catalysts = [];
 
 // The Catalysts
 let tornado;
@@ -62,6 +64,10 @@ let gameOverSound;
 let foodEatenSound;
 let dinoDeadSound;
 let gameStartSound;
+
+let foodAmountCatalyst = 20;
+let foodAmountBackground = 10;
+let foodAmountForeground = 10;
 
 // Preload functions for images and sounds
 function preload() {
@@ -103,8 +109,7 @@ function preload() {
 
 // setup()
 //
-// Sets up a canvas
-// Creates objects for the dinos (Dinos) and the pokemons (food)
+// Sets up a canvas and creates objects for the dinos and the food
 function setup() {
   createCanvas(700, 500);
   frameRate(30);
@@ -113,8 +118,12 @@ function setup() {
   foodLeaves = new Food(100, 100, 10, 25, foodLeavesImage);
   foodBerries = new Food(100, 100, 8, 25, foodBerriesImage);
   foodPlant = new Food(100, 100, 20, 25, foodPlantImage);
-  // Place dinos into array
+
+  // Place dinos and food into array
   dinos = [dinoStegosaurus, dinoTriceratops];
+  food = [foodLeaves, foodBerries, foodPlant];
+
+  // Title screen is active at the start
   titleScreen = true;
 }
 
@@ -140,13 +149,14 @@ function draw() {
 // New classes - Catalysts
 // They appear only after a certain amount of food has been eaten by the Dinos to slowly increase difficulty
 function createCatalysts() {
-  if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten === 20) {
+  if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten === foodAmountCatalyst) {
+
     tornado = new CatalystTornado(100, 100, 20, 100, catalystTornadoImage);
   }
-  if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten === 30) {
+  if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten === foodAmountCatalyst+10) {
     fire = new CatalystFire(50, 100, 20, 100, catalystFireImage);
   }
-  if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten === 40) {
+  if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten === foodAmountCatalyst+20) {
     meteor = new CatalystMeteor(50, 100, 20, 100, catalystMeteorImage);
   }
 }
@@ -159,23 +169,25 @@ function handlePlay() {
   image(backgroundImage1, 0, 0);
 
   //The background changes after a certain ammount of food was eaten.
-  if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten > 10) {
+  if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten > foodAmountBackground) {
     image(backgroundImage2, 0, 0);
   }
-  if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten > 19) {
+  if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten > foodAmountBackground+9) {
     image(backgroundImage3, 0, 0);
+    // Evolution of dinosaurs to children
     dinoStegosaurus.currentImage = 1;
     dinoTriceratops.currentImage = 1;
   }
-  if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten > 29) {
+  if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten > foodAmountBackground+19) {
     image(backgroundImage4, 0, 0);
+    // Evolution of dinosaurs to adults
     dinoStegosaurus.currentImage = 2;
     dinoTriceratops.currentImage = 2;
   }
-  if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten > 39) {
+  if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten > foodAmountBackground+29) {
     image(backgroundImage5, 0, 0);
   }
-  if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten > 49) {
+  if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten > foodAmountBackground+39) {
     gameWon = true;
 
     return;
@@ -203,9 +215,9 @@ function handlePlay() {
   text("Triceratops: " + dinoTriceratops.foodEaten, 675, 480);
 
   // Move all the dinos and the food
-  foodLeaves.move();
-  foodBerries.move();
-  foodPlant.move();
+  //foodLeaves.move();
+//  foodBerries.move();
+//  foodPlant.move();
 
   if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten >= 21) {
     tornado.move();
@@ -231,6 +243,7 @@ function handlePlay() {
 
   // Arrays for the dinos' check state, handleInput, move, display and handleEating.
   for (let i = 0; i < dinos.length; i++) {
+    console.log();
     dinos[i].checkState();
     dinos[i].handleInput();
     dinos[i].move(deltaTime);
@@ -238,26 +251,36 @@ function handlePlay() {
     dinos[i].handleEating(foodLeaves);
     dinos[i].handleEating(foodBerries);
     dinos[i].handleEating(foodPlant);
+    // Arrays for the food's move, display and handleWrapping.
+    for (let j = 0; j < food.length; j++) {
+      food[j].handleWrapping(dinos[i]);
+    }
   }
+
+  for (let j = 0; j < food.length; j++) {
+  food[j].move();
+  food[j].display();
+}
+
 
   // Display all the Food
-  foodLeaves.display();
-  foodBerries.display();
-  foodPlant.display();
+//  foodLeaves.display();
+//  foodBerries.display();
+//  foodPlant.display();
 
-  // A foreground image of foliage
+  // A foreground image of foliage + changes of foliage to match background
   image(foregroundImage1, 0, 0);
 
-  if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten > 10) {
+  if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten > foodAmountForeground) {
     image(foregroundImage2, 0, 0);
   }
-  if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten > 19) {
+  if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten > foodAmountForeground + 9) {
     image(foregroundImage3, 0, 0);
   }
-  if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten > 29) {
+  if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten > foodAmountForeground + 19) {
     image(foregroundImage4, 0, 0);
   }
-  if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten > 39) {
+  if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten > foodAmountForeground + 29) {
     image(foregroundImage5, 0, 0);
   }
 }
