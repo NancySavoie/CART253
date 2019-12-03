@@ -42,7 +42,7 @@ class CatalystFire {
   move() {
     // Set velocity via noise()
     this.vx = 0
-    this.vy = 15
+    this.vy = 10
     // Update position
     this.x += this.vx;
     this.y += this.vy;
@@ -76,7 +76,7 @@ class CatalystFire {
   display() {
     push();
     noStroke();
-    image(this.image, this.x, this.y, 200, 150);
+    image(this.image, this.x, this.y, 150, 100);
     pop();
   }
 

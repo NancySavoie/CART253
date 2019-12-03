@@ -36,7 +36,7 @@ class CatalystTornado {
 
   move() {
     // Set velocity,
-    this.vx = 15
+    this.vx = 10
     this.vy = 0
     // Update position
     this.x += this.vx;
@@ -70,7 +70,7 @@ class CatalystTornado {
   display() {
     push();
     noStroke();
-    image(this.image, this.x, this.y, 250, 200);
+    image(this.image, this.x, this.y, 200, 150);
     pop();
   }
 

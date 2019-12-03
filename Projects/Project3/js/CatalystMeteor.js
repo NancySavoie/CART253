@@ -43,8 +43,8 @@ class CatalystMeteor {
   //
   move() {
     // Set velocity, diagonal movement for the meteor falling from the sky
-    this.vx = 15
-    this.vy = 20
+    this.vx = 5
+    this.vy = 10
     // Update position
     this.x += this.vx;
     this.y += this.vy;
@@ -76,7 +76,7 @@ class CatalystMeteor {
   display() {
     push();
     noStroke();
-    image(this.image, this.x, this.y, 250, 200);
+    image(this.image, this.x, this.y, 200, 150);
     pop();
   }
 

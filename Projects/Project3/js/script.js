@@ -6,7 +6,7 @@
 // to get strong and survive the natural catastrophies. If one of them dies,
 // the game is lost along with the dinausors' hope!
 //
-// Artwork by Nancy Savoie and creative commons
+// Artwork by Nancy Savoie and creative commons (Freepik and Vecteezy)
 // Music from https://www.youtube.com/watch?v=cSqdu7Qlz7k
 
 // State
@@ -163,20 +163,20 @@ function handlePlay() {
   if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten > 10) {
     image(backgroundImage2, 0, 0);
   }
-  if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten > 20) {
+  if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten > 19) {
     image(backgroundImage3, 0, 0);
     dinoStegosaurus.currentImage = 1;
     dinoTriceratops.currentImage = 1;
   }
-  if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten > 30) {
+  if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten > 29) {
     image(backgroundImage4, 0, 0);
     dinoStegosaurus.currentImage = 2;
     dinoTriceratops.currentImage = 2;
   }
-  if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten > 40) {
+  if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten > 39) {
     image(backgroundImage5, 0, 0);
   }
-  if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten > 50) {
+  if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten > 49) {
     gameWon = true;
 
     return;
@@ -208,21 +208,21 @@ function handlePlay() {
   foodBerries.move();
   foodPlant.move();
 
-  if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten >= 20) {
+  if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten >= 21) {
     tornado.move();
     tornado.display();
     for (let i = 0; i < dinos.length; i++) {
       tornado.slow(dinos[i]);
     }
   }
-  if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten >= 30) {
+  if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten >= 31) {
     fire.move();
     fire.display();
     for (let i = 0; i < dinos.length; i++) {
       fire.fade(dinos[i]);
     }
   }
-  if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten >= 40) {
+  if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten >= 41) {
     meteor.move();
     meteor.display();
     for (let i = 0; i < dinos.length; i++) {
@@ -252,13 +252,13 @@ function handlePlay() {
   if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten > 10) {
     image(foregroundImage2, 0, 0);
   }
-  if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten > 20) {
+  if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten > 19) {
     image(foregroundImage3, 0, 0);
   }
-  if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten > 30) {
+  if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten > 29) {
     image(foregroundImage4, 0, 0);
   }
-  if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten > 40) {
+  if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten > 39) {
     image(foregroundImage5, 0, 0);
   }
 }
