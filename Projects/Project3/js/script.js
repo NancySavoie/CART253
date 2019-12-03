@@ -155,10 +155,10 @@ function createCatalysts() {
 
     tornado = new CatalystTornado(100, 100, 20, 100, catalystTornadoImage);
   }
-  if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten === foodAmountCatalyst+10) {
+  if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten === foodAmountCatalyst + 10) {
     fire = new CatalystFire(50, 100, 20, 100, catalystFireImage);
   }
-  if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten === foodAmountCatalyst+20) {
+  if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten === foodAmountCatalyst + 20) {
     meteor = new CatalystMeteor(50, 100, 20, 100, catalystMeteorImage);
   }
 }
@@ -174,22 +174,22 @@ function handlePlay() {
   if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten > foodAmountBackground) {
     image(backgroundImage2, 0, 0);
   }
-  if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten > foodAmountBackground+9) {
+  if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten > foodAmountBackground + 9) {
     image(backgroundImage3, 0, 0);
     // Evolution of dinosaurs to children
     dinoStegosaurus.currentImage = 1;
     dinoTriceratops.currentImage = 1;
   }
-  if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten > foodAmountBackground+19) {
+  if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten > foodAmountBackground + 19) {
     image(backgroundImage4, 0, 0);
     // Evolution of dinosaurs to adults
     dinoStegosaurus.currentImage = 2;
     dinoTriceratops.currentImage = 2;
   }
-  if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten > foodAmountBackground+29) {
+  if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten > foodAmountBackground + 29) {
     image(backgroundImage5, 0, 0);
   }
-  if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten > foodAmountBackground+39) {
+  if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten > foodAmountBackground + 39) {
     gameWon = true;
 
     return;
@@ -218,8 +218,8 @@ function handlePlay() {
 
   // Move all the dinos and the food
   //foodLeaves.move();
-//  foodBerries.move();
-//  foodPlant.move();
+  //  foodBerries.move();
+  //  foodPlant.move();
 
   if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten >= 21) {
     tornado.move();
@@ -245,7 +245,6 @@ function handlePlay() {
 
   // Arrays for the dinos' check state, handleInput, move, display and handleEating.
   for (let i = 0; i < dinos.length; i++) {
-    console.log();
     dinos[i].checkState();
     dinos[i].handleInput();
     dinos[i].move(deltaTime);
@@ -253,22 +252,22 @@ function handlePlay() {
     dinos[i].handleEating(foodLeaves);
     dinos[i].handleEating(foodBerries);
     dinos[i].handleEating(foodPlant);
-    // Arrays for the food's move, display and handleWrapping.
+    // Arrays for the food's handleWrapping (inside the dino because it is in connection do it).
     for (let j = 0; j < food.length; j++) {
       food[j].handleWrapping(dinos[i]);
     }
   }
-
+  // Arrays for the food's move and display.
   for (let j = 0; j < food.length; j++) {
-  food[j].move();
-  food[j].display();
-}
+    food[j].move();
+    food[j].display();
+  }
 
 
   // Display all the Food
-//  foodLeaves.display();
-//  foodBerries.display();
-//  foodPlant.display();
+  //  foodLeaves.display();
+  //  foodBerries.display();
+  //  foodPlant.display();
 
   // A foreground image of foliage + changes of foliage to match background
   image(foregroundImage1, 0, 0);
@@ -276,13 +275,13 @@ function handlePlay() {
   if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten > foodAmountForeground) {
     image(foregroundImage2, 0, 0);
   }
-  if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten > foodAmountForeground+9) {
+  if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten > foodAmountForeground + 9) {
     image(foregroundImage3, 0, 0);
   }
-  if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten > foodAmountForeground+19) {
+  if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten > foodAmountForeground + 19) {
     image(foregroundImage4, 0, 0);
   }
-  if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten > foodAmountForeground+29) {
+  if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten > foodAmountForeground + 29) {
     image(foregroundImage5, 0, 0);
   }
 }
