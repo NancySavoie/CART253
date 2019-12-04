@@ -8,6 +8,7 @@
 //
 // Artwork by Nancy Savoie and creative commons (Freepik and Vecteezy)
 // Music from https://www.youtube.com/watch?v=cSqdu7Qlz7k
+// Sound effects from freesound.org
 
 // State
 let titleScreen = false;
