@@ -9,7 +9,6 @@ class Dino {
   // constructor
   //
   // Sets the initial values for the Dinosaur's properties
-  // Either sets default values or uses the arguments provided
   constructor(x, y, speed, radius, upKey, downKey, leftKey, rightKey, sprintKey, images, alpha) {
     // Position
     this.x = random(1000, 0);
@@ -74,7 +73,6 @@ class Dino {
   // move
   //
   // Updates the position according to velocity
-  // Lowers energy power
   // Handles wrapping
   move(elapsed) {
     if (this.slowDuration > 0) {
@@ -115,7 +113,7 @@ class Dino {
   // handleEating
   //
   // Takes food as an argument and checks if the Dinosaur overlaps it. If so,
-  // it reduces the food's health and increases the Dinosaur's. If food is caught, it gets reset.
+  // it reduces the food's "health" and increases the Dinosaur's. If food is caught, it gets reset.
   handleEating(food) {
     // Calculate distance from this Dinosaur to the food
     let d = dist(this.x, this.y, food.x, food.y);
@@ -133,7 +131,7 @@ class Dino {
   // If Dinosaur runs out of food
   checkState() {
     if (this.health < 0.1 && this.health > 0) { // This prevents the sound from repeating itself every frame
-      dinoDeadSound.play(); // Sound plays when the Dinosaur disapears (runs out of energy)
+      dinoDeadSound.play(); // Sound plays when the Dinosaur dies
       this.dinoDead = true;
     }
   }

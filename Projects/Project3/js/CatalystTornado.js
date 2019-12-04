@@ -1,14 +1,13 @@
 // Tornado Catalyst
 //
-// A class that represents a challenge to the dinos (dinos), it cannot be caught!
-// If a player encounters a Tornado, it will slow the dinosaur(s) down.
+// A class that represents a challenge to the dinos (it cannot be eaten).
+// If a player encounters a Tornado, it will slow the dinosaur(s) down for a temporary amount of time.
 
 class CatalystTornado {
 
   // constructor
   //
   // Sets the initial values for the Catalyst's properties
-  // Either sets default values or uses the arguments provided
   constructor(x, y, speed, radius, image) {
     // Position
     this.x = random(0, width);
@@ -28,7 +27,7 @@ class CatalystTornado {
     // Check if the Dinosaur and the Catalyst overlap
     if (d < this.radius + dino.radius) {
       dino.currentSpeed = dino.slowSpeed; // Makes the Dinosaur gradually slow down
-      dino.slowDuration = 3;
+      dino.slowDuration = 3; // The Dinos slow down for 3 seconds
     }
   }
 
@@ -66,7 +65,7 @@ class CatalystTornado {
 
   // display
   //
-  // Catalyst image (water for the Tornado)
+  // Catalyst image (the Tornado)
   display() {
     push();
     noStroke();

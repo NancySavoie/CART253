@@ -1,14 +1,13 @@
 // Fire Catalyst
 //
-// A class that represents a challenge to the Dinausaurs.
-// If the player touches the fire, the dinosaur(s) will disintegrate (fade) away.
+// A class that represents a challenge to the Dinosaurs (it cannot be eaten).
+// If the player touches the fire, the dinosaur(s) will disintegrate (fade) away for a temporary amount of time.
 
 class CatalystFire {
 
   // constructor
   //
   // Sets the initial values for the catalyst's properties
-  // Either sets default values or uses the arguments provided
   constructor(x, y, speed, radius, image) {
     // Position
     this.x = random(0, width);
@@ -34,10 +33,8 @@ class CatalystFire {
 
   // move
   //
-  // Sets velocity based on the noise() function and the catalyst's speed.
-  // Moves based on the resulting velocity and handles wrapping.
   move() {
-    // Set velocity via noise()
+    // Set velocity
     this.vx = 0
     this.vy = 10
     // Update position
@@ -69,7 +66,7 @@ class CatalystFire {
 
   // display
   //
-  // Catalyst image
+  // Catalyst image (fire)
   display() {
     push();
     noStroke();

@@ -1,6 +1,6 @@
 // Meteor Catalyst
 //
-// A class that represents a challenge to the dinosaurs.
+// A class that represents a challenge to the Dinosaurs (it cannot be eaten).
 // If the player touches a meteor, it will catapult (teleport) the dinosaur(s) somewhere else on the canvas.
 
 class CatalystMeteor {
@@ -8,7 +8,6 @@ class CatalystMeteor {
   // constructor
   //
   // Sets the initial values for the catalyst's properties
-  // Either sets default values or uses the arguments provided
   constructor(x, y, speed, radius, image) {
     // Position
     this.x = random(0, width);
@@ -72,7 +71,7 @@ class CatalystMeteor {
 
   // display
   //
-  // Catalyst image, Meteor.
+  // Catalyst image, (Meteor)
   display() {
     push();
     noStroke();

@@ -8,7 +8,6 @@ class Food {
   // constructor
   //
   // Sets the initial values for the food's properties
-  // Either sets default values or uses the arguments provided
   constructor(x, y, speed, radius, image) {
     // Position
     this.x = x;
@@ -66,7 +65,7 @@ class Food {
 
   // display
   //
-  // Images for the "Food" of the game with a radius the same size as its current health.
+  // Images for the food items of the game with a radius the same size as its current "health".
   display() {
     if (this.health > 0) {
       push();

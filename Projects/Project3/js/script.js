@@ -218,6 +218,7 @@ function handlePlay() {
   fill(40, 115, 80);
   text("Triceratops: " + dinoTriceratops.foodEaten, 675, 480);
 
+  // Dictates when the catalyst objects appear
   if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten >= 21) {
     tornado.move();
     tornado.display();
@@ -277,7 +278,7 @@ function handlePlay() {
   }
 }
 
-// Mousse pressed funtion that allows the game to start and to replay after game over.
+// Mousse pressed function that allows the game to start and to replay after game over.
 function mousePressed() {
   if (gameOverScreen) {
     resetGame();
