@@ -70,6 +70,7 @@ let gameOverSound;
 let foodEatenSound;
 let dinoDeadSound;
 let gameStartSound;
+let gameWonSound;
 
 // Preload functions for images and sounds
 function preload() {
@@ -106,6 +107,7 @@ function preload() {
   foodEatenSound = loadSound('./assets/sounds/foodEatenSound.mp3');
   dinoDeadSound = loadSound('./assets/sounds/dinoDeadSound.mp3');
   gameStartSound = loadSound('./assets/sounds/gameStartSound.mp3');
+  gameWonSound = loadSound('./assets/sounds/gameWonSound.mp3');
 }
 
 // setup()
@@ -190,6 +192,7 @@ function handlePlay() {
   }
   if (dinoStegosaurus.foodEaten + dinoTriceratops.foodEaten > foodAmountBackground + 39) {
     gameWon = true;
+    gameWonSound.play();
 
     return;
   }
